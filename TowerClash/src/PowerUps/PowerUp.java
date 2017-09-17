@@ -1,5 +1,7 @@
 package PowerUps;
 
-public abstract class PowerUp {
+import Main.Visitor;
+
+public abstract class PowerUp implements Visitor{
 	public abstract void coolDown();
 }

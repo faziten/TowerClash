@@ -1,5 +1,7 @@
 package Objeto;
 
-public abstract class Objeto {
+import Main.Visitor;
+
+public abstract class Objeto implements Visitor {
 	
 }

@@ -1,30 +1,25 @@
-package Objeto;
+package Unidades;
 
 import Evento.Lava;
 import Evento.Lluvia;
 import Evento.Tornado;
 import Evento.Tsunami;
+import Main.Visitor;
+import Objeto.Bola_Fuego;
+import Objeto.Golem;
+import Objeto.Misil;
+import Objeto.Objeto;
 import PowerUps.Bomba;
 import PowerUps.Congelar;
 import PowerUps.Curacion;
 import PowerUps.Furia;
-import Unidades.Arquera;
-import Unidades.Barbaro;
-import Unidades.Caballero;
-import Unidades.Canon;
-import Unidades.Chispitas;
-import Unidades.Choza;
-import Unidades.Duende;
-import Unidades.Esqueleto;
-import Unidades.Gigante;
-import Unidades.Infernal;
-import Unidades.Mago;
-import Unidades.Magocaballero;
-import Unidades.Pekka;
-import Unidades.Rey;
-import Unidades.Valquiria;
 
-public class Golem extends Objeto{
+public class Mago extends Aliado {
+
+	protected void setArma() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
 	public boolean visit(Lava lava) {
@@ -186,6 +181,24 @@ public class Golem extends Objeto{
 	public boolean visit(Valquiria valquiria) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void accept(Visitor visitor) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void subirNivel() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int obtenerNivel() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
