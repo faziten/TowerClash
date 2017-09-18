@@ -54,7 +54,7 @@ public class Celda {
 	}
 	public void setCode(int code){
 		//System.out.println("SETIE CODE EN "+code+" DE "+this);
-		System.out.println(map.printCodes());
+		//System.out.println(map.printCodes());
 		this.code=code;
 	}
 	public Celda obtenerDerecha(Celda cel){

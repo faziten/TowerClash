@@ -59,7 +59,7 @@ public class GUI extends JPanel implements Runnable{
 			JButton btnAliado1 = new JButton("");
 			btnAliado1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					
+					System.out.print("BOTON CABALLERO PRESIONADO: TODO"+"\n");
 				}
 			});
 			btnAliado1.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"caballero"+commonExt)));
@@ -75,6 +75,7 @@ public class GUI extends JPanel implements Runnable{
 			JButton btnAliado2 = new JButton("");
 			btnAliado2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					System.out.print("BOTON ARQUERA PRESIONADO: TODO"+"\n");
 				}
 			});
 			
@@ -90,6 +91,7 @@ public class GUI extends JPanel implements Runnable{
 			JButton btnAliado3 = new JButton("");
 			btnAliado3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					System.out.print("BOTON VALQUIRIA PRESIONADO: TODO"+"\n");
 				}
 			});
 			btnAliado3.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"valquiria"+commonExt)));
@@ -104,6 +106,7 @@ public class GUI extends JPanel implements Runnable{
 			JButton btnAliado4 = new JButton("");
 			btnAliado4.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					System.out.print("BOTON MAGO PRESIONADO: TODO"+"\n");
 				}
 			});
 			btnAliado4.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"mago"+commonExt)));
@@ -118,6 +121,7 @@ public class GUI extends JPanel implements Runnable{
 			JButton btnAliado5 = new JButton("");
 			btnAliado5.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					System.out.print("BOTON MEGACABALLERO PRESIONADO: TODO"+"\n");
 				}
 			});
 			btnAliado5.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"megacaballero"+commonExt)));
@@ -133,6 +137,7 @@ public class GUI extends JPanel implements Runnable{
 			JButton btnEstructura1 = new JButton("");
 			btnEstructura1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					System.out.print("BOTON CHOZA PRESIONADO: TODO"+"\n");
 				}
 			});
 			btnEstructura1.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"choza"+commonExt)));
@@ -147,6 +152,7 @@ public class GUI extends JPanel implements Runnable{
 			JButton btnEstructura2 = new JButton("");
 			btnEstructura2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					System.out.print("BOTON INFERNAL PRESIONADO: TODO"+"\n");
 				}
 			});
 			btnEstructura2.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"infernal"+commonExt)));
@@ -161,6 +167,7 @@ public class GUI extends JPanel implements Runnable{
 			JButton btnEstructura3 = new JButton("");
 			btnEstructura3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					System.out.print("BOTON CANON PRESIONADO: TODO"+"\n");
 				}
 			});
 			btnEstructura3.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"canon"+commonExt)));
@@ -269,8 +276,8 @@ public class GUI extends JPanel implements Runnable{
 	
 				g2d.drawImage(pintor.getTextura("tex"+Integer.toString( map.obtenerCelda(i, j).obtenerCode() )),i*dx,j*dy,null); //Genera gráficos a partir de mapa.
 			}
-		System.out.println("Acabo de repintar");
-		System.out.println(map.printCodes());
+		//System.out.println("Acabo de repintar");
+		//System.out.println(map.printCodes());
 	}
 
 	public static void main(String [] arg){
