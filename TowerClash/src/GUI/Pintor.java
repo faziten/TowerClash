@@ -24,6 +24,7 @@ public class Pintor {
 	//Nota sería piola implementar algo del palo 0-100 texturas de mapa 100-200 texturas de pjes, etc.
 	private static Image tex0; //default
 	private static Image tex1; //pasto
+	private static Image tex2; //arena
 	private static Image tex3; //Caballero
 	/**
 	 * El constructor de la clase Pintor, se encarga de inicializar los objetos gráficos que corresponden a las texturas. Estas seran llamadas de forma dinámica por el juego a medida que se necesiten. 
@@ -35,8 +36,11 @@ public class Pintor {
 			mapeo.put("tex0", tex0);
 			tex1=ImageIO.read(getClass().getResourceAsStream(source+"1"+ext));
 			mapeo.put("tex1", tex1);
+			tex2=ImageIO.read(getClass().getResourceAsStream(source+"2"+ext));
+			mapeo.put("tex2", tex2);
 			tex3=ImageIO.read(getClass().getResourceAsStream(source+"3"+".png"));
 			mapeo.put("tex3", tex3);
+			
 		}catch (Exception e){
 			e.printStackTrace();
 		}

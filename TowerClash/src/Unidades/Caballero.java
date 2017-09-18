@@ -222,11 +222,13 @@ public class Caballero extends Aliado {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
+	/**
+	 * Mueve el Caballero a derecha. [Definir que ocurre si se encuentra al borde del mapa].
+	 */
 	public void moverDerecha(){
 		
 		celdaActual.vaciarUnidad(); //libera posicion
-		celdaActual.resetCode(); //vuelve a dibujar lo que estaba por defecto.
+		celdaActual.resetCode(); //vuelve a dibujar lo que estaba por defecto hay que implementar una lectura de codigo para reescribir el que estaba antes y no el por defecto.
 		
 		celdaActual=celdaActual.obtenerDerecha(celdaActual);
 		celdaActual.setUnidad(this);
@@ -238,17 +240,16 @@ public class Caballero extends Aliado {
 		return nombre;
 	}
 	//public String toString(){
-	//	return "celda actual: "+celdaActual+" nombre: "+nombre;
+	//	return "celda actual: "+celdaActual+" nombre: "+nombre; //STACK OVERFLOW 
 	//}
 	
 	
 	
 	@Override
 	public synchronized void run() {
-		//HACER ALGO ACA
 			moverDerecha();
 			try {
-				Thread.sleep(101);
+				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

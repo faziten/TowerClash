@@ -65,8 +65,8 @@ public class Celda {
 			//return map.obtenerCelda(new Random().nextInt(31), new Random().nextInt(31));
 			}
 		else {	
-			return map.obtenerCelda(new Random().nextInt(31), new Random().nextInt(31));
-			//return map.obtenerCelda(0, cel.coordY);
+			//return map.obtenerCelda(new Random().nextInt(31), new Random().nextInt(31));
+			return map.obtenerCelda(0, cel.coordY);
 		
 		}
 	}
@@ -78,7 +78,7 @@ public class Celda {
 		uni=null;
 	}
 	public void resetCode(){
-		code=0;
+		code=2;
 	}
 	public String toString(){
 		int pene=coordX*coordY;

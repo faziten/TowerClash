@@ -24,7 +24,6 @@ public class Mapa extends Thread {
 		for(int i=0;i<x;i++){
 			for(int j=0;j<y;j++){
 				mapa[i][j]=new Celda(this,null,null, null,i,j,1); //inicia la matriz con valores por defecto
-				//System.out.println(mapa[i][j]); //imprime matriz
 			}
 		}
 	
@@ -118,7 +117,9 @@ public class Mapa extends Thread {
 	public int obtenerAlto(){
 		return y;
 	}
-	@Override
+	/**
+	 * Ejecuta acciones necesarias al hilo (Sync)
+	 */
 	public synchronized void run() {
 		
 		
