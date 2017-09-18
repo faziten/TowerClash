@@ -22,7 +22,7 @@ import javax.swing.JLabel;
 import java.awt.Rectangle;
 import img.*;
 
-public class GUIJuego implements Runnable{
+public class GUIJuego extends JFrame implements Runnable{
 	private static final String cardSource= "/img/cards/";
 	private static final String objectSource="/img/objetos/";
 	private static final String commonExt=".png";
@@ -32,7 +32,7 @@ public class GUIJuego implements Runnable{
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) { //EDT EVENT DISPATCH THREAD
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -264,9 +264,10 @@ public class GUIJuego implements Runnable{
 		
 		}
 
-	@Override
-	public void run() {
-		
-		g.run();
+	public synchronized void run() {
+		while(true){
+			g.run();
+			repaint();
+		}
 	}
 }
