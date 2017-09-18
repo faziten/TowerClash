@@ -4,7 +4,9 @@ import Evento.Lava;
 import Evento.Lluvia;
 import Evento.Tornado;
 import Evento.Tsunami;
+
 import Main.Visitor;
+import Mapa.Celda;
 import Objeto.Bola_Fuego;
 import Objeto.Golem;
 import Objeto.Misil;
@@ -14,8 +16,27 @@ import PowerUps.Congelar;
 import PowerUps.Curacion;
 import PowerUps.Furia;
 
-public class Caballero extends Aliado {
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
+public class Caballero extends Aliado {
+	
+	
+	public Caballero(String nombre, Celda celda){
+		this.nombre=nombre;
+		this.arma=null;
+		this.baseDamage=0;
+		this.baseHP=0;
+		this.nivel=0;
+		this.rango=0;
+		
+		this.celdaActual=celda;
+		
+		celdaActual.setUnidad(this);
+		
+		
+		
+	}
 	
 	protected void setArma() {
 		// TODO Auto-generated method stub
@@ -201,5 +222,36 @@ public class Caballero extends Aliado {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	
+	public void moverDerecha(){
+		
+		celdaActual.vaciarUnidad(); //libera posicion
+		celdaActual.resetCode(); //vuelve a dibujar lo que estaba por defecto.
+		
+		celdaActual=celdaActual.obtenerDerecha(celdaActual);
+		celdaActual.setUnidad(this);
+		celdaActual.setCode(3);
+		
+		
+	}
+	public String getNombre(){
+		return nombre;
+	}
+	//public String toString(){
+	//	return "celda actual: "+celdaActual+" nombre: "+nombre;
+	//}
+	
+	
+	
+	@Override
+	public synchronized void run() {
+		//HACER ALGO ACA
+			moverDerecha();
+			try {
+				Thread.sleep(101);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		
+	}
 }

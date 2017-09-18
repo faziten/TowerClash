@@ -201,4 +201,10 @@ public class Choza extends Torre{
 		return 0;
 	}
 
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
