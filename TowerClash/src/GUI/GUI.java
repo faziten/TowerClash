@@ -56,127 +56,127 @@ public class GUI extends JPanel implements Runnable{
 		
 		
 		//ALIADOS
-			JButton btnAliado1 = new JButton("");
-			btnAliado1.addActionListener(new ActionListener() {
+			JButton btnCaballero = new JButton("");
+			btnCaballero.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					System.out.print("BOTON CABALLERO PRESIONADO: TODO"+"\n");
 				}
 			});
-			btnAliado1.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"caballero"+commonExt)));
-			//btnAliado1.setIcon(new ImageIcon(GUIJuego.class.getResource("/res/cartas/caballero.png")));
-			btnAliado1.setBounds(29, 11, 71, 88);
-			Cartas.add(btnAliado1);
+			btnCaballero.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"caballero"+commonExt)));
+			//btnCaballero.setIcon(new ImageIcon(GUIJuego.class.getResource("/res/cartas/caballero.png")));
+			btnCaballero.setBounds(29, 11, 71, 88);
+			Cartas.add(btnCaballero);
 			//Borrado de del boton
 		//	btnEstructura5.setBorderPainted(false);
-			btnAliado1.setContentAreaFilled(false);
-			btnAliado1.setOpaque(true);
+			btnCaballero.setContentAreaFilled(false);
+			btnCaballero.setOpaque(true);
 			
 			
-			JButton btnAliado2 = new JButton("");
-			btnAliado2.addActionListener(new ActionListener() {
+			JButton btnArquera = new JButton("");
+			btnArquera.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					System.out.print("BOTON ARQUERA PRESIONADO: TODO"+"\n");
 				}
 			});
 			
-			btnAliado2.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"arquera"+commonExt)));
-			//btnAliado2.setIcon(new ImageIcon(GUIJuego.class.getResource("/res/cartas/arquera.png")));
-			btnAliado2.setBounds(29, 110, 71, 88);
-			Cartas.add(btnAliado2);
+			btnArquera.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"arquera"+commonExt)));
+			//btnArquera.setIcon(new ImageIcon(GUIJuego.class.getResource("/res/cartas/arquera.png")));
+			btnArquera.setBounds(29, 110, 71, 88);
+			Cartas.add(btnArquera);
 			//Borrado de del boton
-			btnAliado2.setContentAreaFilled(false);
-			btnAliado2.setOpaque(true);
+			btnArquera.setContentAreaFilled(false);
+			btnArquera.setOpaque(true);
 			
 			
-			JButton btnAliado3 = new JButton("");
-			btnAliado3.addActionListener(new ActionListener() {
+			JButton btnValquiria = new JButton("");
+			btnValquiria.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					System.out.print("BOTON VALQUIRIA PRESIONADO: TODO"+"\n");
 				}
 			});
-			btnAliado3.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"valquiria"+commonExt)));
-			//btnAliado3.setIcon(new ImageIcon(GUIJuego.class.getResource("/res/cartas/valquiria.png")));
-			btnAliado3.setBounds(29, 209, 71, 88);
-			Cartas.add(btnAliado3);
+			btnValquiria.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"valquiria"+commonExt)));
+			//btnValquiria.setIcon(new ImageIcon(GUIJuego.class.getResource("/res/cartas/valquiria.png")));
+			btnValquiria.setBounds(29, 209, 71, 88);
+			Cartas.add(btnValquiria);
 			//Borrado de del boton
-			btnAliado3.setContentAreaFilled(false);
-			btnAliado3.setOpaque(true);
+			btnValquiria.setContentAreaFilled(false);
+			btnValquiria.setOpaque(true);
 			
 			
-			JButton btnAliado4 = new JButton("");
-			btnAliado4.addActionListener(new ActionListener() {
+			JButton btnMago = new JButton("");
+			btnMago.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					System.out.print("BOTON MAGO PRESIONADO: TODO"+"\n");
 				}
 			});
-			btnAliado4.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"mago"+commonExt)));
-			//btnAliado4.setIcon(new ImageIcon(GUIJuego.class.getResource("/res/cartas/mago.png")));
-			btnAliado4.setBounds(29, 308, 71, 88);
-			Cartas.add(btnAliado4);
+			btnMago.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"mago"+commonExt)));
+			//btnMago.setIcon(new ImageIcon(GUIJuego.class.getResource("/res/cartas/mago.png")));
+			btnMago.setBounds(29, 308, 71, 88);
+			Cartas.add(btnMago);
 			//Borrado de del boton
-			btnAliado4.setContentAreaFilled(false);
-			btnAliado4.setOpaque(true);
+			btnMago.setContentAreaFilled(false);
+			btnMago.setOpaque(true);
 			
 			
-			JButton btnAliado5 = new JButton("");
-			btnAliado5.addActionListener(new ActionListener() {
+			JButton btnMegacaballero = new JButton("");
+			btnMegacaballero.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					System.out.print("BOTON MEGACABALLERO PRESIONADO: TODO"+"\n");
 				}
 			});
-			btnAliado5.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"megacaballero"+commonExt)));
-			//btnAliado5.setIcon(new ImageIcon(GUIJuego.class.getResource("/res/cartas/megacaballero.png")));
-			btnAliado5.setBounds(29, 407, 71, 88);
-			Cartas.add(btnAliado5);
+			btnMegacaballero.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"megacaballero"+commonExt)));
+			//btnMegacaballero.setIcon(new ImageIcon(GUIJuego.class.getResource("/res/cartas/megacaballero.png")));
+			btnMegacaballero.setBounds(29, 407, 71, 88);
+			Cartas.add(btnMegacaballero);
 			//Borrado de del boton
-			btnAliado5.setContentAreaFilled(false);
-			btnAliado5.setOpaque(true);
+			btnMegacaballero.setContentAreaFilled(false);
+			btnMegacaballero.setOpaque(true);
 		
 		
 		//ESTRUCTURAS
-			JButton btnEstructura1 = new JButton("");
-			btnEstructura1.addActionListener(new ActionListener() {
+			JButton btnChoza = new JButton("");
+			btnChoza.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					System.out.print("BOTON CHOZA PRESIONADO: TODO"+"\n");
 				}
 			});
-			btnEstructura1.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"choza"+commonExt)));
-			//btnEstructura1.setIcon(new ImageIcon(GUIJuego.class.getResource("/res/cartas/choza.png")));
-			btnEstructura1.setBounds(110, 11, 71, 88);
-			Cartas.add(btnEstructura1);
+			btnChoza.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"choza"+commonExt)));
+			//btnChoza.setIcon(new ImageIcon(GUIJuego.class.getResource("/res/cartas/choza.png")));
+			btnChoza.setBounds(110, 11, 71, 88);
+			Cartas.add(btnChoza);
 			//Borrado de del boton
-			btnEstructura1.setContentAreaFilled(false);
-			btnEstructura1.setOpaque(true);
+			btnChoza.setContentAreaFilled(false);
+			btnChoza.setOpaque(true);
 			
 			
-			JButton btnEstructura2 = new JButton("");
-			btnEstructura2.addActionListener(new ActionListener() {
+			JButton btnInfernal = new JButton("");
+			btnInfernal.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					System.out.print("BOTON INFERNAL PRESIONADO: TODO"+"\n");
 				}
 			});
-			btnEstructura2.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"infernal"+commonExt)));
-			//btnEstructura2.setIcon(new ImageIcon(GUIJuego.class.getResource("/res/cartas/infernal.png")));
-			btnEstructura2.setBounds(110, 209, 71, 88);
-			Cartas.add(btnEstructura2);
+			btnInfernal.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"infernal"+commonExt)));
+			//btnInfernal.setIcon(new ImageIcon(GUIJuego.class.getResource("/res/cartas/infernal.png")));
+			btnInfernal.setBounds(110, 209, 71, 88);
+			Cartas.add(btnInfernal);
 			//Borrado de del boton
-			btnEstructura2.setContentAreaFilled(false);
-			btnEstructura2.setOpaque(true);
+			btnInfernal.setContentAreaFilled(false);
+			btnInfernal.setOpaque(true);
 			
 			
-			JButton btnEstructura3 = new JButton("");
-			btnEstructura3.addActionListener(new ActionListener() {
+			JButton btnCannon = new JButton("");
+			btnCannon.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					System.out.print("BOTON CANON PRESIONADO: TODO"+"\n");
 				}
 			});
-			btnEstructura3.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"canon"+commonExt)));
-			//btnEstructura3.setIcon(new ImageIcon(GUIJuego.class.getResource("/res/cartas/canon.png")));
-			btnEstructura3.setBounds(110, 110, 71, 88);
-			Cartas.add(btnEstructura3);
+			btnCannon.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"canon"+commonExt)));
+			//btnCannon.setIcon(new ImageIcon(GUIJuego.class.getResource("/res/cartas/canon.png")));
+			btnCannon.setBounds(110, 110, 71, 88);
+			Cartas.add(btnCannon);
 			//Borrado de del boton
-			btnEstructura3.setContentAreaFilled(false);
-			btnEstructura3.setOpaque(true);
+			btnCannon.setContentAreaFilled(false);
+			btnCannon.setOpaque(true);
 			
 			
 			JButton btnEstructura4 = new JButton("");
@@ -216,23 +216,43 @@ public class GUI extends JPanel implements Runnable{
 		RoundButton misil= new RoundButton();
 		misil.setIcon(new ImageIcon(GUIJuego.class.getResource(objectSource+"Cohete"+commonExt)));
 		//misil.setIcon(new ImageIcon(GUIJuego.class.getResource("/res/objetos/Cohete.png")));
+		misil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.print("BOTON MISIL PRESIONADO: TODO"+"\n");
+			}
+		});
 		misil.setBounds(50, 369, 100, 100);
 		Objetos.add(misil);
 		
 		RoundButton bola_fuego= new RoundButton();
 		bola_fuego.setIcon(new ImageIcon(GUIJuego.class.getResource(objectSource+"Bola_fuego"+commonExt)));
 		//bola_fuego.setIcon(new ImageIcon(GUIJuego.class.getResource("/res/objetos/Bola_fuego.png")));
+		bola_fuego.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.print("BOTON BOLA FUEGO PRESIONADO: TODO"+"\n");
+			}
+		});
 		bola_fuego.setBounds(50, 258, 100, 100);
 		Objetos.add(bola_fuego);
 		
 		RoundButton globo= new RoundButton();
 		globo.setIcon(new ImageIcon(GUIJuego.class.getResource(objectSource+"globo"+commonExt)));
 		//globo.setIcon(new ImageIcon(GUIJuego.class.getResource("/res/objetos/globo.png")));
+		globo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.print("BOTON GLOBO PRESIONADO: TODO"+"\n");
+			}
+		});
 		globo.setBounds(50, 147, 100, 100);
 		Objetos.add(globo);
 		
 		RoundButton golem= new RoundButton();
 		golem.setIcon(new ImageIcon(GUIJuego.class.getResource(objectSource+"golem"+commonExt)));
+		golem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.print("BOTON GOLEM PRESIONADO: TODO"+"\n");
+			}
+		});
 		golem.setBounds(50, 36, 100, 100);
 		Objetos.add(golem);
 		
