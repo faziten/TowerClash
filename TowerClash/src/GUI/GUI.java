@@ -41,6 +41,7 @@ public class GUI extends JPanel implements Runnable{
 	
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setBounds(100, 50, 965, 542);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -336,12 +337,14 @@ public class GUI extends JPanel implements Runnable{
 		//////////END BENCHMARK/////////
  
 	}
-	
+	/**
+	 * Ejecuta el juego. En esta entrega el juego y el personaje son controlados en el mismo hilo. 
+	 */
 	public synchronized void run() {
 		
 		while(true){
 			
-			logMapa.obtenerUnidades().get("robert").run();
+			logMapa.obtenerUnidades().get("robert").run(); //Nota esta forma de acceder a los atributos es temporal. Va a cambiar.
 			game.repaint();
 			try {
 				Thread.sleep(2);
