@@ -20,7 +20,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 public class Caballero extends Aliado {
-	
+		private int velocidad;
 	
 	public Caballero(String nombre, Celda celda){
 		this.nombre=nombre;
@@ -243,16 +243,20 @@ public class Caballero extends Aliado {
 	//	return "celda actual: "+celdaActual+" nombre: "+nombre; //STACK OVERFLOW 
 	//}
 	
-	
+	public void setVelocidad(int vel){
+		velocidad=vel;
+	}
 	
 	@Override
 	public synchronized void run() {
-			moverDerecha();
+		while(true){	
+		moverDerecha();
 			try {
-				Thread.sleep(500);
+				System.out.println(Thread.currentThread().getName()+ " Hilo de Caballero "+nombre);
+				Thread.sleep(velocidad);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-		
+		}
 	}
 }

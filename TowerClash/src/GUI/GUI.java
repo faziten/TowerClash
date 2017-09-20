@@ -22,6 +22,7 @@ import javax.swing.border.EtchedBorder;
 
 import Mapa.Mapa;
 import Mapa.logicaMapa;
+import Unidades.Unidad;
 
 public class GUI extends JPanel implements Runnable{
 	static final int dx=16;
@@ -32,6 +33,7 @@ public class GUI extends JPanel implements Runnable{
 	static logicaMapa logMapa=new logicaMapa();
 	static Mapa map=logMapa.obtenerMapa();
 	protected static GUI game; 
+	private boolean keepOn=true;
 	
 	//ADITION
 	private static final String cardSource= "/img/cards/";
@@ -61,6 +63,8 @@ public class GUI extends JPanel implements Runnable{
 			btnCaballero.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					System.out.print("BOTON CABALLERO PRESIONADO: TODO"+"\n");
+					haltThreads();
+					keepOn=false;
 				}
 			});
 			btnCaballero.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"caballero"+commonExt)));
@@ -77,6 +81,7 @@ public class GUI extends JPanel implements Runnable{
 			btnArquera.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					System.out.print("BOTON ARQUERA PRESIONADO: TODO"+"\n");
+					
 				}
 			});
 			
@@ -340,13 +345,44 @@ public class GUI extends JPanel implements Runnable{
 	/**
 	 * Ejecuta el juego. En esta entrega el juego y el personaje son controlados en el mismo hilo. 
 	 */
+	
+	@SuppressWarnings("deprecation")
+	private void haltThreads(){
+		for(Unidad u: logMapa.obtenerUnidades().values()){
+				((Thread)u).stop();	
+		}
+	}
+
+
+	
 	public synchronized void run() {
 		
-		while(true){
-			
-			logMapa.obtenerUnidades().get("robert").run(); //Nota esta forma de acceder a los atributos es temporal. Va a cambiar.
+		//Forma super hiper mega cool de ejecutar todos los hilos (No necesito conocer su nombre). Supongo que con el factory tendrá mas sentido.
+		
+		for(Unidad u: logMapa.obtenerUnidades().values()){
+			((Thread)u).start();
+		}
+		
+		/* ESTO EJECUTA CADA CABALLERO EN SU HILO (VER NOMBRE EN EL SYSTEM OUT DICE THREAD 2 y 3)-.
+		Thread t1=new Thread();
+		t1=(Thread)logMapa.obtenerUnidades().get("robert");
+		t1.start();
+		Thread t2=new Thread();
+		t2=(Thread)logMapa.obtenerUnidades().get("robert2");
+		t2.start();
+		*/
+		while(keepOn){
+			/*
+			 * ESTO EJECUTA A LOS CABALLEROS EN EL HILO MAIN (TODO ES UN HILO).
+			 * t1.start();
+			 * logMapa.obtenerUnidades().get("robert").run(); //Nota esta forma de acceder a los atributos es temporal. Va a cambiar.
+			 * logMapa.obtenerUnidades().get("robert2").run(); 
+			 * 
+			 * */
+			 
 			game.repaint();
 			try {
+				//System.out.println(Thread.currentThread().getName()+ "Hilo de GUI");
 				Thread.sleep(2);
 			} catch (InterruptedException e) {
 				e.printStackTrace();

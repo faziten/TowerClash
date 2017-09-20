@@ -78,7 +78,7 @@ public class Celda {
 		uni=null;
 	}
 	public void resetCode(){
-		code=2;
+		code=1;
 	}
 	public String toString(){
 		int pene=coordX*coordY;
