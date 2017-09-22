@@ -2,6 +2,7 @@ package Mapa;
 
 import java.util.Random;
 import Evento.Evento;
+import GUI.Sonidor;
 import Objeto.Objeto;
 import Unidades.Unidad;
 /**
@@ -56,6 +57,8 @@ public class Celda {
 		//System.out.println("SETIE CODE EN "+code+" DE "+this);
 		//System.out.println(map.printCodes());
 		this.code=code;
+		
+	    	
 	}
 	public Celda obtenerDerecha(Celda cel){
 		//System.out.println(cel.coordX+" "+map.obtenerAncho());
@@ -70,6 +73,20 @@ public class Celda {
 		
 		}
 	}
+	public Celda obtenerAbajo(Celda cel){
+		//System.out.println(cel.coordX+" "+map.obtenerAncho());
+		if(cel.coordY<map.obtenerAlto()-1){
+			
+			return map.obtenerCelda(cel.coordX, cel.coordY+1);
+			//return map.obtenerCelda(new Random().nextInt(31), new Random().nextInt(31));
+			}
+		else {	
+			//return map.obtenerCelda(new Random().nextInt(31), new Random().nextInt(31));
+			return map.obtenerCelda(cel.coordX, 0);
+		
+		}
+	}
+	
 	
 	public void setUnidad(Unidad unidad){
 		uni=unidad;

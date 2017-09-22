@@ -4,7 +4,7 @@ import Evento.Lava;
 import Evento.Lluvia;
 import Evento.Tornado;
 import Evento.Tsunami;
-
+import GUI.Sonidor;
 import Main.Visitor;
 import Mapa.Celda;
 import Objeto.Bola_Fuego;
@@ -21,6 +21,8 @@ import java.awt.Graphics2D;
 
 public class Caballero extends Aliado {
 		private int velocidad;
+		private String direccion;
+		Sonidor sonidor=new Sonidor();
 	
 	public Caballero(String nombre, Celda celda){
 		this.nombre=nombre;
@@ -233,7 +235,17 @@ public class Caballero extends Aliado {
 		celdaActual=celdaActual.obtenerDerecha(celdaActual);
 		celdaActual.setUnidad(this);
 		celdaActual.setCode(3);
+		//sonidor.playSound("grass_footstep");
 		
+	}
+	public void moverAbajo(){
+		celdaActual.vaciarUnidad(); //libera posicion
+		celdaActual.resetCode(); //vuelve a dibujar lo que estaba por defecto hay que implementar una lectura de codigo para reescribir el que estaba antes y no el por defecto.
+		
+		celdaActual=celdaActual.obtenerAbajo(celdaActual);
+		celdaActual.setUnidad(this);
+		celdaActual.setCode(3);
+		//sonidor.playSound("grass_footstep");
 		
 	}
 	public String getNombre(){
@@ -246,17 +258,38 @@ public class Caballero extends Aliado {
 	public void setVelocidad(int vel){
 		velocidad=vel;
 	}
+	public void setDireccion(String dir){
+		direccion=dir;
+	}
 	
 	@Override
 	public synchronized void run() {
-		while(true){	
-		moverDerecha();
+		//while(true){	
+		switch(direccion){
+		case "derecha":{
+			moverDerecha();
 			try {
 				System.out.println(Thread.currentThread().getName()+ " Hilo de Caballero "+nombre);
 				Thread.sleep(velocidad);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
+				}
+			break;
 			}
+		case "abajo":{
+			moverAbajo();
+			try {
+				System.out.println(Thread.currentThread().getName()+ " Hilo de Caballero "+nombre);
+				Thread.sleep(velocidad);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+				}
+			break;
+			}
+		
 		}
-	}
+		
+		
+		}
+	//}
 }
