@@ -230,11 +230,11 @@ public class Caballero extends Aliado {
 	public void moverDerecha(){
 		
 		celdaActual.vaciarUnidad(); //libera posicion
-		celdaActual.resetCode(); //vuelve a dibujar lo que estaba por defecto hay que implementar una lectura de codigo para reescribir el que estaba antes y no el por defecto.
+		celdaActual.setCode(-1, 0, -1, -1);; //vuelve a dibujar lo que estaba por defecto hay que implementar una lectura de codigo para reescribir el que estaba antes y no el por defecto.
 		
 		celdaActual=celdaActual.obtenerDerecha(celdaActual);
 		celdaActual.setUnidad(this);
-		celdaActual.setCode(3);
+		celdaActual.setCode(-1, 3, -1, -1);
 		//sonidor.playSound("grass_footstep");
 		
 	}
@@ -244,7 +244,7 @@ public class Caballero extends Aliado {
 		
 		celdaActual=celdaActual.obtenerAbajo(celdaActual);
 		celdaActual.setUnidad(this);
-		celdaActual.setCode(3);
+		celdaActual.setCode(-1, 3, -1, -1);;
 		//sonidor.playSound("grass_footstep");
 		
 	}
@@ -269,7 +269,7 @@ public class Caballero extends Aliado {
 	 * Este metodo elimina la vinculación de éste caballero con la celda donde estaba.
 	 */
 	public synchronized void die(){  //tuve que sincronizarlo para que no me queden cadaveres en el mapa jaja. 
-		celdaActual.resetCode();
+		celdaActual.setCode(-1, 5, -1, -1);
 		celdaActual.setUnidad(null);
 		celdaActual=null;
 	}

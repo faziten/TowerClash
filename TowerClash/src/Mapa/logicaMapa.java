@@ -90,6 +90,8 @@ public class logicaMapa implements Runnable{
 		
 	}
 	
+
+	
 	@Override
 	public synchronized void run() {
 

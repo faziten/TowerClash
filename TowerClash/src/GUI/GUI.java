@@ -1,34 +1,21 @@
 package GUI;
-import img.*;
-import javazoom.jl.player.Player;
 
+import javazoom.jl.player.Player;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileInputStream;
 import java.util.Collection;
-import java.util.NoSuchElementException;
-import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.LogManager;
-
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
-
 import Mapa.Mapa;
 import Mapa.logicaMapa;
 import Unidades.Unidad;
@@ -38,22 +25,26 @@ public class GUI extends JPanel implements Runnable{
 	static final int dy=16;
 	static final int cel=32;
 	static JFrame frame=new JFrame();
+	
+	//ENTIDADES
 	protected volatile Pintor pintor=new Pintor(); //Multiples hilos le van a pedir cosas. 
 	static logicaMapa logMapa=new logicaMapa();
 	static Mapa map=logMapa.obtenerMapa();
 	protected static GUI game; 
+	protected volatile ExecutorService executorService = Executors.newSingleThreadExecutor(); //no creo que haga falta hacerla voltail.
 	
-	
+	//ALIADOS Y TEMPORIZADOR
+	long startTime = System.currentTimeMillis();  // TIMER!!
 	protected volatile int instancia=0; //Multiples hilos modificaran sus estados internos. Nota instancia++ e instancia-- no son thread safe (Ver IBM tips). 
 	private volatile boolean[] instancias=new boolean[32]; //Si bien no se puede hacer dos clicks al mismo tiempo, no es la forma en que se crearan necesariamente.
 	
-	//ADITION
+	//PATHFILES
 	private static final String cardSource= "/img/cards/";
 	private static final String objectSource="/img/objetos/";
 	private static final String commonExt=".png";
 	
-	//
-	protected volatile ExecutorService executorService = Executors.newSingleThreadExecutor(); //no creo que haga falta hacerla voltail.
+	
+	
 
 	
 	private void initialize() {
@@ -363,13 +354,17 @@ public class GUI extends JPanel implements Runnable{
 	public void paint(Graphics g){
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
+		g2d.setColor(Color.RED);
 		for(int i=0;i<32;i++)
 			for(int j=0;j<32;j++){
-	
-				g2d.drawImage(pintor.getTextura("tex"+Integer.toString( map.obtenerCelda(i, j).obtenerCode() )),i*dx,j*dy,null); //Genera gráficos a partir de mapa.
-				g2d.drawString("Puntaje actual: "+Integer.toString(logMapa.getPuntaje()), 5, 12);
-				g2d.setColor(Color.RED);
+				for(int k=0;k<4;k++)
+					g2d.drawImage(pintor.getTextura("tex"+Integer.toString( map.obtenerCelda(i, j).obtenerCode()[k] )),i*dx,j*dy,null); //Genera gráficos a partir de mapa.
+				
+				
 			}
+		g2d.drawString("Puntaje actual: "+Integer.toString(logMapa.getPuntaje()), 5, 12);
+		g2d.drawString("Unidades vivas: "+Integer.toString(logMapa.obtenerUnidades().size()), 5, 24);
+		g2d.drawString("Tiempo transcurrido: "+((System.currentTimeMillis()-startTime)/3600000)+":"+((System.currentTimeMillis()-startTime)/60000%60)+":"+((System.currentTimeMillis()-startTime)/1000%60), 5, 36); //TIMER!
 	}
 
 	public static void main(String [] arg){
