@@ -4,7 +4,7 @@ import Evento.Lava;
 import Evento.Lluvia;
 import Evento.Tornado;
 import Evento.Tsunami;
-import GUI.Sonidor;
+
 import Main.Visitor;
 import Mapa.Celda;
 import Objeto.Bola_Fuego;
@@ -20,10 +20,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 public class Caballero extends Aliado {
-		private int velocidad;
-		private String direccion;
-		Sonidor sonidor=new Sonidor();
-		private int puntos;
+	
+	
 	public Caballero(String nombre, Celda celda){
 		this.nombre=nombre;
 		this.arma=null;
@@ -31,7 +29,7 @@ public class Caballero extends Aliado {
 		this.baseHP=0;
 		this.nivel=0;
 		this.rango=0;
-		this.puntos=25;
+		
 		this.celdaActual=celda;
 		
 		celdaActual.setUnidad(this);
@@ -230,78 +228,31 @@ public class Caballero extends Aliado {
 	public void moverDerecha(){
 		
 		celdaActual.vaciarUnidad(); //libera posicion
-		celdaActual.setCode(-1, 0, -1, -1);; //vuelve a dibujar lo que estaba por defecto hay que implementar una lectura de codigo para reescribir el que estaba antes y no el por defecto.
+		celdaActual.resetCode(); //vuelve a dibujar lo que estaba por defecto hay que implementar una lectura de codigo para reescribir el que estaba antes y no el por defecto.
 		
 		celdaActual=celdaActual.obtenerDerecha(celdaActual);
 		celdaActual.setUnidad(this);
-		celdaActual.setCode(-1, 3, -1, -1);
-		//sonidor.playSound("grass_footstep");
+		celdaActual.setCode(3);
+		
 		
 	}
-	public void moverAbajo(){
-		celdaActual.vaciarUnidad(); //libera posicion
-		celdaActual.resetCode(); //vuelve a dibujar lo que estaba por defecto hay que implementar una lectura de codigo para reescribir el que estaba antes y no el por defecto.
-		
-		celdaActual=celdaActual.obtenerAbajo(celdaActual);
-		celdaActual.setUnidad(this);
-		celdaActual.setCode(-1, 3, -1, -1);;
-		//sonidor.playSound("grass_footstep");
-		
-	}
-	public synchronized String getNombre(){
+	public String getNombre(){
 		return nombre;
 	}
 	//public String toString(){
 	//	return "celda actual: "+celdaActual+" nombre: "+nombre; //STACK OVERFLOW 
 	//}
 	
-	public synchronized void setVelocidad(int vel){
-		velocidad=vel;
-	}
-	public synchronized void setDireccion(String dir){
-		direccion=dir;
-	}
 	
-	public int getPuntos(){
-		return puntos;
-	}
-	/**
-	 * Este metodo elimina la vinculación de éste caballero con la celda donde estaba.
-	 */
-	public synchronized void die(){  //tuve que sincronizarlo para que no me queden cadaveres en el mapa jaja. 
-		celdaActual.setCode(-1, 5, -1, -1);
-		celdaActual.setUnidad(null);
-		celdaActual=null;
-	}
 	
 	@Override
 	public synchronized void run() {
-		//while(true){	
-		switch(direccion){
-		case "derecha":{
 			moverDerecha();
-			//try {
-				//System.out.println(Thread.currentThread().getName()+ " Hilo de Caballero "+nombre);
-				//Thread.sleep(velocidad);
-			//} catch (InterruptedException e) {
-				//e.printStackTrace();
-				//}
-			break;
-			}
-		case "abajo":{
-			moverAbajo();
-			//try {
-				//System.out.println(Thread.currentThread().getName()+ " Hilo de Caballero "+nombre);
-				//Thread.sleep(velocidad);
-			//} catch (InterruptedException e) {
-				//e.printStackTrace();
-				//}
-			break;
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 		
-		}
-		
-		
-		}
-	//}
+	}
 }

@@ -6,7 +6,7 @@ import Unidades.Enemigo;
 import Unidades.Torre;
 import Unidades.Unidad;
 
-public class Mapa {
+public class Mapa extends Thread {
 	private int oro;
 	private int puntaje;
 	private int tiempo;
@@ -120,5 +120,8 @@ public class Mapa {
 	/**
 	 * Ejecuta acciones necesarias al hilo (Sync)
 	 */
-
+	public synchronized void run() {
+		
+		
+	}
 }
