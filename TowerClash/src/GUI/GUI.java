@@ -244,20 +244,36 @@ public class GUI extends JPanel implements Runnable{
 			btnCannon.setEnabled(false);
 			
 			
-			JButton btnEstructura4 = new JButton("");
-			btnEstructura4.setBounds(110, 308, 71, 88);
-			Cartas.add(btnEstructura4);
-			//Borrado de del boton
-			btnEstructura4.setContentAreaFilled(false);
-			btnEstructura4.setOpaque(true);
 			
 			
-			JButton btnEstructura5 = new JButton("");
-			btnEstructura5.setBounds(110, 407, 71, 88);
-			Cartas.add(btnEstructura5);
+			JButton btnEnemigo = new JButton("");
+			btnEnemigo.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					System.out.print("BOTON ENEMIGO PRESIONADO: TODO"+"\n");
+				}
+			});
+			btnEnemigo.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"duende"+commonExt)));
+			btnEnemigo.setBounds(110, 308, 71, 88);
+			Cartas.add(btnEnemigo);
 			//Borrado de del boton
-			btnEstructura5.setContentAreaFilled(false);
-			btnEstructura5.setOpaque(true);
+			btnEnemigo.setContentAreaFilled(false);
+			btnEnemigo.setOpaque(true);
+			
+			
+			
+			
+			JButton btnNuclear = new JButton("");
+			btnNuclear.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					System.out.print("BOTON NUCLEAR PRESIONADO: TODO"+"\n");
+				}
+			});
+			btnNuclear.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"nuclear"+commonExt)));
+			btnNuclear.setBounds(110, 407, 71, 88);
+			Cartas.add(btnNuclear);
+			//Borrado de del boton
+			btnNuclear.setContentAreaFilled(false);
+			btnNuclear.setOpaque(true);
 			
 		
 
