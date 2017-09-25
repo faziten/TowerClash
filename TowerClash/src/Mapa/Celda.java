@@ -2,6 +2,7 @@ package Mapa;
 
 import java.util.Random;
 import Evento.Evento;
+import GUI.Sonidor;
 import Objeto.Objeto;
 import Unidades.Unidad;
 /**
@@ -18,7 +19,7 @@ public class Celda {
 	protected Unidad uni;
 	protected int coordX;
 	protected int coordY;
-	protected int code;
+	protected int[] code;
 	
 	
 	/**
@@ -35,7 +36,8 @@ public class Celda {
 		uni=u;
 		coordX=x;
 		coordY=y;
-		this.code=code;
+		this.code=new int[4];
+		this.code[0]=code;
 		//Nota: Si la cagamos tira ClassCastExc.
 	}
 	/**
@@ -47,15 +49,34 @@ public class Celda {
 		new Celda(m, null, null, null, x, y, 0);
 	}
 	
+	/**
+	 * Que tal si hago un arreglo de codigos. Posiciones: 0=fondo; 1=unidad; 2=powerUp; 3= evento;
+	 * @return codigos
+	 */
 	
-	
-	public int obtenerCode(){
+	public int[] obtenerCode(){
 		return code;
 	}
-	public void setCode(int code){
+	/**
+	 * 
+	 * @param fondo codigo de fondo
+	 * @param unidad codigo de unidad
+	 * @param powUp codigo de power up
+	 * @param evento codigo de evento
+	 */
+	public void setCode(int fondo, int unidad, int powUp, int evento){
 		//System.out.println("SETIE CODE EN "+code+" DE "+this);
 		//System.out.println(map.printCodes());
-		this.code=code;
+		if(fondo!=-1)
+			code[0]=fondo;
+		if(unidad!=-1)
+			code[1]=unidad;
+		if(powUp!=-1)
+			code[2]=powUp;
+		if(evento!=-1)
+		code[3]=evento;
+		
+	    	
 	}
 	public Celda obtenerDerecha(Celda cel){
 		//System.out.println(cel.coordX+" "+map.obtenerAncho());
@@ -70,15 +91,32 @@ public class Celda {
 		
 		}
 	}
+	public Celda obtenerAbajo(Celda cel){
+		//System.out.println(cel.coordX+" "+map.obtenerAncho());
+		if(cel.coordY<map.obtenerAlto()-1){
+			
+			return map.obtenerCelda(cel.coordX, cel.coordY+1);
+			//return map.obtenerCelda(new Random().nextInt(31), new Random().nextInt(31));
+			}
+		else {	
+			//return map.obtenerCelda(new Random().nextInt(31), new Random().nextInt(31));
+			return map.obtenerCelda(cel.coordX, 0);
+		
+		}
+	}
 	
-	public void setUnidad(Unidad unidad){
+	
+	public synchronized void setUnidad(Unidad unidad){
 		uni=unidad;
 	}
 	public void vaciarUnidad(){
 		uni=null;
 	}
-	public void resetCode(){
-		code=2;
+	/*
+	 * POR AHORA NO LO BORRO PERO NO HACE NADA :D
+	 */
+	public synchronized void resetCode(){
+		//code[0];
 	}
 	public String toString(){
 		int pene=coordX*coordY;
