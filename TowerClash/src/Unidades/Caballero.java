@@ -23,7 +23,7 @@ public class Caballero extends Aliado {
 		private int velocidad;
 		private String direccion;
 		Sonidor sonidor=new Sonidor();
-	
+		private int puntos;
 	public Caballero(String nombre, Celda celda){
 		this.nombre=nombre;
 		this.arma=null;
@@ -31,7 +31,7 @@ public class Caballero extends Aliado {
 		this.baseHP=0;
 		this.nivel=0;
 		this.rango=0;
-		
+		this.puntos=25;
 		this.celdaActual=celda;
 		
 		celdaActual.setUnidad(this);
@@ -248,18 +248,30 @@ public class Caballero extends Aliado {
 		//sonidor.playSound("grass_footstep");
 		
 	}
-	public String getNombre(){
+	public synchronized String getNombre(){
 		return nombre;
 	}
 	//public String toString(){
 	//	return "celda actual: "+celdaActual+" nombre: "+nombre; //STACK OVERFLOW 
 	//}
 	
-	public void setVelocidad(int vel){
+	public synchronized void setVelocidad(int vel){
 		velocidad=vel;
 	}
-	public void setDireccion(String dir){
+	public synchronized void setDireccion(String dir){
 		direccion=dir;
+	}
+	
+	public int getPuntos(){
+		return puntos;
+	}
+	/**
+	 * Este metodo elimina la vinculación de éste caballero con la celda donde estaba.
+	 */
+	public synchronized void die(){  //tuve que sincronizarlo para que no me queden cadaveres en el mapa jaja. 
+		celdaActual.resetCode();
+		celdaActual.setUnidad(null);
+		celdaActual=null;
 	}
 	
 	@Override
@@ -268,22 +280,22 @@ public class Caballero extends Aliado {
 		switch(direccion){
 		case "derecha":{
 			moverDerecha();
-			try {
-				System.out.println(Thread.currentThread().getName()+ " Hilo de Caballero "+nombre);
-				Thread.sleep(velocidad);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-				}
+			//try {
+				//System.out.println(Thread.currentThread().getName()+ " Hilo de Caballero "+nombre);
+				//Thread.sleep(velocidad);
+			//} catch (InterruptedException e) {
+				//e.printStackTrace();
+				//}
 			break;
 			}
 		case "abajo":{
 			moverAbajo();
-			try {
-				System.out.println(Thread.currentThread().getName()+ " Hilo de Caballero "+nombre);
-				Thread.sleep(velocidad);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-				}
+			//try {
+				//System.out.println(Thread.currentThread().getName()+ " Hilo de Caballero "+nombre);
+				//Thread.sleep(velocidad);
+			//} catch (InterruptedException e) {
+				//e.printStackTrace();
+				//}
 			break;
 			}
 		

@@ -88,13 +88,13 @@ public class Celda {
 	}
 	
 	
-	public void setUnidad(Unidad unidad){
+	public synchronized void setUnidad(Unidad unidad){
 		uni=unidad;
 	}
 	public void vaciarUnidad(){
 		uni=null;
 	}
-	public void resetCode(){
+	public synchronized void resetCode(){
 		code=1;
 	}
 	public String toString(){

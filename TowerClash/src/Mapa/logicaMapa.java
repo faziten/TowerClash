@@ -8,20 +8,20 @@ import Unidades.Caballero;
 import Unidades.Unidad;
 
 public class logicaMapa implements Runnable{
-	static Mapa map;
-	static HashMap<String, Unidad> mapeo=new HashMap<String, Unidad>();
+	protected volatile static Mapa map;
+	protected volatile static HashMap<String, Unidad> mapeo=new HashMap<String, Unidad>();
+	protected int puntaje=0;
 
 	
 	public logicaMapa(){
-		map=new Mapa(); //ESTE MAPA ES EL QUE VINCULA LOGICA-GUI
-	
-																							//GENERACION DE CABALLEROS	
+		map=new Mapa(); //ESTE MAPA ES EL QUE VINCULA LOGICA-GUI	
+		/*																					//GENERACION DE 64 CABALLEROS
 		for(int i=0;i<32;i++){																//
 			//int rnd=new Random().nextInt(31); //Fila de Spawn								//
 			Caballero aux=generarCaballeroRandom(i);										//
-			aux.setDireccion("derecha");
-			aux.setVelocidad(new Random().nextInt(20));
-			map.obtenerCelda(0, i).setUnidad(aux);
+			aux.setDireccion("derecha");													//
+			aux.setVelocidad(new Random().nextInt(20));										//
+			map.obtenerCelda(0, i).setUnidad(aux);											//
 			mapeo.put(aux.getNombre(), aux);
 			
 			Caballero auxY=generarCaballeroRandomY(i);
@@ -29,7 +29,7 @@ public class logicaMapa implements Runnable{
 			auxY.setVelocidad(new Random().nextInt(20));
 			map.obtenerCelda(i, 0).setUnidad(auxY);
 			mapeo.put(auxY.getNombre(), auxY); 
-		}																					//
+		}*/																					//
 	}																						//////////////
 	
 	public static void main(String [] arg){
@@ -43,10 +43,14 @@ public class logicaMapa implements Runnable{
 	}
 
 	
-	private static Caballero generarCaballeroRandom(int i){
+	public static synchronized Caballero generarCaballeroRandom(int i){
 		
 		Caballero robert2=new Caballero("robert"+i, map.obtenerCelda(0, i));
-		
+		robert2.setDireccion("derecha");													//
+		robert2.setVelocidad(10);										// PARA SPRINT 2 Y 3
+		map.obtenerCelda(0, i).setUnidad(robert2);											//
+		mapeo.put(robert2.getNombre(), robert2);
+		System.out.println(robert2.getNombre()+" ha nacido.");
 		
 		
 		
@@ -67,6 +71,25 @@ public class logicaMapa implements Runnable{
 		return mapeo;
 	}
 
+	public synchronized int getPuntaje(){
+		return puntaje;
+	}
+	public synchronized void sumarPuntos(int puntos){
+		puntaje+=puntos;
+	}
+	
+	public synchronized void destruirCaballero(int i){
+		//System.out.println(i);
+		Caballero c=(Caballero)mapeo.get("robert"+i);  // ES UN SIMPLE CHECK POSITION NO ME MATEN JAJA.
+		if(c!=null){
+			puntaje+=c.getPuntos();
+			c.die();
+			System.out.println(c.getNombre()+" ha muerto.");
+			mapeo.remove(c.getNombre());	
+		}
+		
+	}
+	
 	@Override
 	public synchronized void run() {
 

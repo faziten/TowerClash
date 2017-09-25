@@ -11,10 +11,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.util.Collection;
+import java.util.NoSuchElementException;
+import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.LogManager;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -35,16 +38,22 @@ public class GUI extends JPanel implements Runnable{
 	static final int dy=16;
 	static final int cel=32;
 	static JFrame frame=new JFrame();
-	Pintor pintor=new Pintor();
+	protected volatile Pintor pintor=new Pintor(); //Multiples hilos le van a pedir cosas. 
 	static logicaMapa logMapa=new logicaMapa();
 	static Mapa map=logMapa.obtenerMapa();
 	protected static GUI game; 
-	private boolean keepOn=true;
+	
+	
+	protected volatile int instancia=0; //Multiples hilos modificaran sus estados internos. Nota instancia++ e instancia-- no son thread safe (Ver IBM tips). 
+	private volatile boolean[] instancias=new boolean[32]; //Si bien no se puede hacer dos clicks al mismo tiempo, no es la forma en que se crearan necesariamente.
 	
 	//ADITION
 	private static final String cardSource= "/img/cards/";
 	private static final String objectSource="/img/objetos/";
 	private static final String commonExt=".png";
+	
+	//
+	protected volatile ExecutorService executorService = Executors.newSingleThreadExecutor(); //no creo que haga falta hacerla voltail.
 
 	
 	private void initialize() {
@@ -67,9 +76,34 @@ public class GUI extends JPanel implements Runnable{
 		//ALIADOS
 			JButton btnCaballero = new JButton("");
 			btnCaballero.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					System.out.print("BOTON CABALLERO PRESIONADO: TODO"+"\n");
-					keepOn=false;
+				public synchronized void actionPerformed(ActionEvent arg0) {
+					System.out.print("BOTON CABALLERO PRESIONADO: Generando caballero..."+"\n");
+					boolean generado=false;
+					if(instancia<32){ //permitir hasta 32 personajes.
+						int i=0;
+						
+						while(i<32 && !generado){
+							if(!instancias[i]){
+								logMapa.generarCaballeroRandom(i);
+								instancias[i]=true;
+								generado=true;
+								i=0;
+								instancia++;
+							}else{
+								i++;
+								} 
+						}
+					}
+						//logMapa.generarCaballeroRandom(instancia);
+						//System.out.println("Tamaño del mapeo de LogMapa "+logMapa.obtenerUnidades().size());
+						//System.out.println("Instancia del caballero "+(instancia+1));
+						//instancia=instancia+1;}
+					else{
+						System.out.print("No caben mas caballeros!"+"\n");
+					}
+					generado=false; //reset flag
+					
+					//keepOn=false;
 				}
 			});
 			btnCaballero.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"caballero"+commonExt)));
@@ -84,9 +118,32 @@ public class GUI extends JPanel implements Runnable{
 			
 			JButton btnArquera = new JButton("");
 			btnArquera.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					System.out.print("BOTON ARQUERA PRESIONADO: TODO"+"\n");
-					keepOn=false;
+				public synchronized void actionPerformed(ActionEvent e) {
+					System.out.print("BOTON ARQUERA PRESIONADO: Destruyendo caballero... "+"\n");
+					boolean borrado=false;
+					if(instancia>0){ //que haya algo.
+						int i=0;
+						
+						while(i<32 && !borrado){
+							if(instancias[i]){
+								logMapa.destruirCaballero(i);
+								instancias[i]=false;
+								borrado=true;
+								i=0;
+								instancia--;
+							}else{
+								i++;
+								}
+						}
+					}
+						//logMapa.generarCaballeroRandom(instancia);
+						//System.out.println("Tamaño del mapeo de LogMapa "+logMapa.obtenerUnidades().size());
+						//System.out.println("Instancia del caballero "+(instancia+1));
+						//instancia=instancia+1;}
+					else{
+						System.out.print("No hay mas caballeros para matar!"+"\n");
+					}
+					borrado=false; 
 				}
 			});
 			
@@ -112,6 +169,7 @@ public class GUI extends JPanel implements Runnable{
 			//Borrado de del boton
 			btnValquiria.setContentAreaFilled(false);
 			btnValquiria.setOpaque(true);
+			btnValquiria.setEnabled(false);
 			
 			
 			JButton btnMago = new JButton("");
@@ -127,6 +185,7 @@ public class GUI extends JPanel implements Runnable{
 			//Borrado de del boton
 			btnMago.setContentAreaFilled(false);
 			btnMago.setOpaque(true);
+			btnMago.setEnabled(false);
 			
 			
 			JButton btnMegacaballero = new JButton("");
@@ -142,6 +201,7 @@ public class GUI extends JPanel implements Runnable{
 			//Borrado de del boton
 			btnMegacaballero.setContentAreaFilled(false);
 			btnMegacaballero.setOpaque(true);
+			btnMegacaballero.setEnabled(false);
 		
 		
 		//ESTRUCTURAS
@@ -158,6 +218,7 @@ public class GUI extends JPanel implements Runnable{
 			//Borrado de del boton
 			btnChoza.setContentAreaFilled(false);
 			btnChoza.setOpaque(true);
+			btnChoza.setEnabled(false);
 			
 			
 			JButton btnInfernal = new JButton("");
@@ -173,6 +234,7 @@ public class GUI extends JPanel implements Runnable{
 			//Borrado de del boton
 			btnInfernal.setContentAreaFilled(false);
 			btnInfernal.setOpaque(true);
+			btnInfernal.setEnabled(false);
 			
 			
 			JButton btnCannon = new JButton("");
@@ -188,6 +250,7 @@ public class GUI extends JPanel implements Runnable{
 			//Borrado de del boton
 			btnCannon.setContentAreaFilled(false);
 			btnCannon.setOpaque(true);
+			btnCannon.setEnabled(false);
 			
 			
 			JButton btnEstructura4 = new JButton("");
@@ -233,12 +296,25 @@ public class GUI extends JPanel implements Runnable{
 		});
 		misil.setBounds(50, 369, 100, 100);
 		Objetos.add(misil);
+		misil.setEnabled(false);
 		
 		RoundButton bola_fuego= new RoundButton();
 		bola_fuego.setIcon(new ImageIcon(GUIJuego.class.getResource(objectSource+"Bola_fuego"+commonExt)));
 		bola_fuego.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.print("BOTON BOLA FUEGO PRESIONADO: TODO"+"\n");
+				System.out.print("BOTON BOLA FUEGO PRESIONADO: "+"\n");
+				if(instancia>0){
+					for(int i=0;i<32;i++){
+						if(instancias[i]){
+							logMapa.destruirCaballero(i);
+							instancia--;
+							instancias[i]=false;
+						}
+					}
+					System.out.println("Todos han muerto.");
+				}else{
+					System.out.println("La bola de fuego ha caido, pero nadie ha muerto.");
+				}
 			}
 		});
 		bola_fuego.setBounds(50, 258, 100, 100);
@@ -253,6 +329,7 @@ public class GUI extends JPanel implements Runnable{
 		});
 		globo.setBounds(50, 147, 100, 100);
 		Objetos.add(globo);
+		globo.setEnabled(false);
 		
 		RoundButton golem= new RoundButton();
 		golem.setIcon(new ImageIcon(GUIJuego.class.getResource(objectSource+"golem"+commonExt)));
@@ -263,6 +340,7 @@ public class GUI extends JPanel implements Runnable{
 		});
 		golem.setBounds(50, 36, 100, 100);
 		Objetos.add(golem);
+		golem.setEnabled(false);
 		
 		//------------------------------------------------------------------/PANEL OBJETOS--------------------------------------------
 		
@@ -289,6 +367,8 @@ public class GUI extends JPanel implements Runnable{
 			for(int j=0;j<32;j++){
 	
 				g2d.drawImage(pintor.getTextura("tex"+Integer.toString( map.obtenerCelda(i, j).obtenerCode() )),i*dx,j*dy,null); //Genera gráficos a partir de mapa.
+				g2d.drawString("Puntaje actual: "+Integer.toString(logMapa.getPuntaje()), 5, 12);
+				g2d.setColor(Color.RED);
 			}
 	}
 
@@ -313,8 +393,8 @@ public class GUI extends JPanel implements Runnable{
         //EXCECUTORS
         System.out.println("Ejecuto game");
         game.run();
-        System.out.println("Ejecuto mapa");
-        map.start();
+        //System.out.println("Ejecuto mapa----------------------------------------");
+        //map.start();
         
         
     
@@ -338,45 +418,53 @@ public class GUI extends JPanel implements Runnable{
 					  exc.printStackTrace();
 					  System.out.println("Failed to play the file.");}
 			  }}).start();}
+		
 	
 	public void run() {
-		
-		//sountrack();
-		
-		Sonidor.playSound("soundtrack"); //Levanta el hilo desde una llamada static. 
 
-		
-		ExecutorService executorService = null;
-		executorService = Executors.newSingleThreadExecutor();
-		Collection<Unidad> c=logMapa.obtenerUnidades().values();
-
-		System.out.println(c.size());
-		executorService.submit((new Runnable() {
-	            public synchronized void run() {
-	            	while(keepOn){
-	            	
-	            		for(Unidad u: c){
-	    				u.run();
-	    				game.repaint();
-	    			}
-	            	System.out.println("Round trip!");
-	            	
-	            }
-	            	
-	            }
-	        }));
-	        game.repaint();
-	        
-        } 
-        	
-		
-        
-    
-	
+		Thread t = new Thread(new Runnable() { public void run() {   //TIMER CASERO
+			  //System.out.println("waiting");
+			  try {
+				
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			
-	//}
+			}});
+		
+		
+		//while(true){
+		//System.out.println("Pase por aca.");
+		//Sonidor.playSound("soundtrack"); //Levanta el hilo desde una llamada static. 
+		
+		Collection<Unidad> c=logMapa.obtenerUnidades().values();
+		//System.out.println("Tamaño de la colecion de unidades: "+logMapa.obtenerUnidades().values().size());
+		game.repaint();
+		
+		//System.out.println(c.size());
+		for(Unidad u: c){
+			game.repaint();
+			executorService.submit(u);
+			}
+		executorService.submit(this);
+		
+		
+		
+		
+		executorService.submit(t);  // INTRODUCE EL TIMER DEL ROUND TRIP
+	            	//System.out.println("Round trip!");            	
+	            
+		game.repaint();
+	}
+		
+	           // }
+	        
 	
-}
+     
+
+} 
+		
 
 
 /////////////////////////CODIGOS RONIN////////////////////////////////
