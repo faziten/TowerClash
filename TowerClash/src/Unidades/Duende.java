@@ -4,7 +4,9 @@ import Evento.Lava;
 import Evento.Lluvia;
 import Evento.Tornado;
 import Evento.Tsunami;
+import GUI.Sonidor;
 import Main.Visitor;
+import Mapa.Celda;
 import Objeto.Bola_Fuego;
 import Objeto.Golem;
 import Objeto.Misil;
@@ -15,6 +17,22 @@ import PowerUps.Curacion;
 import PowerUps.Furia;
 
 public class Duende extends Enemigo{
+	
+	private int velocidad;
+	private String direccion;
+	private int puntos;
+public Duende(String nombre, Celda celda){
+	this.nombre=nombre;
+	this.arma=null;
+	this.baseDamage=0;
+	this.baseHP=0;
+	this.nivel=0;
+	this.rango=0;
+	this.puntos=100;
+	this.celdaActual=celda;
+	
+	celdaActual.setUnidad(this);	
+}
 
 	
 	protected void setArma() {
@@ -201,10 +219,47 @@ public class Duende extends Enemigo{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public void moverIzquierda(){
+		
+		celdaActual.vaciarUnidad(); //libera posicion
+		celdaActual.setCode(-1, 0, -1, -1);; //vuelve a dibujar lo que estaba por defecto hay que implementar una lectura de codigo para reescribir el que estaba antes y no el por defecto.	
+		celdaActual=celdaActual.obtenerIzquierda(celdaActual);
+		celdaActual.setUnidad(this);
+		celdaActual.setCode(-1, 4, -1, -1);		
+	}
 
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
+	public synchronized String getNombre(){
+		return nombre;
+	}
+	
+	public synchronized void setVelocidad(int vel){
+		velocidad=vel;
+	}
+	public synchronized void setDireccion(String dir){
+		direccion=dir;
+	}
+	
+	public int getPuntos(){
+		return puntos;
+	}
+	/**
+	 * Este metodo elimina la vinculación de éste caballero con la celda donde estaba.
+	 */
+	public synchronized void die(){  //tuve que sincronizarlo para que no me queden cadaveres en el mapa jaja. 
+		celdaActual.setCode(-1, 5, -1, -1);
+		celdaActual.setUnidad(null);
+		celdaActual=null;
+	}
+
+	public synchronized void run() {
+		switch(direccion){
+		case "izquierda":{
+			moverIzquierda();
+			break;
+			}
+		}
+		
 		
 	}
 

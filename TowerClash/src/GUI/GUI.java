@@ -36,7 +36,7 @@ public class GUI extends JPanel implements Runnable{
 	//ALIADOS Y TEMPORIZADOR
 	long startTime = System.currentTimeMillis();  // TIMER!!
 	protected volatile int instancia=0; //Multiples hilos modificaran sus estados internos. Nota instancia++ e instancia-- no son thread safe (Ver IBM tips). 
-	private volatile boolean[] instancias=new boolean[32]; //Si bien no se puede hacer dos clicks al mismo tiempo, no es la forma en que se crearan necesariamente.
+	private volatile char[] instancias=new char[32]; //Si bien no se puede hacer dos clicks al mismo tiempo, no es la forma en que se crearan necesariamente.
 	
 	//PATHFILES
 	private static final String cardSource= "/img/cards/";
@@ -48,6 +48,16 @@ public class GUI extends JPanel implements Runnable{
 
 	
 	private void initialize() {
+		
+		/*SPRINT 3 BORRAR
+		 * 
+		 */
+		for(int i=0;i<32;i++){
+			instancias[i]='f';
+		}
+		/*
+		 * SPRINT 3 BORRAR
+		 */
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(100, 50, 965, 542);
@@ -72,11 +82,10 @@ public class GUI extends JPanel implements Runnable{
 					boolean generado=false;
 					if(instancia<32){ //permitir hasta 32 personajes.
 						int i=0;
-						
 						while(i<32 && !generado){
-							if(!instancias[i]){
+							if(instancias[i]=='f'){							 //f = "FREE"
 								logMapa.generarCaballeroRandom(i);
-								instancias[i]=true;
+								instancias[i]='c'; 							 //c= "CABALLERO"
 								generado=true;
 								i=0;
 								instancia++;
@@ -110,31 +119,26 @@ public class GUI extends JPanel implements Runnable{
 			JButton btnArquera = new JButton("");
 			btnArquera.addActionListener(new ActionListener() {
 				public synchronized void actionPerformed(ActionEvent e) {
-					System.out.print("BOTON ARQUERA PRESIONADO: Destruyendo caballero... "+"\n");
-					boolean borrado=false;
-					if(instancia>0){ //que haya algo.
+					System.out.print("BOTON ARQUERA PRESIONADO: Destruyendo duende... "+"\n");
+					boolean destruido=false;
+					if(instancia>0){ 										//que haya algo.
 						int i=0;
-						
-						while(i<32 && !borrado){
-							if(instancias[i]){
-								logMapa.destruirCaballero(i);
-								instancias[i]=false;
-								borrado=true;
+						while(i<32 && !destruido){
+							if(instancias[i]=='d'){							 //d = "DUENDE"
+								logMapa.destruirDuende(i);
+								instancias[i]='f'; 							 //f= "FREE"
+								destruido=true;
 								i=0;
 								instancia--;
 							}else{
 								i++;
-								}
+								} 
 						}
 					}
-						//logMapa.generarCaballeroRandom(instancia);
-						//System.out.println("Tamaño del mapeo de LogMapa "+logMapa.obtenerUnidades().size());
-						//System.out.println("Instancia del caballero "+(instancia+1));
-						//instancia=instancia+1;}
 					else{
 						System.out.print("No hay mas caballeros para matar!"+"\n");
 					}
-					borrado=false; 
+					destruido=false; 
 				}
 			});
 			
@@ -248,8 +252,28 @@ public class GUI extends JPanel implements Runnable{
 			
 			JButton btnEnemigo = new JButton("");
 			btnEnemigo.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					System.out.print("BOTON ENEMIGO PRESIONADO: TODO"+"\n");
+				public synchronized void actionPerformed(ActionEvent e) { //Si no estaba sincronizado me hacia cualquier gilada.
+					System.out.print("BOTON DUENDE PRESIONADO: Generando duende..."+"\n");
+					boolean generado=false;
+					if(instancia<32){ //permitir hasta 32 personajes.
+						int i=0;
+						while(i<32 && !generado){
+							if(instancias[i]=='f'){							 //f = "FREE"
+								logMapa.generarDuendeRandom(i);
+								instancias[i]='d'; 							 //d= "DUENDE"
+								generado=true;
+								i=0;
+								instancia++;
+							}else{
+								i++;
+								} 
+						}
+					}
+					else{
+						System.out.print("No caben mas duendes!"+"\n");
+					}
+					generado=false; //reset flag
+					
 				}
 			});
 			btnEnemigo.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"duende"+commonExt)));
@@ -265,7 +289,19 @@ public class GUI extends JPanel implements Runnable{
 			JButton btnNuclear = new JButton("");
 			btnNuclear.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.out.print("BOTON NUCLEAR PRESIONADO: TODO"+"\n");
+					System.out.print("BOTON NUCLEAR PRESIONADO: "+"\n");
+					if(instancia>0){
+						for(int i=0;i<32;i++){
+							if(instancias[i]=='d'){              //d= DUENDE
+								logMapa.destruirDuende(i);
+								instancia--;
+								instancias[i]='f';
+							}
+						}
+						System.out.println("Todos los duendes han muerto.");
+					}else{
+						System.out.println("El ataque nuclear ha caido, pero no había duendes para matar.");
+					}
 				}
 			});
 			btnNuclear.setIcon(new ImageIcon(GUIJuego.class.getResource(cardSource+"nuclear"+commonExt)));
@@ -312,10 +348,10 @@ public class GUI extends JPanel implements Runnable{
 				System.out.print("BOTON BOLA FUEGO PRESIONADO: "+"\n");
 				if(instancia>0){
 					for(int i=0;i<32;i++){
-						if(instancias[i]){
+						if(instancias[i]=='c'){              //c= CABALLERO
 							logMapa.destruirCaballero(i);
 							instancia--;
-							instancias[i]=false;
+							instancias[i]='f';
 						}
 					}
 					System.out.println("Todos han muerto.");

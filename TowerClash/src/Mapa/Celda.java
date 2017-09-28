@@ -91,6 +91,17 @@ public class Celda {
 		
 		}
 	}
+	public Celda obtenerIzquierda(Celda cel){
+
+		if(cel.coordX>0){
+			
+			return map.obtenerCelda(cel.coordX-1, cel.coordY);
+			}
+		else {	
+			return map.obtenerCelda(31, cel.coordY);
+		
+		}
+	}
 	public Celda obtenerAbajo(Celda cel){
 		//System.out.println(cel.coordX+" "+map.obtenerAncho());
 		if(cel.coordY<map.obtenerAlto()-1){

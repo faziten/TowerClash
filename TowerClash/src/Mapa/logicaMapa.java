@@ -2,9 +2,11 @@ package Mapa;
 
 import java.lang.management.ManagementPermission;
 import java.util.HashMap;
+import java.util.NoSuchElementException;
 import java.util.Random;
 
 import Unidades.Caballero;
+import Unidades.Duende;
 import Unidades.Unidad;
 
 public class logicaMapa implements Runnable{
@@ -57,15 +59,29 @@ public class logicaMapa implements Runnable{
 		return robert2;
 	}
 	
-	private static Caballero generarCaballeroRandomY(int i){
+	public static synchronized Duende generarDuendeRandom(int i){
+		
+		Duende carlitos=new Duende("carlitos"+i, map.obtenerCelda(0, i));
+		carlitos.setDireccion("izquierda");													//
+		carlitos.setVelocidad(10);										// PARA SPRINT 2 Y 3
+		map.obtenerCelda(0, i).setUnidad(carlitos);											//
+		mapeo.put(carlitos.getNombre(), carlitos);
+		System.out.println(carlitos.getNombre()+" ha nacido.");
 		
 		
-		Caballero robert3=new Caballero("robertY"+i, map.obtenerCelda(i, 0));
 		
-		
-		
-		return robert3;
+		return carlitos;
 	}
+	
+	//private static Caballero generarCaballeroRandomY(int i){
+		
+		
+		//Caballero robert3=new Caballero("robertY"+i, map.obtenerCelda(i, 0));
+		
+		
+		
+		//return robert3;
+	//}
 	
 	public HashMap<String,Unidad> obtenerUnidades(){
 		return mapeo;
@@ -79,7 +95,6 @@ public class logicaMapa implements Runnable{
 	}
 	
 	public synchronized void destruirCaballero(int i){
-		//System.out.println(i);
 		Caballero c=(Caballero)mapeo.get("robert"+i);  // ES UN SIMPLE CHECK POSITION NO ME MATEN JAJA.
 		if(c!=null){
 			puntaje+=c.getPuntos();
@@ -90,7 +105,27 @@ public class logicaMapa implements Runnable{
 		
 	}
 	
-
+	public synchronized int destruirDuende(int i){
+		Duende c=(Duende)mapeo.get("carlitos"+i);  // ES UN SIMPLE CHECK POSITION NO ME MATEN JAJA.
+		int j=i;
+		boolean encontre=false;
+		while(j<32 && !encontre){
+			c=(Duende)mapeo.get("carlitos"+i);
+			if(c!=null)
+				encontre=true;
+				else
+					j++;
+		}
+		if(encontre){
+			puntaje+=c.getPuntos();
+			c.die();
+			System.out.println(c.getNombre()+" ha muerto.");
+			mapeo.remove(c.getNombre());
+			return j;
+		}else
+			return 666;
+	}
+	
 	
 	@Override
 	public synchronized void run() {

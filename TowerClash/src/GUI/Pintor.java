@@ -26,6 +26,7 @@ public class Pintor {
 	private static Image tex1; //pasto
 	private static Image tex2; //arena
 	private static Image tex3; //Caballero
+	private static Image tex4; //Duende
 	
 	private static Image tex5;
 	/**
@@ -42,8 +43,8 @@ public class Pintor {
 			mapeo.put("tex2", tex2);
 			tex3=ImageIO.read(getClass().getResourceAsStream(source+"3"+ext));
 			mapeo.put("tex3", tex3);
-			
-			
+			tex4=ImageIO.read(getClass().getResourceAsStream(source+"4"+ext));
+			mapeo.put("tex4", tex4);			
 			tex5=ImageIO.read(getClass().getResourceAsStream(source+"5"+ext));
 			mapeo.put("tex5", tex5);
 			

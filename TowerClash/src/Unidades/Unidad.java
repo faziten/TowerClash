@@ -19,5 +19,4 @@ public abstract class Unidad extends Thread implements Visitor {
 	public abstract void subirNivel();
 	public abstract int obtenerNivel();
 	
-	
 }
