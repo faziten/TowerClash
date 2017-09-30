@@ -28,7 +28,12 @@ public class Pintor {
 	private static Image tex3; //Caballero
 	private static Image tex4; //Duende
 	
-	private static Image tex5;
+	private static Image tex5; //sangre humana
+	private static Image tex6; //espacio de construccion de estructuras
+	private static Image tex7; 
+	private static Image tex8; 
+	private static Image tex9; 
+	private static Image tex10; 
 	/**
 	 * El constructor de la clase Pintor, se encarga de inicializar los objetos gráficos que corresponden a las texturas. Estas seran llamadas de forma dinámica por el juego a medida que se necesiten. 
 	 * Iniciar las texturas y referenciarlas por su puntero ayuda a aumentar el rendimiento del dibujado.
@@ -47,6 +52,17 @@ public class Pintor {
 			mapeo.put("tex4", tex4);			
 			tex5=ImageIO.read(getClass().getResourceAsStream(source+"5"+ext));
 			mapeo.put("tex5", tex5);
+			tex6=ImageIO.read(getClass().getResourceAsStream(source+"6"+ext));
+			mapeo.put("tex6", tex6);
+			tex7=ImageIO.read(getClass().getResourceAsStream(source+"7"+ext));
+			mapeo.put("tex7", tex7);
+			tex8=ImageIO.read(getClass().getResourceAsStream(source+"8"+ext));
+			mapeo.put("tex8", tex8);
+			tex9=ImageIO.read(getClass().getResourceAsStream(source+"9"+ext));
+			mapeo.put("tex9", tex9);
+			tex10=ImageIO.read(getClass().getResourceAsStream(source+"10"+ext));
+			mapeo.put("tex10", tex10);
+			
 			
 		}catch (Exception e){
 			e.printStackTrace();

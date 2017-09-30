@@ -78,6 +78,27 @@ public class Celda {
 		
 	    	
 	}
+	
+	public int obtenerCoordX(){
+		return coordX;
+	}
+	
+	public int obtenerCoordY(){
+		return coordY;
+	}
+	
+	/**
+	 * Metodo mega abstraido que se usa en los caminos para pedir la celda necesaria. Dado que las celdas conocen al mapa es el nexo perfecto. 
+	 * NO CHEQUEO CORRECTITUD DE LOS PARAMETROS, SERA COSA DEL CLIENTE.
+	 * @param x coordenada de la celda deseada.
+	 * @param y coordenada de la celda deseada.
+	 * @return celda deseada.
+	 */
+	public Celda obtenerCeldaDestino(int x, int y){
+		return map.obtenerCelda(x, y);
+	}
+	
+
 	public Celda obtenerDerecha(Celda cel){
 		//System.out.println(cel.coordX+" "+map.obtenerAncho());
 		if(cel.coordX<map.obtenerAncho()-1){

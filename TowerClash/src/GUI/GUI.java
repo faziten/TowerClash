@@ -64,6 +64,187 @@ public class GUI extends JPanel implements Runnable{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		//-------------------------------------------------------------------------------------------------------------------------
+		//////BOTONES TRANSPARENTES PARA COLOCAR TORRETAS Y UNIDADES ALIADAS
+		
+		JPanel Torres = new JPanel();
+		//Torres.setBackground(Color.LIGHT_);
+		//Torres.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		Torres.setBounds(216, 0, 512, 512);
+		Torres.setLayout(null);
+		frame.getContentPane().add(Torres);
+		
+				JButton btnTorre1 = new JButton("");
+				btnTorre1.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						System.out.print("BOTON TORRE1 PRESIONADO: "+"\n");
+					}
+				});
+				
+				btnTorre1.setIcon(null);
+				btnTorre1.setBounds(240, 112, dx*3, dy*3);
+				Torres.add(btnTorre1);
+				//Borrado de del boton
+				btnTorre1.setContentAreaFilled(true);
+				btnTorre1.setOpaque(false);
+				btnTorre1.setEnabled(true);
+				//--------------------------------------------------
+				JButton btnTorre2 = new JButton("");
+				btnTorre2.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						System.out.print("BOTON TORRE2 PRESIONADO: "+"\n");
+					}
+				});
+				btnTorre2.setIcon(null);
+				btnTorre2.setBounds(416, 160, dx*3, dy*3);
+				Torres.add(btnTorre2);
+				//Borrado de del boton
+				btnTorre2.setContentAreaFilled(true);
+				btnTorre2.setOpaque(false);
+				btnTorre2.setEnabled(true);
+				//---------------------------------------------------
+				JButton btnTorre3 = new JButton("");
+				btnTorre3.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						System.out.print("BOTON TORRE3 PRESIONADO: "+"\n");
+					}
+				});
+				btnTorre3.setIcon(null);
+				btnTorre3.setBounds(416, 320, dx*3, dy*3);
+				Torres.add(btnTorre3);
+				//Borrado de del boton
+				btnTorre3.setContentAreaFilled(true);
+				btnTorre3.setOpaque(false);
+				btnTorre3.setEnabled(true);
+				//---------------------------------------------------
+				JButton btnTorre4 = new JButton("");
+				btnTorre4.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						System.out.print("BOTON TORRE4 PRESIONADO: "+"\n");
+					}
+				});
+				btnTorre4.setIcon(null);
+				btnTorre4.setBounds(240, 367, dx*3, dy*3);
+				Torres.add(btnTorre4);
+				//Borrado de del boton
+				btnTorre4.setContentAreaFilled(true);
+				btnTorre4.setOpaque(false);
+				btnTorre4.setEnabled(true);
+				
+				//----------------------------------------------------
+				JButton btnTorre5 = new JButton("");
+				btnTorre5.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						System.out.print("BOTON TORRE5 PRESIONADO: "+"\n");
+					}
+				});
+				btnTorre5.setIcon(null);
+				btnTorre5.setBounds(48, 320, dx*3, dy*3);
+				Torres.add(btnTorre5);
+				//Borrado de del boton
+				btnTorre5.setContentAreaFilled(true);
+				btnTorre5.setOpaque(false);
+				btnTorre5.setEnabled(true);
+				//-----------------------------------------------------
+				JButton btnTorre6 = new JButton("");
+				btnTorre6.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						System.out.print("BOTON TORRE6 PRESIONADO: "+"\n");
+					}
+				});
+				btnTorre6.setIcon(null);
+				btnTorre6.setBounds(48, 160, dx*3, dy*3);
+				Torres.add(btnTorre6);
+				//Borrado de del boton
+				btnTorre6.setContentAreaFilled(true);
+				btnTorre6.setOpaque(false);
+				btnTorre6.setEnabled(true);
+				
+				//==========================================
+				JButton btnAly1 = new JButton("");
+				btnAly1.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						System.out.print("BOTON SPAWN ALIADO CAMINO 1 PRESIONADO: "+"\n");
+					}
+				});
+				btnAly1.setIcon(null);
+				btnAly1.setBounds(210, 210, dx*2, dy*2);
+				Torres.add(btnAly1);
+				//Borrado de del boton
+				btnAly1.setContentAreaFilled(true);
+				btnAly1.setOpaque(false);
+				btnAly1.setEnabled(true);
+				//--------------------------------------------------
+				JButton btnAly2 = new JButton("");
+				btnAly2.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						System.out.print("BOTON SPAWN ALIADO CAMINO 2 PRESIONADO: "+"\n");
+					}
+				});
+				btnAly2.setIcon(null);
+				btnAly2.setBounds(290, 210, dx*2, dy*2);
+				Torres.add(btnAly2);
+				//Borrado de del boton
+				btnAly2.setContentAreaFilled(true);
+				btnAly2.setOpaque(false);
+				btnAly2.setEnabled(true);
+				//---------------------------------------------------
+				JButton btnAly3 = new JButton("");
+				btnAly3.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						System.out.print("BOTON SPAWN ALIADO CAMINO 3 PRESIONADO: "+"\n");
+					}
+				});
+				btnAly3.setIcon(null);
+				btnAly3.setBounds(305, 250, dx*2, dy*2);
+				Torres.add(btnAly3);
+				//Borrado de del boton
+				btnAly3.setContentAreaFilled(true);
+				btnAly3.setOpaque(false);
+				btnAly3.setEnabled(true);
+				//---------------------------------------------------
+				JButton btnAly4 = new JButton("");
+				btnAly4.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						System.out.print("BOTON SPAWN ALIADO CAMINO 4 PRESIONADO: "+"\n");
+					}
+				});
+				btnAly4.setIcon(null);
+				btnAly4.setBounds(285, 285, dx*2, dy*2);
+				Torres.add(btnAly4);
+				//Borrado de del boton
+				btnAly4.setContentAreaFilled(true);
+				btnAly4.setOpaque(false);
+				btnAly4.setEnabled(true);
+				
+				//----------------------------------------------------
+				JButton btnAly5 = new JButton("");
+				btnAly5.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						System.out.print("BOTON SPAWN ALIADO CAMINO 5 PRESIONADO: "+"\n");
+					}
+				});
+				btnAly5.setIcon(null);
+				btnAly5.setBounds(210, 285, dx*2, dy*2);
+				Torres.add(btnAly5);
+				//Borrado de del boton
+				btnAly5.setContentAreaFilled(true);
+				btnAly5.setOpaque(false);
+				btnAly5.setEnabled(true);
+				//-----------------------------------------------------
+				JButton btnAly6 = new JButton("");
+				btnAly6.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						System.out.print("BOTON SPAWN ALIADO CAMINO 6 PRESIONADO: "+"\n");
+					}
+				});
+				btnAly6.setIcon(null);
+				btnAly6.setBounds(190, 250, dx*2, dy*2);
+				Torres.add(btnAly6);
+				//Borrado de del boton
+				btnAly6.setContentAreaFilled(true);
+				btnAly6.setOpaque(false);
+				btnAly6.setEnabled(true);
 		
 		//------------------------------------------------------------------PANEL CARTAS---------------------------------------------
 		JPanel Cartas = new JPanel();
@@ -311,7 +492,13 @@ public class GUI extends JPanel implements Runnable{
 			btnNuclear.setContentAreaFilled(false);
 			btnNuclear.setOpaque(true);
 			
-		
+			
+			
+			
+			
+			
+			
+			
 
 		//------------------------------------------------------------------/PANEL CARTAS---------------------------------------------
 		
@@ -491,7 +678,7 @@ public class GUI extends JPanel implements Runnable{
 		
 		//System.out.println(c.size());
 		for(Unidad u: c){
-			game.repaint();
+			//game.repaint();
 			executorService.submit(u);
 			}
 		executorService.submit(this);

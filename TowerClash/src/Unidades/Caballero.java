@@ -224,6 +224,21 @@ public class Caballero extends Aliado {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	/**
+	 * 
+	 * @param c Celda destino del caballero. GENERICO. Asume que la celda existe.
+	 */
+	public void moverACelda(Celda c){
+		celdaActual.vaciarUnidad(); //libera posicion
+		celdaActual.setCode(-1, 0, -1, -1);; //vuelve a dibujar lo que estaba por defecto hay que implementar una lectura de codigo para reescribir el que estaba antes y no el por defecto.
+		
+		celdaActual=c;
+		celdaActual.setUnidad(this);
+		celdaActual.setCode(-1, 3, -1, -1);
+		//sonidor.playSound("grass_footstep");
+	}
+	
 	/**
 	 * Mueve el Caballero a derecha. [Definir que ocurre si se encuentra al borde del mapa].
 	 */
@@ -304,4 +319,6 @@ public class Caballero extends Aliado {
 		
 		}
 	//}
+
+
 }
