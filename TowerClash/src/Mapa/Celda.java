@@ -74,7 +74,7 @@ public class Celda {
 		if(powUp!=-1)
 			code[2]=powUp;
 		if(evento!=-1)
-		code[3]=evento;
+			code[3]=evento;
 		
 	    	
 	}
@@ -156,5 +156,8 @@ public class Celda {
 	}
 	public String obtenerCoordenada(){
 		return ("x: "+coordX+"y: "+coordY);
+	}
+	public Celda obtenerCelda(int x, int y){
+		return map.obtenerCelda(x, y);
 	}
 }

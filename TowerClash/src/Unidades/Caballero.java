@@ -20,10 +20,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 public class Caballero extends Aliado {
-		private int velocidad;
-		private String direccion;
+		private int carril;
 		Sonidor sonidor=new Sonidor();
-		private int puntos;
+		
+		
 	public Caballero(String nombre, Celda celda){
 		this.nombre=nombre;
 		this.arma=null;
@@ -33,8 +33,8 @@ public class Caballero extends Aliado {
 		this.rango=0;
 		this.puntos=25;
 		this.celdaActual=celda;
-		
 		celdaActual.setUnidad(this);
+		
 		
 		
 		
@@ -263,23 +263,11 @@ public class Caballero extends Aliado {
 		//sonidor.playSound("grass_footstep");
 		
 	}
-	public synchronized String getNombre(){
-		return nombre;
-	}
-	//public String toString(){
-	//	return "celda actual: "+celdaActual+" nombre: "+nombre; //STACK OVERFLOW 
-	//}
 	
-	public synchronized void setVelocidad(int vel){
-		velocidad=vel;
-	}
-	public synchronized void setDireccion(String dir){
-		direccion=dir;
-	}
+
+
 	
-	public int getPuntos(){
-		return puntos;
-	}
+
 	/**
 	 * Este metodo elimina la vinculación de éste caballero con la celda donde estaba.
 	 */
@@ -288,31 +276,86 @@ public class Caballero extends Aliado {
 		celdaActual.setUnidad(null);
 		celdaActual=null;
 	}
+	public synchronized void setCarril(int carril){
+		this.carril=carril;
+	}
 	
 	@Override
 	public synchronized void run() {
+		
+		
 		//while(true){	
 		switch(direccion){
 		case "derecha":{
 			moverDerecha();
-			//try {
-				//System.out.println(Thread.currentThread().getName()+ " Hilo de Caballero "+nombre);
-				//Thread.sleep(velocidad);
-			//} catch (InterruptedException e) {
-				//e.printStackTrace();
-				//}
 			break;
 			}
 		case "abajo":{
 			moverAbajo();
-			//try {
-				//System.out.println(Thread.currentThread().getName()+ " Hilo de Caballero "+nombre);
-				//Thread.sleep(velocidad);
-			//} catch (InterruptedException e) {
-				//e.printStackTrace();
-				//}
 			break;
 			}
+		case "camino1":{
+			if(carril==1)
+				moveteChiquitaMovete(1, 0);
+			else 
+				if(carril==2)
+					moveteChiquitaMovete(0, 0);
+				else 
+					moveteChiquitaMovete(0, 1);
+			break;
+		}
+		case "camino2":{
+			if(carril==1)
+				moveteChiquitaMovete(31, 0);
+			else 
+				if(carril==2)
+					moveteChiquitaMovete(31, 1);
+				else 
+					moveteChiquitaMovete(31, 2);
+			break;
+		}
+		case "camino4":{
+			if(carril==1)
+				moveteChiquitaMovete(30, 31);
+			else 
+				if(carril==2)
+					moveteChiquitaMovete(31, 31);
+				else 
+					moveteChiquitaMovete(31, 30);
+			break;
+		}
+		case "camino3":{
+			if(carril==1)
+				moveteChiquitaMovete(31, 15);
+			else 
+				if(carril==2)
+					moveteChiquitaMovete(31, 16);
+				else 
+					moveteChiquitaMovete(31, 17);
+			break;
+		}
+		case "camino5":{
+			if(carril==1)
+				moveteChiquitaMovete(0, 31);
+			else 
+				if(carril==2)
+					moveteChiquitaMovete(1, 31);
+				else 
+					moveteChiquitaMovete(2, 31);
+			break;
+		}
+		case "camino6":{
+			if(carril==1)
+				moveteChiquitaMovete(0, 15);
+			else 
+				if(carril==2)
+					moveteChiquitaMovete(0, 16);
+				else 
+					moveteChiquitaMovete(0, 17);
+			break;
+		}
+		
+		
 		
 		}
 		

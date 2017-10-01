@@ -49,7 +49,6 @@ public class logicaMapa implements Runnable{
 		
 		Caballero robert2=new Caballero("robert"+i, map.obtenerCelda(0, i));
 		robert2.setDireccion("derecha");													//
-		robert2.setVelocidad(10);										// PARA SPRINT 2 Y 3
 		map.obtenerCelda(0, i).setUnidad(robert2);											//
 		mapeo.put(robert2.getNombre(), robert2);
 		System.out.println(robert2.getNombre()+" ha nacido.");
@@ -63,7 +62,6 @@ public class logicaMapa implements Runnable{
 		
 		Duende carlitos=new Duende("carlitos"+i, map.obtenerCelda(0, i));
 		carlitos.setDireccion("izquierda");													//
-		carlitos.setVelocidad(10);										// PARA SPRINT 2 Y 3
 		map.obtenerCelda(0, i).setUnidad(carlitos);											//
 		mapeo.put(carlitos.getNombre(), carlitos);
 		System.out.println(carlitos.getNombre()+" ha nacido.");
@@ -72,16 +70,48 @@ public class logicaMapa implements Runnable{
 		
 		return carlitos;
 	}
-	
-	//private static Caballero generarCaballeroRandomY(int i){
+	/**
+	 * SPRINT 3!!
+	 * @param x
+	 * @param y
+	 * @param camino
+	 * @param carril
+	 * @param i
+	 * @return
+	 */
+	public static synchronized Caballero generarCaballeroPorBoton(int x, int y, String camino, int carril, int i){//recibir "camino1"...etc y carril "1"...etc
+		Caballero robert2=new Caballero("robert"+i, map.obtenerCelda(x, y));
+		robert2.setCarril(carril);
+		System.out.println(carril);
+		robert2.setDireccion(camino);
+		System.out.println(camino);
 		
+		map.obtenerCelda(x, y).setUnidad(robert2);											//
+		mapeo.put(robert2.getNombre(), robert2);
+		System.out.println(robert2.getNombre()+" ha nacido.");
+		return robert2;
+	}
+	/**
+	 * SPRINT 3!!!
+	 * @param x
+	 * @param y
+	 * @param camino
+	 * @param carril
+	 * @param i
+	 * @return
+	 */
+	public static synchronized Duende generarDuendePorBoton(int x, int y, String camino, int carril, int i){//recibir "camino1"...etc y carril "1"...etc
+		Duende carlitos=new Duende("carlitos"+i, map.obtenerCelda(x, y));
+		carlitos.setCarril(carril);
+		System.out.println(carril);
+		carlitos.setDireccion(camino);
+		System.out.println(camino);
 		
-		//Caballero robert3=new Caballero("robertY"+i, map.obtenerCelda(i, 0));
-		
-		
-		
-		//return robert3;
-	//}
+		map.obtenerCelda(x, y).setUnidad(carlitos);											
+		mapeo.put(carlitos.getNombre(), carlitos);
+		System.out.println(carlitos.getNombre()+" ha nacido.");
+		return carlitos;
+	}
 	
 	public HashMap<String,Unidad> obtenerUnidades(){
 		return mapeo;

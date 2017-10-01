@@ -111,14 +111,7 @@ public class Mapa {
 		oro+=torrevend.obtenerPrecio();
 	}
 	
-	/**
-	 * Obtiene oro por una accion del jugador (matar enemigos, etc).
-	 * @param ene Enemigo que murio. 
-	 */
-	public void recibirOro(Enemigo ene){
-		oro+=ene.obtenerRecompensa();
-		//NOTA: SINCRONIZAR MUERTE CON OBTENCION DE PARAMETROS.
-	}
+
 	/**
 	 * Permite obtener la celda en la posicion pasada por parametro. 
 	 * @param x parametro de columna
