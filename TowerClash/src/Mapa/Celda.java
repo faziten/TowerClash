@@ -1,21 +1,22 @@
 package Mapa;
 
 import java.util.Random;
-import Evento.Evento;
-import GUI.Sonidor;
-import Objeto.Objeto;
+
+import Main.Visitor;
+import Objeto.Objeto; //cosas q el usuario puede comprar.
+import Unidades.Caballero;
+import Unidades.Duende;
 import Unidades.Unidad;
 /**
  * 
  * @author Faccio
- * @author Fernandez
+ * @author Fernandez Tierno 
  * @author Orellano
  *
  */
 public class Celda {
 	protected Mapa map;
 	protected Objeto obj;
-	protected Evento eve;
 	protected Unidad uni;
 	protected int coordX;
 	protected int coordY;
@@ -29,10 +30,9 @@ public class Celda {
 	 * @param e evento
 	 * @param u unidad
 	 */
-	public Celda(Mapa m, Objeto o, Evento e, Unidad u, int x, int y, int code){
+	public Celda(Mapa m, Objeto o, Unidad u, int x, int y, int code){
 		map=m;
 		obj=o;
-		eve=e;
 		uni=u;
 		coordX=x;
 		coordY=y;
@@ -46,7 +46,7 @@ public class Celda {
 	 */
 	
 	public Celda(Mapa m, int x, int y){
-		new Celda(m, null, null, null, x, y, 0);
+		new Celda(m, null, null, x, y, 0);
 	}
 	
 	/**
@@ -66,7 +66,7 @@ public class Celda {
 	 */
 	public void setCode(int fondo, int unidad, int powUp, int evento){
 		//System.out.println("SETIE CODE EN "+code+" DE "+this);
-		//System.out.println(map.printCodes());
+		//System.out.ln(map.printCodes());
 		if(fondo!=-1)
 			code[0]=fondo;
 		if(unidad!=-1)
@@ -151,8 +151,8 @@ public class Celda {
 		//code[0];
 	}
 	public String toString(){
-		int pene=coordX*coordY;
-		return ("Celda: "+pene+" "+map+" "+obj+" "+eve+" "+uni+" "+coordX+" "+coordY+" "+code);
+		int cood=coordX*coordY;
+		return ("Celda: "+cood+" "+map+" "+obj+" "+" "+uni+" "+coordX+" "+coordY+" "+code);
 	}
 	public String obtenerCoordenada(){
 		return ("x: "+coordX+"y: "+coordY);
@@ -160,4 +160,15 @@ public class Celda {
 	public Celda obtenerCelda(int x, int y){
 		return map.obtenerCelda(x, y);
 	}
+	
+	public synchronized void accept (Visitor v){ //DELEGA 
+
+			 uni.accept(v);
+		
+
+	}
+	public void matarDuende(Duende d){
+		map.matarDuende(d);
+	}
+
 }
