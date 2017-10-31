@@ -25,6 +25,7 @@ public interface Visitor {
 	public boolean visit(Choza choza);
 	public boolean visit(Canon canon);
 	public boolean visit(Infernal infernal);
+	public boolean visit(Rey rey);
 	public boolean visit(Globo globo);
 	public boolean visit(Golem golem);
 	public boolean visit(Bola_Fuego bolaFuego);

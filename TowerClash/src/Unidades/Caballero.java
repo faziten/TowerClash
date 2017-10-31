@@ -13,7 +13,6 @@ public class Caballero extends Aliado{
 		this.baseHP=50;
 		this.nivel=0;
 		this.rango=0;
-		this.puntos=25;
 		this.celdaActual=celda;
 		celdaActual.setUnidad(this);
 		//this.pw= new DefaultAliado(baseDamage);
@@ -55,5 +54,15 @@ public class Caballero extends Aliado{
 
 	public void accept(Visitor v) {
 		v.visit(this);
+	}
+
+	public void atacar() {
+		
+	}
+
+
+	public void recibirAtaque() {
+
+		
 	}
 }

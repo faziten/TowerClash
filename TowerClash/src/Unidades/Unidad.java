@@ -11,7 +11,16 @@ public abstract class Unidad implements Runnable{
 	protected String nombre;
 	protected Celda celdaActual;
 	protected int camino;
-	protected  int puntos;
+
+	
+	
+	public int getHP(){
+		return baseHP;
+	}
 	
 	abstract public void accept(Visitor v);
+	abstract public void atacar();
+	abstract public void recibirAtaque();
+	abstract public void die();
+	
 }

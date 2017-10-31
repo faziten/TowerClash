@@ -50,6 +50,18 @@ public class Duende extends Enemigo {
 		System.out.println("Me visitaron!");
 		v.visit(this);
 	}
+
+	public void atacar() {
+		
+	}
+
+	public void recibirAtaque() {
+		
+	}
+
+	public void mover() {
+		
+	}
 	
 	
 	

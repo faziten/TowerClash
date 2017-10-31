@@ -105,5 +105,9 @@ public VisitorAliado(){
 		return false;
 	}
 
+	public boolean visit(Rey rey) {
+		return false;
+	}
+
 
 }

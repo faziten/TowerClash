@@ -103,5 +103,9 @@ public VisitorEnemigo(){
 	public boolean visit(Misil misil) {
 		return false;
 	}
+	
+	public boolean visit(Rey rey) {
+		return false;
+	}
 
 }

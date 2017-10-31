@@ -1,5 +1,5 @@
 package Unidades;
 
-public abstract class Estructura extends Unidad{
+public abstract class Estructura extends Aliado{
 
 }

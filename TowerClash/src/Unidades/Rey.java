@@ -1,10 +1,8 @@
 package Unidades;
 
 import Main.Visitor;
-import Mapa.Celda;
 
-public class Megacaballero extends Aliado{
-	public Megacaballero(String nombre, Celda cel){}
+public class Rey extends Estructura{
 
 	public void run() {
 		
@@ -15,7 +13,6 @@ public class Megacaballero extends Aliado{
 	}
 
 	public void atacar() {
-		
 	}
 
 	public void recibirAtaque() {
