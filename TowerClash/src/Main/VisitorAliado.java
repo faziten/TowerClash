@@ -1,111 +1,46 @@
 package Main;
 
-import Objeto.*;
+import Mapa.Rey;
+import Objeto.Objeto;
 import PowerUp.*;
 import Unidades.*;
 
 public class VisitorAliado implements Visitor{
 	
-public VisitorAliado(){
+	public VisitorAliado(){
 		
 	}
-
+	
+	//HAY QUE BORRAR
 	public boolean visit(Duende duende) {
 		duende.die();
 		return true;
 	}
-
+	
+	//HAY QUE BORRARLO
 	public boolean visit(Caballero caballero) {
 		//System.out.println("aca!");
 		//caballero.die();
 		return false;
 	}
 
-	public boolean visit(Valquiria valquiria) {
+	public boolean visit(Aliado aliado) {
 		return false;
 	}
 
-	public boolean visit(Arquera arquera) {
+	public boolean visit(Enemigo enemigo) {
 		return false;
 	}
 
-	public boolean visit(Mago mago) {
+	public boolean visit(PowerUp pw) {
 		return false;
 	}
 
-	public boolean visit(Megacaballero megacaballero) {
+	public boolean visit(Objeto obj) {
 		return false;
 	}
-
-	public boolean visit(Pekka pekka) {
-		return false;
-	}
-
-	public boolean visit(Esqueleto esqueletos) {
-		return false;
-	}
-
-	public boolean visit(Gigante gigante) {
-		return false;
-	}
-
-	public boolean visit(Barbaro barbaro) {
-		return false;
-	}
-
-	public boolean visit(Chispitas chispitas) {
-		return false;
-	}
-
-	public boolean visit(Furia furia) {
-		return false;
-	}
-
-	public boolean visit(Moneda moneda) {
-		return false;
-	}
-
-	public boolean visit(Congelar congelar) {
-		return false;
-	}
-
-	public boolean visit(Bomba bomba) {
-		return false;
-	}
-
-	public boolean visit(Curacion curacion) {
-		return false;
-	}
-
-	public boolean visit(Choza choza) {
-		return false;
-	}
-
-	public boolean visit(Canon canon) {
-		return false;
-	}
-
-	public boolean visit(Infernal infernal) {
-		return false;
-	}
-
-	public boolean visit(Globo globo) {
-		return false;
-	}
-
-	public boolean visit(Golem golem) {
-		return false;
-	}
-
-	public boolean visit(Bola_Fuego bolaFuego) {
-		return false;
-	}
-
-	public boolean visit(Misil misil) {
-		return false;
-	}
-
-	public boolean visit(Rey rey) {
+	
+	public boolean visit(Rey rey){
 		return false;
 	}
 

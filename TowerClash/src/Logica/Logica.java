@@ -3,10 +3,7 @@ package Logica;
 import java.util.HashMap;
 
 import Mapa.Mapa;
-import Unidades.Caballero;
-import Unidades.Duende;
-import Unidades.Terrestre;
-import Unidades.Unidad;
+import Unidades.*;
 
 public class Logica implements Runnable {
 	protected volatile static Mapa map;

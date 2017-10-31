@@ -1,5 +1,5 @@
 package Objeto;
 
-public class Golem {
+public class Golem extends Temporales{
 
 }

@@ -4,9 +4,6 @@ import Logica.Logica;
 import Unidades.Duende;
 
 public class Mapa {
-	protected int oro;
-	protected int puntaje;
-	protected int tiempo;
 	protected volatile Celda[][] mapa;
 	protected static final int x=32;
 	protected static final int y=32;
@@ -54,9 +51,7 @@ public class Mapa {
 				};
 		
 		mapa=new Celda[x][y];
-		oro=0;
-		puntaje=0;
-		tiempo=0;
+		
 		for(int i=0;i<x;i++){
 			for(int j=0;j<y;j++){
 				mapa[i][j]=new Celda(this,null, null,i,j,mapaPorDefecto[j][i]); //inicia la matriz con valores por defecto

@@ -1,5 +1,5 @@
 package Objeto;
 
-public class Objeto {
+public abstract class Objeto {
 //algo
 }

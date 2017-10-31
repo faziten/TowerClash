@@ -1,5 +1,5 @@
 package Objeto;
 
-public class Globo {
+public class Globo extends Temporales {
 
 }

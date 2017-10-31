@@ -1,28 +1,13 @@
 package Main;
 
 import Mapa.Rey;
-import Objeto.*;
-import PowerUp.*;
-import Unidades.*;
+import Objeto.Objeto;
+import PowerUp.PowerUp;
+import Unidades.Aliado;
+import Unidades.Enemigo;
 
-public class VisitorEnemigo implements Visitor{
+public class VisitorObjeto implements Visitor{
 	
-	public VisitorEnemigo(){
-		
-	}
-
-	//BORRAR
-	public boolean visit(Duende duende) {
-		duende.die();
-		return true;
-	}
-
-	//BORRAR
-	public boolean visit(Caballero caballero) {
-		caballero.die();
-		return true;
-	}
-
 	public boolean visit(Aliado aliado) {
 		return false;
 	}
@@ -42,7 +27,5 @@ public class VisitorEnemigo implements Visitor{
 	public boolean visit(Rey rey) {
 		return false;
 	}
-
-	
 
 }
