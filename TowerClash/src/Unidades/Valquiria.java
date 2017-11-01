@@ -5,7 +5,15 @@ import Mapa.Celda;
 
 public class Valquiria extends Aliado{
 	
-	public Valquiria(String nom, Celda cel){}
+	public Valquiria(String nom, Celda cel){
+		this.nombre= nom;
+		this.baseDamage=12;
+		this.baseHP=70;
+		this.baseHPMaxima=70;
+		this.rango=1;
+		celdaActual= cel;
+		precio=100;
+	}
 
 	public void run() {
 		

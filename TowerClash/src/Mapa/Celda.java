@@ -14,6 +14,8 @@ import Unidades.Unidad;
  * @author Orellano
  *
  */
+
+
 public class Celda {
 	protected Mapa map;
 	protected Objeto obj;

@@ -7,14 +7,16 @@ public class Duende extends Enemigo {
 	
 	public Duende(String nombre, Celda celda){
 		this.nombre=nombre;
-		this.baseDamage=0;
-		this.baseHP=0;
-		this.nivel=0;
-		this.rango=0;
-		this.puntos=100;
+		this.baseDamage=6;
+		this.baseHP=40;
+		this.baseHPMaxima=40;
+		this.rango=1;
+		this.puntos=30;
 		this.celdaActual=celda;
+		this.recompensa=15;
+		//VER ESTO
+		celdaActual.setUnidad(this);
 		
-		celdaActual.setUnidad(this);	
 	}
 	
 	public void moverIzquierda(){

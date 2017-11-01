@@ -60,6 +60,8 @@ public class Mapa {
 		}
 		
 	}
+	
+	
 	/**
 	 * Elimina la unidad del mapa en la coordenada pasada por parametro.
 	 * @param x coordenada X

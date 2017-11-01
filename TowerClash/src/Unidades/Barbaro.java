@@ -7,14 +7,15 @@ public class Barbaro extends Enemigo{
 	
 	public Barbaro(String nombre, Celda celda){
 		this.nombre=nombre;
-		this.baseDamage=5;
+		this.baseDamage=10;
 		this.baseHP=50;
-		this.nivel=0;
+		this.baseHPMaxima=50;
 		this.rango=0;
 		this.celdaActual=celda;
 		celdaActual.setUnidad(this); //VER SI ya esta ocupada.
-		velocidad=0;
-		puntos=25;
+		this.velocidad=12;
+		this.puntos=50;
+		this.recompensa=30;
 	
 	}
 

@@ -42,6 +42,10 @@ public class VisitorEnemigo implements Visitor{
 	public boolean visit(Rey rey) {
 		return false;
 	}
+	
+	public void die(){
+		
+	}
 
 	
 

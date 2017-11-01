@@ -7,15 +7,14 @@ public class Chispitas extends Enemigo{
 	
 	public Chispitas(String nombre, Celda celda){
 		this.nombre=nombre;
-		this.baseDamage=5;
-		this.baseHP=50;
-		this.nivel=0;
-		this.rango=0;
+		this.baseDamage=15;
+		this.baseHP=80;
+		this.baseHPMaxima=80;
+		this.rango=2;
 		this.celdaActual=celda;
-		celdaActual.setUnidad(this); //VER SI ya esta ocupada.
-		velocidad=0;
-		puntos=25;
-		velocidad=0;
+		this.velocidad=8;
+		this.puntos=120;
+		this.recompensa=30;
 	}
 
 	public void run() {

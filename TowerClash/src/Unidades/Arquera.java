@@ -7,12 +7,12 @@ public class Arquera extends Aliado{
 	
 	public Arquera(String nombre, Celda celda){
 		this.nombre= nombre;
-		this.baseDamage=6;
-		this.baseHP=60;
-		this.nivel=0;
-		this.rango=0;
-		this.celdaActual=celda;
-		celdaActual.setUnidad(this);
+		this.baseDamage=7;
+		this.baseHP=40;
+		this.baseHPMaxima=40;
+		this.rango=2;
+		celdaActual= celda;
+		precio=100;
 		
 	}
 
@@ -24,10 +24,6 @@ public class Arquera extends Aliado{
 	}
 
 	public void atacar() {
-		
-	}
-
-	public void recibirAtaque() {
 		
 	}
 

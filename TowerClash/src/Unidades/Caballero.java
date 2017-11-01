@@ -9,12 +9,16 @@ public class Caballero extends Aliado{
 	
 	public Caballero(String nombre, Celda celda){
 		this.nombre=nombre;
-		this.baseDamage=5;
-		this.baseHP=50;
-		this.nivel=0;
-		this.rango=0;
+		this.baseDamage=20;
+		this.baseHP=80;
+		this.baseHPMaxima=80;
+		this.rango=1;
 		this.celdaActual=celda;
+		this.precio=140;
+		//No se si va esto.
 		celdaActual.setUnidad(this);
+		//Si se acepta mi mapa y celda.
+			
 		//this.pw= new DefaultAliado(baseDamage);
 		
 	}
@@ -22,6 +26,8 @@ public class Caballero extends Aliado{
 	public String getNombre(){
 		return nombre;
 	}
+	
+	//borrar
 	
 	public void moverDerecha(){
 		celdaActual.setCode(-1, 3, -1, -1);
@@ -48,7 +54,7 @@ public class Caballero extends Aliado{
 	}
 
 	public void run() {
-		moverDerecha();
+		moverDerecha(); //Borrar
 		
 	}
 
