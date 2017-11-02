@@ -102,7 +102,7 @@ public class Mercado extends JPanel{
 		btnChoza.setOpaque(true);
 		btnChoza.setEnabled(true);
 		
-		
+		/*
 		JButton btnInfernal = new JButton("");
 	
 		btnInfernal.setIcon(new ImageIcon(Mercado.class.getResource(cardSource+"infernal"+commonExt)));
@@ -113,13 +113,13 @@ public class Mercado extends JPanel{
 		btnInfernal.setContentAreaFilled(false);
 		btnInfernal.setOpaque(true);
 		btnInfernal.setEnabled(true);
-		
+		*/
 		
 		JButton btnCannon = new JButton("");
 	
 		btnCannon.setIcon(new ImageIcon(Mercado.class.getResource(cardSource+"canon"+commonExt)));
 		//btnCannon.setIcon(new ImageIcon(Mercado.class.getResource("/res/this/canon.png")));
-		btnCannon.setBounds(80, 364, 71, 88);
+		btnCannon.setBounds(80, 185, 71, 88);
 		this.add(btnCannon);
 		//Borrado de del boton
 		btnCannon.setContentAreaFilled(false);

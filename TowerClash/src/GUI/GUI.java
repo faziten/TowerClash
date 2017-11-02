@@ -1,21 +1,22 @@
 package GUI;
 
+import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.*;
+import javax.swing.border.EtchedBorder;
 
 public class GUI implements Runnable {
 	
 	private static JFrame frame; 
 	private JPanel cartas;
 	private JButton [] [] mapa;
-	//private Object [] [] mapa;
 	private static final String cardSource= "/img/cards/";
 	private static final String commonExt= ".png";
 	
 	public GUI(){
 		frame= new JFrame();
-		frame.setBounds(75, 50, 1045, 488);
+		frame.setBounds(75, 50, 1045, 550);
 		frame.getContentPane().setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -53,11 +54,14 @@ public class GUI implements Runnable {
 		p.setBounds(910, 0, 120, 450);
 		frame.getContentPane().add(p);
 		
+		//Panel Puntaje
+		Puntaje estado= new Puntaje();
+		estado.setBounds(0, 450, 1045,70);
+		frame.getContentPane().add(estado);
 	}
 	
 	
 
-	@Override
 	public void run() {
 		// TODO Auto-generated method stub
 		
