@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 
-public class Puntaje extends JPanel{
+public class Puntaje extends JPanel implements Runnable{
 	
 	//ENTIDADES
 	protected volatile Pintor pintor=new Pintor();
@@ -28,8 +28,13 @@ public class Puntaje extends JPanel{
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(Color.WHITE);
 		
-	//	g2d.drawString("Puntaje actual: "+Integer.toString(log.getPuntaje()), 5, 12);
-	//	g2d.drawString("Unidades vivas: "+Integer.toString(log.obtenerUnidades().size()), 5, 24);
-		g2d.drawString("Tiempo transcurrido: "+((System.currentTimeMillis()-startTime)/3600000)+":"+((System.currentTimeMillis()-startTime)/60000%60)+":"+((System.currentTimeMillis()-startTime)/1000%60), 5, 36); //TIMER!
+		g2d.drawString("Puntaje actual: "/*+Integer.toString(log.getPuntaje())*/, 100, 36);
+		g2d.drawString("Unidades vivas: "/*+Integer.toString(log.obtenerUnidades().size())*/, 450, 36);
+		g2d.drawString("Tiempo transcurrido: "+((System.currentTimeMillis()-startTime)/3600000)+":"+((System.currentTimeMillis()-startTime)/60000%60)+":"+((System.currentTimeMillis()-startTime)/1000%60), 783, 36); //TIMER!
+	}
+	
+	public void run() {
+		this.repaint();
+		
 	}
 }
