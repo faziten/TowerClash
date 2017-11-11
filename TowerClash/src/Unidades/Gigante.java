@@ -1,45 +1,21 @@
 package Unidades;
 
-import Main.Visitor;
+import Main.VisitorEnemigo;
 import Mapa.Celda;
+import Mapa.Mapa;
 
 public class Gigante extends Enemigo{
 	
-	public Gigante (String nombre, Celda celda){
-		this.nombre=nombre;
-		this.baseDamage=20;
-		this.baseHP=80;
-		this.baseHPMaxima=80;
-		this.rango=1;
-		this.celdaActual=celda;
-		celdaActual.setUnidad(this); //VER SI ya esta ocupada.
-		this.velocidad=10;
-		this.puntos=80;
-		this.recompensa=60;
-	}
-
-	public void run() {
+	public Gigante(Mapa m, Celda celda){
+		mapa = m;
+		celdaActual = celda;
+		vida = 3 * vida;
+		damage = 5 * damage;
+		puntaje = 250;
+		recompensa = 200;
+		miVisitor = new VisitorEnemigo(this);
 		
+		//agrego la gráfica al Gigante
 	}
-
-	public void accept(Visitor v) {
-		v.visit(this);
-	}
-
-	public void atacar() {
-		
-	}
-
-	public void recibirAtaque() {
-		
-	}
-
-	public void die() {
-		
-	}
-
-	public void mover() {
-		
-	}
-
+	
 }

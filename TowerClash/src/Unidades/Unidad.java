@@ -1,44 +1,41 @@
 package Unidades;
 
 import Main.Visitor;
-import Mapa.Celda;
-import Mapa.Mapa;
+import Mapa.*;
 
-public abstract class Unidad implements Runnable {
-	protected int baseHP;
-	protected int baseHPMaxima;
-	protected int baseDamage;
-	protected int rango;
-	protected String nombre;
-	protected Celda celdaActual;
-	
-	protected Celda getCeldaActual(){
-		return celdaActual;
-	}
-	
+public abstract class Unidad extends ElementosMapa {
 
-	public int getHP(){
-		return baseHP;
+	protected int damage = 10;
+	protected int rango = 1;
+	protected boolean estaVivo = true;
+	protected int x;
+	protected int y;
+		
+		
+	public abstract void accept(Visitor v);
+		
+	public int getVida(){
+		return vida;
 	}
-	
-	//Modifica la vida del elemento.
-	public void setHp(int v){
-		if(v>baseHPMaxima)
-			baseHP=baseHPMaxima;
-		else
-			if(v<=0){
-				baseHP=0;
-				die();
-			}
-			else
-				baseHP=v;
+
+	public int getAlcance(){
+		return rango;
 	}
-	public int getBaseHp(){
-		return baseHP;
+		
+	public int getDamage(){
+		return damage;
 	}
-	
-	abstract public void accept(Visitor v);
-	abstract public void atacar();
-	abstract public void die();
+		
+	public boolean estaVivo(){
+		return estaVivo;
+	}
+		
+	public void setVida(int v){
+		vida = v;
+	}
+
+	public void morir(boolean b) {
+		estaVivo = b;
+	}
 	
 }

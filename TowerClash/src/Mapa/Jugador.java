@@ -3,7 +3,6 @@ package Mapa;
 
 public class Jugador {
 	
-	private static Jugador unicoJugador; //Aplico singleton para crear un solo jugador.
 	protected int oro;
 	protected int puntaje;
 	protected int tiempo; //esto debe ser un timer para a medida que pase el tiempo se vayan creando enemigos
@@ -36,11 +35,6 @@ public class Jugador {
 		this.puntaje = puntaje;
 	}
 
-	public static Jugador getUnicoJugador(){
-		if(unicoJugador == null)
-			unicoJugador = new Jugador();
-		return unicoJugador;
-	}
 	
 	public void agregarPuntaje(int masPuntaje){
 		puntaje+=masPuntaje;

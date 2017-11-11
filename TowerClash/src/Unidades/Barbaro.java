@@ -1,47 +1,22 @@
 package Unidades;
 
-import Main.Visitor;
+import Main.VisitorEnemigo;
 import Mapa.Celda;
+import Mapa.Mapa;
 
 public class Barbaro extends Enemigo{
 	
-	public Barbaro(String nombre, Celda celda){
-		this.nombre=nombre;
-		this.baseDamage=10;
-		this.baseHP=50;
-		this.baseHPMaxima=50;
-		this.rango=0;
-		this.celdaActual=celda;
-		celdaActual.setUnidad(this); //VER SI ya esta ocupada.
-		this.velocidad=12;
-		this.puntos=50;
-		this.recompensa=30;
+	public Barbaro(Mapa m, Celda celda){
+		mapa = m;
+		celdaActual = celda;
+		vida = 2 * vida;
+		damage = 3 * damage;
+		puntaje = 150;
+		recompensa = 225;
+		velocidad=3;
 	
-	}
-
-	public void run() {
-		
-	}
-
-	public void accept(Visitor v) {
-		v.visit(this);
-	}
-
-
-	public void atacar() {
-		
-	}
-
-	public void recibirAtaque() {
-		
-	}
-
-	public void die() {
-		
-	}
-
-	public void mover() {
-		
+		//Agrego grafica a Barbaro
+		miVisitor= new VisitorEnemigo(this);
 	}
 
 }

@@ -11,7 +11,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import Logica.Logica;
 import Mapa.Mapa;
 import Unidades.Unidad;
 
@@ -23,8 +22,8 @@ public class GUIReal extends JPanel implements Runnable{
 	
 	//ENTIDADES
 	protected volatile Pintor pintor=new Pintor(); //Multiples hilos le van a pedir cosas. 
-	protected static volatile Logica log=new Logica();
-	Mapa map=log.obtenerMapa();
+	//protected static volatile Logica log=new Logica();
+	//Mapa map=log.obtenerMapa();
 	protected static GUIReal game; 
 	protected volatile ExecutorService executorService = Executors.newSingleThreadExecutor(); //no creo que haga falta hacerla voltail.
 	//protected volatile ExecutorService executorService = Executors.newWorkStealingPool(); //IMPLEMENTACION EN FORK-JOIN CAUSE I'MA PRO ¬o-o
@@ -55,14 +54,14 @@ public class GUIReal extends JPanel implements Runnable{
 				}});
 			
 			
-			Collection<Unidad> c=log.obtenerUnidades().values();
+			//Collection<Unidad> c=log.obtenerUnidades().values();
 			game.repaint();
 			//map=log.obtenerMapa();
 			//System.out.println(log.obtenerMapa().printCodes());
 			executorService.execute(this);
-			for(Unidad u: c){
+			/*for(Unidad u: c){
 				executorService.submit(u);//.execute(u) genera NULL pointers en destruccion de unidades. 
-				}
+				}*/
 			
 			
 			
@@ -71,7 +70,7 @@ public class GUIReal extends JPanel implements Runnable{
 			executorService.execute(t);  // INTRODUCE EL TIMER DEL ROUND TRIP
 		            	//System.out.println("Round trip!");    
 			//map=log.obtenerMapa();
-			map.printCodes();
+			//map.printCodes();
 			
 
 		            
@@ -97,7 +96,7 @@ public class GUIReal extends JPanel implements Runnable{
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(Color.RED);
-		for(int i=0;i<32;i++)
+		/*for(int i=0;i<32;i++)
 			for(int j=0;j<32;j++){
 				for(int k=0;k<4;k++)
 					g2d.drawImage(pintor.getTextura(Integer.toString( map.obtenerCelda(i, j).obtenerCode()[k] )),i*dx,j*dy,null); //Genera gráficos a partir de mapa.
@@ -106,7 +105,7 @@ public class GUIReal extends JPanel implements Runnable{
 			}
 		g2d.drawString("Puntaje actual: "+Integer.toString(log.getPuntaje()), 5, 12);
 		g2d.drawString("Unidades vivas: "+Integer.toString(log.obtenerUnidades().size()), 5, 24);
-		g2d.drawString("Tiempo transcurrido: "+((System.currentTimeMillis()-startTime)/3600000)+":"+((System.currentTimeMillis()-startTime)/60000%60)+":"+((System.currentTimeMillis()-startTime)/1000%60), 5, 36); //TIMER!
+		g2d.drawString("Tiempo transcurrido: "+((System.currentTimeMillis()-startTime)/3600000)+":"+((System.currentTimeMillis()-startTime)/60000%60)+":"+((System.currentTimeMillis()-startTime)/1000%60), 5, 36); //TIMER!*/
 	}
 	
 	public static void main(String [] arg){
@@ -130,14 +129,14 @@ public class GUIReal extends JPanel implements Runnable{
         //EXCECUTORS
         System.out.println("Ejecuto game");
         game.run();
-        
+       /* 
         log.generarCaballeroRandom(3,15);
         log.generarDuendeRandom(3,15);
         log.generarCaballeroRandom(5,14);
         log.generarDuendeRandom(5,14);
         log.generarCaballeroRandom(20,13);
         log.generarDuendeRandom(20,13);
-        
+      */  
         //NOTA USA UN FUCKING OBSERVER PARA MATAR UNIDADES, AHORA ES UN ASCO COMO ESTA.
         
         

@@ -1,48 +1,34 @@
 package Main;
 
-import Mapa.Rey;
 import Objeto.Objeto;
 import PowerUp.*;
 import Unidades.*;
 
-public class VisitorAliado implements Visitor{
+public class VisitorAliado extends Visitor{
+	private Aliado miAliado;
 	
-	public VisitorAliado(){
+	public VisitorAliado(Aliado a){
+		miAliado=a;
+	}
+	
+	public void visit(Aliado a){
+	}
+		
+	public void visit(Enemigo e){
+		e.setVida(e.getVida() - miAliado.getDamage());
+		if (e.getVida() <= 0) {
+			e.morir(false);
+			e.actualizarOroPuntaje();
+			e.getCelda().setUnidad(null);
+			}
+		}
+
+	public void visit(PowerUp pw) {
 		
 	}
-	
-	//HAY QUE BORRAR
-	public boolean visit(Duende duende) {
-		duende.die();
-		return true;
-	}
-	
-	//HAY QUE BORRARLO
-	public boolean visit(Caballero caballero) {
-		//System.out.println("aca!");
-		//caballero.die();
-		return false;
-	}
 
-	public boolean visit(Aliado aliado) {
-		return false;
+	public void visit(Objeto j) {
+		
 	}
-
-	public boolean visit(Enemigo enemigo) {
-		return false;
-	}
-
-	public boolean visit(PowerUp pw) {
-		return false;
-	}
-
-	public boolean visit(Objeto obj) {
-		return false;
-	}
-	
-	public boolean visit(Rey rey){
-		return false;
-	}
-
 
 }

@@ -1,34 +1,25 @@
 package Unidades;
 
-import Main.Visitor;
+
+import Main.VisitorAliado;
 import Mapa.Celda;
+import Mapa.Mapa;
+
 
 public class Arquera extends Aliado{
+
+	public Arquera(Celda c, Mapa m)
+	{
+		mapa=m;
+		celdaActual = c;
+		vida = 2 * vida;
+		damage = 2 * damage;
+		precio = 50;
+		rango = 2 * rango;
+		miVisitor= new VisitorAliado(this);
+		
+		//agrego la gráfica a Arquera
+
+	}
 	
-	public Arquera(String nombre, Celda celda){
-		this.nombre= nombre;
-		this.baseDamage=7;
-		this.baseHP=40;
-		this.baseHPMaxima=40;
-		this.rango=2;
-		celdaActual= celda;
-		precio=100;
-		
-	}
-
-	public void run() {
-	}
-
-	public void accept(Visitor v){
-		v.visit(this);
-	}
-
-	public void atacar() {
-		
-	}
-
-	public void die() {
-		
-	}
-
 }

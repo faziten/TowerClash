@@ -1,35 +1,22 @@
 package Unidades;
 
-import Main.Visitor;
+import Main.VisitorAliado;
 import Mapa.Celda;
+import Mapa.Mapa;
 
 public class Megacaballero extends Aliado{
-	public Megacaballero(String nombre, Celda cel){
-		this.nombre= nombre;
-		this.baseDamage=30;
-		this.baseHP=100;
-		this.baseHPMaxima=100;
-		this.rango=2;
-		this.celdaActual= cel;
-		precio=160;
+	public Megacaballero(Mapa m, Celda celda){
+		mapa = m;
+		celdaActual = celda;
 		
-	}
-
-	public void run() {
-		
-	}
-
-	public void accept(Visitor v) {
-		v.visit(this);
-	}
-
-	public void atacar() {
-		
-	}
-
-
-	public void die() {
-		
+		vida = 4 * vida;
+		damage = 7 * damage;
+		precio = 300;
+		rango=4*rango;
+		//agrego la gráfica a Dragon
+					
+		miVisitor = new VisitorAliado(this);
+				
 	}
 
 }

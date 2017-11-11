@@ -1,42 +1,37 @@
 package Unidades;
 
+import Main.Visitor;
 import Main.VisitorEnemigo;
+import PowerUp.PowerUp;
 
 public abstract class Enemigo extends Unidad{
-	protected int puntos;
-	protected int velocidad;
-	protected int recompensa; //Es la cantidad de monedas que da al morir
-	protected VisitorEnemigo visitorEnemigo;
+	protected int velocidad = 2;
+	protected int puntaje = 50;
+	protected int recompensa = 100;
+	protected PowerUp miPw;
+	protected boolean llegoFinal = false;
 	
-	//Retorna la velocidad de cada enemigo.
-	public int getVelocidad(){
-		return velocidad;
+	
+	public void actualizarOroPuntaje() {
+		mapa.getJugador().agregarPuntaje(puntaje);
+		mapa.getJugador().agregarOro(recompensa);
 	}
 	
-	public void setVelocidad(int v){
-		velocidad=v;
+	public void setVisitor(VisitorEnemigo v){
+		miVisitor = v;
 	}
 	
-	//Retorna los puntos que otorga cuando muere
-	public int getPuntos(){
-		return puntos;
+	public void accept(Visitor v){
+		v.visit(this);
 	}
 	
-	public int getRecompensa(){
-		return recompensa;
+	public void mover()
+	{		
+			
 	}
 	
-	public void atacar(){
-		int x= celdaActual.obtenerCoordX();
-		int y= celdaActual.obtenerCoordY();
-		
+	public void setVelocidad(int v) {
+		velocidad = v;
 	}
-	
-	public void die(){
-		visitorEnemigo.die();
-		//this.map.eliminarUnidad(celdaActual);
-	}
-	
-	abstract public void mover();
 	
 }

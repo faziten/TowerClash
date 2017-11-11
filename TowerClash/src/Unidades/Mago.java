@@ -1,37 +1,17 @@
 package Unidades;
 
-import Main.Visitor;
+import Main.VisitorAliado;
 import Mapa.Celda;
+import Mapa.Mapa;
 
 public class Mago extends Aliado{
-	public Mago(String nombre, Celda celda){
-		this.nombre= nombre;
-		this.baseDamage=12;
-		this.baseHP=60;
-		this.baseHPMaxima=60;
-		this.rango=1;
-		celdaActual= celda;
-		precio=80;
+	public Mago(Mapa m, Celda celda){
+		mapa = m;
+		celdaActual = celda;
+		vida = 2 * vida;
+		damage = 3 * damage;
+		precio = 150;
+		//agrego la gráfica a Mago
+		miVisitor= new VisitorAliado(this);	
 	}
-
-	public void run() {
-		
-	}
-
-	public void accept(Visitor v) {
-		v.visit(this);
-	}
-
-	public void atacar() {
-		
-	}
-
-	public void recibirAtaque() {
-		
-	}
-
-	public void die() {
-		
-	}
-
 }

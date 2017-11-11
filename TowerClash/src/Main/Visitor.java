@@ -1,16 +1,14 @@
 package Main;
 
 
-import Mapa.Rey;
 import Objeto.*;
 import PowerUp.*;
 import Unidades.*;
 
-public interface Visitor {
+public abstract class Visitor {
 	
-	public boolean visit(Aliado aliado);
-	public boolean visit(Enemigo enemigo);
-	public boolean visit(PowerUp pw);
-	public boolean visit(Objeto obj);
-	public boolean visit(Rey rey);
+	public abstract void visit(Aliado aliado);
+	public abstract void visit(Enemigo enemigo);
+	public abstract void visit(PowerUp pw);
+	public abstract void visit(Objeto j);
 }

@@ -1,45 +1,23 @@
 package Unidades;
 
-import Main.Visitor;
+
+import Main.VisitorEnemigo;
 import Mapa.Celda;
+import Mapa.Mapa;
 
 public class Pekka extends Enemigo{
 	
-	public Pekka(String nombre, Celda celda){
-		this.nombre=nombre;
-		this.baseDamage=25;
-		this.baseHP=90;
-		this.baseHPMaxima=90;
-		this.rango=1;
-		this.celdaActual=celda;
-		celdaActual.setUnidad(this); //VER SI ya esta ocupada.
-		this.velocidad=12;
-		this.puntos=100;
-		this.recompensa=80;
+	public Pekka(Mapa m, Celda celda){
+		mapa = m;
+		celdaActual = celda;
+		vida = 5 * vida;
+		damage = 8 * damage;
+		rango= 4*rango;
+		velocidad=5;
+		puntaje = 500;
+		recompensa = 800;
+		miVisitor = new VisitorEnemigo(this);
+				
+		//agrego la gráfica al Pekka	
 	}
-
-	public void run() {
-		
-	}
-
-	public void accept(Visitor v) {
-		v.visit(this);
-	}
-
-	public void atacar() {
-		
-	}
-
-	public void recibirAtaque() {
-		
-	}
-
-	public void die() {
-		
-	}
-
-	public void mover() {
-		
-	}
-
 }

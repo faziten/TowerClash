@@ -1,31 +1,25 @@
 package Main;
 
-import Mapa.Rey;
 import Objeto.Objeto;
 import PowerUp.PowerUp;
 import Unidades.Aliado;
 import Unidades.Enemigo;
 
-public class VisitorPowerUp implements Visitor{
+public class VisitorPowerUp extends Visitor{
 
-	public boolean visit(Aliado aliado) {
-		return false;
+	public void visit(Aliado aliado) {
+		
 	}
 
-	public boolean visit(Enemigo enemigo) {
-		return false;
+	public void visit(Enemigo enemigo) {
+		
 	}
 
-	public boolean visit(PowerUp pw) {
-		return false;
+	public void visit(PowerUp pw) {
+		
 	}
 
-	public boolean visit(Objeto obj) {
-		return false;
+	public void visit(Objeto j) {
+		
 	}
-
-	public boolean visit(Rey rey) {
-		return false;
-	}
-
 }
