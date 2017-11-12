@@ -4,7 +4,7 @@ import Unidades.Unidad;
 
 public class Celda {
 	
-	private Unidad uni;
+	private ElementosMapa misElementos;
 	private Mapa mapa;
 	private int coordX;
 	private int coordY;
@@ -21,12 +21,12 @@ public class Celda {
 	public int getCoordY() {
 		return coordY;
 	}
-	public Unidad getUnidad(){
-		return uni;
+	public ElementosMapa getElemento(){
+		return misElementos;
 	}
 
-	public void setUnidad(Unidad unidad) {
-		uni=unidad;
+	public void setElemento(ElementosMapa e) {
+		misElementos=e;
 	}
 	
 	public Celda getSiguiente(int destino){
@@ -35,6 +35,6 @@ public class Celda {
 
 	
 	public boolean estaVacia(){
-		return uni==null;
+		return misElementos==null;
 	}
-	}
+}

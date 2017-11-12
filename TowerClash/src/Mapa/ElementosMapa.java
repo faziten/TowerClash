@@ -6,10 +6,10 @@ import javax.swing.JLabel;
 import Main.Visitor;
 
 public abstract class ElementosMapa {
-	protected int vida = 100;
 	protected Celda celdaActual;	
 	protected Mapa mapa;
-	protected Visitor miVisitor;
+	
+	protected boolean estaVivo = true;
 	
 	protected Icon imagen;
 	protected JLabel mGrafico;
@@ -17,10 +17,6 @@ public abstract class ElementosMapa {
 	public abstract void accept(Visitor v);
 
 	
-	public Visitor getVisitor()
-	{
-		return miVisitor;
-	}
 	
 	public JLabel getGrafico()
 	{

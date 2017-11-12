@@ -15,10 +15,8 @@ public class VisitorEnemigo extends Visitor{
 		a.setVida(a.getVida()-miEnemigo.getDamage());
 		if (a.getVida() <= 0) {
 			a.morir(false);
-			a.getCelda().setUnidad(null);
-			//e.setMovimiento(true);
-				
-			//e.setImagenEnMovimiento(); //ultimo cambio
+			a.getCelda().setElemento(null);
+
 		}
 	}
 	
@@ -31,7 +29,16 @@ public class VisitorEnemigo extends Visitor{
 		
 	}
 
-	public void visit(Objeto j) {
+	public void visit(ConVida v) {
+		v.setVida(v.getVida() - miEnemigo.getDamage());
+		if (v.getVida() <= 0) {
+			v.getCelda().setElemento(null);
+			v.morir();
+		
+		}
+	}
+
+	public void visit(Temporales t) {
 		
 	}
 	

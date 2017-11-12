@@ -4,10 +4,11 @@ import Main.Visitor;
 import Mapa.*;
 
 public abstract class Unidad extends ElementosMapa {
+	protected int vida = 100;
 
 	protected int damage = 10;
 	protected int rango = 1;
-	protected boolean estaVivo = true;
+	protected Visitor miVisitor;
 	protected int x;
 	protected int y;
 		
@@ -36,6 +37,10 @@ public abstract class Unidad extends ElementosMapa {
 
 	public void morir(boolean b) {
 		estaVivo = b;
+	}
+	
+	public Visitor getVisitor(){
+		return miVisitor;
 	}
 	
 }

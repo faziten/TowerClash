@@ -1,6 +1,7 @@
 package Main;
 
-import Objeto.Objeto;
+import Objeto.ConVida;
+import Objeto.Temporales;
 import PowerUp.*;
 import Unidades.*;
 
@@ -19,7 +20,7 @@ public class VisitorAliado extends Visitor{
 		if (e.getVida() <= 0) {
 			e.morir(false);
 			e.actualizarOroPuntaje();
-			e.getCelda().setUnidad(null);
+			e.getCelda().setElemento(null);
 			}
 		}
 
@@ -27,7 +28,11 @@ public class VisitorAliado extends Visitor{
 		
 	}
 
-	public void visit(Objeto j) {
+	public void visit(ConVida v) {
+		
+	}
+
+	public void visit(Temporales t) {
 		
 	}
 

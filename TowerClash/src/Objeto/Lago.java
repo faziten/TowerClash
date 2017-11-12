@@ -4,16 +4,16 @@ import Main.Visitor;
 import Mapa.Celda;
 import Mapa.Mapa;
 
-public class Globo extends ConVida {
-	public Globo(Mapa m, Celda celda){
-		mapa=m;
+public class Lago extends Temporales{
+	
+	public Lago(Mapa m, Celda celda){
+		mapa= m;
 		celdaActual=celda;
-		vida+=100;
+		tiempo=2*tiempo;
 	}
 
 	public void accept(Visitor v) {
 		v.visit(this);
-		
 	}
 
 }
