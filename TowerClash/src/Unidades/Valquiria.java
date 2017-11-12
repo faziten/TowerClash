@@ -1,8 +1,8 @@
 package Unidades;
 
-import Main.VisitorAliado;
 import Mapa.Celda;
 import Mapa.Mapa;
+import Visitor.VisitorAliado;
 
 public class Valquiria extends Aliado{
 	
@@ -11,6 +11,7 @@ public class Valquiria extends Aliado{
 		celdaActual = celda;
 		damage = 3 * damage;
 		precio=100;
+		vidaMax=vida;
 		//agrego la gráfica a Valquiria	
 		miVisitor = new VisitorAliado(this);
 		

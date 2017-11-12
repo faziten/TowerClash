@@ -1,8 +1,8 @@
 package Objeto;
 
-import Main.Visitor;
 import Mapa.Celda;
 import Mapa.Mapa;
+import Visitor.Visitor;
 
 public class Globo extends ConVida {
 	public Globo(Mapa m, Celda celda){

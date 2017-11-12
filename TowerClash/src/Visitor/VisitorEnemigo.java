@@ -1,7 +1,6 @@
-package Main;
+package Visitor;
 
 import Objeto.*;
-import PowerUp.*;
 import Unidades.*;
 
 public class VisitorEnemigo extends Visitor{
@@ -25,9 +24,6 @@ public class VisitorEnemigo extends Visitor{
 		
 	}
 
-	public void visit(PowerUp pw) {
-		
-	}
 
 	public void visit(ConVida v) {
 		v.setVida(v.getVida() - miEnemigo.getDamage());

@@ -1,10 +1,10 @@
 package Unidades;
 
 
-import Main.*;
 import Mapa.Celda;
 //import PowerUps.DefaultAliado;
 import Mapa.Mapa;
+import Visitor.*;
 
 public class Caballero extends Aliado{
 	
@@ -13,6 +13,7 @@ public class Caballero extends Aliado{
 		mapa=m;
 		celdaActual=celda;
 		vida=2*vida;
+		vidaMax=vida;
 		damage = 2 * damage;
 		precio = 150;
 		

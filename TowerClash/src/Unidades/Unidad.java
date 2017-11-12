@@ -1,7 +1,7 @@
 package Unidades;
 
-import Main.Visitor;
 import Mapa.*;
+import Visitor.Visitor;
 
 public abstract class Unidad extends ElementosMapa {
 	protected int vida = 100;
@@ -9,8 +9,6 @@ public abstract class Unidad extends ElementosMapa {
 	protected int damage = 10;
 	protected int rango = 1;
 	protected Visitor miVisitor;
-	protected int x;
-	protected int y;
 		
 		
 	public abstract void accept(Visitor v);
@@ -42,5 +40,6 @@ public abstract class Unidad extends ElementosMapa {
 	public Visitor getVisitor(){
 		return miVisitor;
 	}
+
 	
 }

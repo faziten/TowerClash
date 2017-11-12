@@ -1,8 +1,8 @@
 package Unidades;
 
-import Main.VisitorEnemigo;
 import Mapa.Celda;
 import Mapa.Mapa;
+import Visitor.VisitorEnemigo;
 
 public class Gigante extends Enemigo{
 	

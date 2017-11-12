@@ -1,8 +1,8 @@
 package Unidades;
 
-import Main.Visitor;
-import Main.VisitorEnemigo;
 import PowerUp.PowerUp;
+import Visitor.Visitor;
+import Visitor.VisitorEnemigo;
 
 public abstract class Enemigo extends Unidad{
 	protected int velocidad = 2;

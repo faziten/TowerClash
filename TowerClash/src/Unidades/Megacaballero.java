@@ -1,8 +1,8 @@
 package Unidades;
 
-import Main.VisitorAliado;
 import Mapa.Celda;
 import Mapa.Mapa;
+import Visitor.VisitorAliado;
 
 public class Megacaballero extends Aliado{
 	public Megacaballero(Mapa m, Celda celda){
@@ -10,6 +10,7 @@ public class Megacaballero extends Aliado{
 		celdaActual = celda;
 		
 		vida = 4 * vida;
+		vidaMax=vida;
 		damage = 7 * damage;
 		precio = 300;
 		rango=4*rango;

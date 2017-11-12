@@ -3,7 +3,7 @@ package Mapa;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 
-import Main.Visitor;
+import Visitor.Visitor;
 
 public abstract class ElementosMapa {
 	protected Celda celdaActual;	

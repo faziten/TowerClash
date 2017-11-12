@@ -13,9 +13,7 @@ public class Moneda extends PowerUp{
 	}
 	
 	public void accion(){
-		mapa.getJugador().agregarOro(masOro);
-		
-		
+		mapa.getJugador().agregarOro(masOro);	
 	}
 
 }

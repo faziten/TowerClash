@@ -1,8 +1,7 @@
-package Main;
+package Visitor;
 
 import Objeto.ConVida;
 import Objeto.Temporales;
-import PowerUp.*;
 import Unidades.*;
 
 public class VisitorAliado extends Visitor{
@@ -23,10 +22,6 @@ public class VisitorAliado extends Visitor{
 			e.getCelda().setElemento(null);
 			}
 		}
-
-	public void visit(PowerUp pw) {
-		
-	}
 
 	public void visit(ConVida v) {
 		
