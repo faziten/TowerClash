@@ -92,46 +92,6 @@ public class GUI_Mercado extends JPanel{
 		btnMegacaballero.setEnabled(true);
 	
 	
-	//ESTRUCTURAS
-		JButton btnChoza = new JButton("");
-		
-		btnChoza.setIcon(new ImageIcon(GUI_Mercado.class.getResource(cardSource+"choza"+commonExt)));
-		//btnChoza.setIcon(new ImageIcon(Mercado.class.getResource("/res/this/choza.png")));
-		btnChoza.setBounds(80, 5, 71, 88);
-		this.add(btnChoza);
-		
-		btnChoza.setContentAreaFilled(false);
-		btnChoza.setOpaque(true);
-		btnChoza.setEnabled(true);
-		
-		/*
-		JButton btnInfernal = new JButton("");
-	
-		btnInfernal.setIcon(new ImageIcon(Mercado.class.getResource(cardSource+"infernal"+commonExt)));
-		//btnInfernal.setIcon(new ImageIcon(Mercado.class.getResource("/res/this/infernal.png")));
-		btnInfernal.setBounds(80, 185, 71, 88);
-		this.add(btnInfernal);
-		
-		btnInfernal.setContentAreaFilled(false);
-		btnInfernal.setOpaque(true);
-		btnInfernal.setEnabled(true);
-		*/
-		
-		JButton btnCannon = new JButton("");
-	
-		btnCannon.setIcon(new ImageIcon(GUI_Mercado.class.getResource(cardSource+"canon"+commonExt)));
-		//btnCannon.setIcon(new ImageIcon(Mercado.class.getResource("/res/this/canon.png")));
-		btnCannon.setBounds(80, 185, 71, 88);
-		this.add(btnCannon);
-		
-		btnCannon.setContentAreaFilled(false);
-		btnCannon.setOpaque(true);
-		btnCannon.setEnabled(true);
-		
-		dinero=1000;
-		lbldinero= new JLabel("Dinero: "+dinero);
-		lbldinero.setBounds(80, 350, 100, 100);
-		this.add(lbldinero);
 	//------------------------------------------------------------------/MERCADO---------------------------------------------
 	}
 	public void setDinero(int x){

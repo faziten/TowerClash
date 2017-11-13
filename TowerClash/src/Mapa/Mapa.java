@@ -65,4 +65,15 @@ public class Mapa {
 			misAliados.remove(a);
 	}
 	
+	
+	public void agregarObjeto(Objeto o){
+		if (o != null)
+			misObjetos.add(o);
+	}
+	
+	public void removerObjeto(Objeto o){
+		if (o != null)
+			misObjetos.remove(o);
+	}
+	
 }

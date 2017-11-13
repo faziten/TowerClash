@@ -19,17 +19,7 @@ public class Poderes extends JPanel{
 			this.setLayout(null);
 			this.setVisible(true);
 			
-			RoundButton misil= new RoundButton();
-			misil.setIcon(new ImageIcon(Poderes.class.getResource(objectSource+"Cohete"+commonExt)));
-			//misil.setIcon(new ImageIcon(Poderes.class.getResource("/res/objetos/Cohete.png")));
-			misil.setBounds(10, 10, 100, 100);
-			this.add(misil);
-			
-			RoundButton bola_fuego= new RoundButton();
-			bola_fuego.setIcon(new ImageIcon(Poderes.class.getResource(objectSource+"Bola_fuego"+commonExt)));
-			//bola_fuego.setIcon(new ImageIcon(Poderes.class.getResource("/res/objetos/Bola_fuego.png")));
-			bola_fuego.setBounds(10, 120, 100, 100);
-			this.add(bola_fuego);
+		
 			
 			RoundButton globo= new RoundButton();
 			globo.setIcon(new ImageIcon(Poderes.class.getResource(objectSource+"globo"+commonExt)));
