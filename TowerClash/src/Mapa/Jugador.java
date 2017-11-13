@@ -15,7 +15,7 @@ public class Jugador {
 	}
 	
 	public Jugador(){
-		this(500);
+		this(200);
 	}
 	
 	//Estos metodos son mas que nada para que los use la GUI.

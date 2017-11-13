@@ -18,7 +18,7 @@ public class Logica_Mercado {
 	}
 	
 	//No se si asi deberia hacer esto, deberiamos ir testeando...
-	public void comprarA(Aliado ali){
+	/*public void comprarA(Aliado ali){
 		mapa.agregarAliado(ali);
 		jug.restarOro(aliado.getPrecio());
 	}
@@ -34,6 +34,6 @@ public class Logica_Mercado {
 		mapa.agregarObjeto(obj);
 		jug.restarOro(aliado.getPrecio());
 	}
-	
+	*/
 	
 }

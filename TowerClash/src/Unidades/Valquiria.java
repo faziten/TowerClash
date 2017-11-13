@@ -1,5 +1,7 @@
 package Unidades;
 
+import javax.swing.ImageIcon;
+
 import Mapa.Celda;
 import Mapa.Mapa;
 import Visitor.VisitorAliado;
@@ -10,9 +12,9 @@ public class Valquiria extends Aliado{
 		mapa = m;
 		celdaActual = celda;
 		damage = 3 * damage;
-		precio=100;
+		precio=40;
 		vidaMax=vida;
-		//agrego la gráfica a Valquiria	
+		imagen = new ImageIcon(this.getClass().getResource("/img/unidades/valquiria.png"));
 		miVisitor = new VisitorAliado(this);
 		
 	}

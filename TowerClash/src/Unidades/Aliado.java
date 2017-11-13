@@ -10,15 +10,10 @@ public abstract class Aliado extends ElementosComprables{
 	protected int damage = 10;
 	protected int rango = 1;
 	protected Visitor miVisitor;
-	protected int precio = 125;
 	protected int vidaMax=100;
 		
 	public void accept(Visitor v){
 			v.visit(this);
-	}
-		
-	public int getPrecio(){
-		return precio;
 	}
 		
 	public void setVisitor(VisitorAliado v){

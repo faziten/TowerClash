@@ -12,15 +12,11 @@ public abstract class ElementosMapa {
 	protected boolean estaVivo = true;
 	
 	protected Icon imagen;
-	protected JLabel mGrafico;
 	
 	public abstract void accept(Visitor v);
 
-	
-	
-	public JLabel getGrafico()
-	{
-		return mGrafico;
+	public Icon getImagen(){
+		return imagen;
 	}
 	
 	public Celda getCelda() {

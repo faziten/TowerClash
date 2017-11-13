@@ -1,6 +1,8 @@
 package Unidades;
 
 
+import javax.swing.ImageIcon;
+
 import Mapa.Celda;
 import Mapa.Mapa;
 import Visitor.VisitorEnemigo;
@@ -17,7 +19,6 @@ public class Pekka extends Enemigo{
 		puntaje = 500;
 		recompensa = 800;
 		miVisitor = new VisitorEnemigo(this);
-				
-		//agrego la gráfica al Pekka	
+		imagen = new ImageIcon(this.getClass().getResource("/img/enemigos/pekka.png"));			
 	}
 }

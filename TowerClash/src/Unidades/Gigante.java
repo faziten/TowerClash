@@ -1,5 +1,7 @@
 package Unidades;
 
+import javax.swing.ImageIcon;
+
 import Mapa.Celda;
 import Mapa.Mapa;
 import Visitor.VisitorEnemigo;
@@ -14,8 +16,8 @@ public class Gigante extends Enemigo{
 		puntaje = 250;
 		recompensa = 200;
 		miVisitor = new VisitorEnemigo(this);
+		imagen = new ImageIcon(this.getClass().getResource("/img/enemigos/gigante.png"));
 		
-		//agrego la gráfica al Gigante
 	}
 	
 }

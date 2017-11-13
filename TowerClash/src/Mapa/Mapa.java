@@ -12,9 +12,8 @@ public class Mapa {
 	private Jugador miJugador;
 	private int ancho;
 	private int largo;
-	protected LinkedList<Aliado> misAliados;
+	protected LinkedList<ElementosComprables> misComprables;
 	protected LinkedList<Enemigo> misEnemigos;
-	protected LinkedList<Objeto> misObjetos;
 
 	public Mapa(Jugador j){
 		ancho=6;
@@ -28,10 +27,8 @@ public class Mapa {
 				mapa[x][y] = new Celda(this, x, y);
 			}
 		}
-		
-		misAliados = new LinkedList<Aliado>(); 
+		misComprables= new LinkedList<ElementosComprables>(); 
 		misEnemigos = new LinkedList<Enemigo>();
-		misObjetos = new LinkedList<Objeto>();
 		
 		miJugador=j;
 	}
@@ -56,25 +53,15 @@ public class Mapa {
 	
 	//Agregado por Tierno
 //--------------------------------------------------------------------------------------------------------------------
-	public void agregarAliado(Aliado a){
+	public void agregarElementoComprable(ElementosComprables a){
 		if (a != null)
-			misAliados.add(a);
+			misComprables.add(a);
 	}
 	
-	public void removerAliado(Aliado a){
+	public void removerElementoComprable(ElementosComprables a){
 		if (a != null)
-			misAliados.remove(a);
+			misComprables.remove(a);
 	}
 	
-	
-	public void agregarObjeto(Objeto o){
-		if (o != null)
-			misObjetos.add(o);
-	}
-	
-	public void removerObjeto(Objeto o){
-		if (o != null)
-			misObjetos.remove(o);
-	}
 	
 }

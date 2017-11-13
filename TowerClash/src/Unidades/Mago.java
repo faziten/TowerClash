@@ -1,5 +1,7 @@
 package Unidades;
 
+import javax.swing.ImageIcon;
+
 import Mapa.Celda;
 import Mapa.Mapa;
 import Visitor.VisitorAliado;
@@ -11,8 +13,8 @@ public class Mago extends Aliado{
 		vida = 2 * vida;
 		vidaMax=vida;
 		damage = 3 * damage;
-		precio = 150;
-		//agrego la gráfica a Mago
+		precio = 50;
+		imagen = new ImageIcon(this.getClass().getResource("/img/unidades/mago.png"));
 		miVisitor= new VisitorAliado(this);	
 	}
 }

@@ -8,7 +8,8 @@ public class Globo extends ConVida {
 	public Globo(Mapa m, Celda celda){
 		mapa=m;
 		celdaActual=celda;
-		vida+=100;
+		vida+=50;
+		precio= 30;
 	}
 
 	public void accept(Visitor v) {

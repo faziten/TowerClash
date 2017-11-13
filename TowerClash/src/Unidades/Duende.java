@@ -1,6 +1,8 @@
 package Unidades;
 
 
+import javax.swing.ImageIcon;
+
 import Mapa.Celda;
 import Mapa.Mapa;
 import Visitor.VisitorEnemigo;
@@ -15,10 +17,7 @@ public class Duende extends Enemigo {
 		damage = 2 * damage;
 		puntaje = 150;
 		recompensa = 100;
-		
-		
-		//agrego la gráfica al duende
-		
+		imagen = new ImageIcon(this.getClass().getResource("/img/enemigos/duende.png"));
 		miVisitor = new VisitorEnemigo(this);
 	
 	}

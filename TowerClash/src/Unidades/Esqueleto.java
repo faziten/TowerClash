@@ -1,5 +1,7 @@
 package Unidades;
 
+import javax.swing.ImageIcon;
+
 import Mapa.Celda;
 import Mapa.Mapa;
 import Visitor.VisitorEnemigo;
@@ -11,8 +13,7 @@ public class Esqueleto extends Enemigo{
 		celdaActual = celda;
 		damage = 2 * damage;
 		miVisitor = new VisitorEnemigo(this);
-		
-		//agrego la gráfica al esqueleto
+		imagen = new ImageIcon(this.getClass().getResource("/img/enemigos/esqueleto.png"));
 	}
 	
 

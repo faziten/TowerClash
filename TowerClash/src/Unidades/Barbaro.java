@@ -1,5 +1,7 @@
 package Unidades;
 
+import javax.swing.ImageIcon;
+
 import Mapa.Celda;
 import Mapa.Mapa;
 import Visitor.VisitorEnemigo;
@@ -15,7 +17,7 @@ public class Barbaro extends Enemigo{
 		recompensa = 225;
 		velocidad=3;
 	
-		//Agrego grafica a Barbaro
+		imagen = new ImageIcon(this.getClass().getResource("/img/enemigos/barbaro.png"));
 		miVisitor= new VisitorEnemigo(this);
 	}
 

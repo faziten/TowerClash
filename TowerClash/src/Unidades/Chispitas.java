@@ -1,6 +1,8 @@
 package Unidades;
 
 
+import javax.swing.ImageIcon;
+
 import Mapa.Celda;
 import Mapa.Mapa;
 import Visitor.VisitorEnemigo;
@@ -20,7 +22,7 @@ public class Chispitas extends Enemigo{
 		
 		miVisitor = new VisitorEnemigo(this);
 		
-		//agrego grafica a Chispitas
+		imagen = new ImageIcon(this.getClass().getResource("/img/enemigos/chispitas.png"));
 	}
 
 

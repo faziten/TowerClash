@@ -1,6 +1,8 @@
 package Unidades;
 
 
+import javax.swing.ImageIcon;
+
 import Mapa.Celda;
 //import PowerUps.DefaultAliado;
 import Mapa.Mapa;
@@ -15,9 +17,8 @@ public class Caballero extends Aliado{
 		vida=2*vida;
 		vidaMax=vida;
 		damage = 2 * damage;
-		precio = 150;
-		
-		//agrego la gráfica a Caballero
+		precio = 30;
+		imagen = new ImageIcon(this.getClass().getResource("/img/unidades/caballero.png"));
 		
 		miVisitor = new VisitorAliado(this);
 		

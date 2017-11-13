@@ -1,5 +1,7 @@
 package Unidades;
 
+import javax.swing.ImageIcon;
+
 import Mapa.Celda;
 import Mapa.Mapa;
 import Visitor.VisitorAliado;
@@ -12,9 +14,9 @@ public class Megacaballero extends Aliado{
 		vida = 4 * vida;
 		vidaMax=vida;
 		damage = 7 * damage;
-		precio = 300;
+		precio = 70;
 		rango=4*rango;
-		//agrego la gráfica a Dragon
+		imagen = new ImageIcon(this.getClass().getResource("/img/unidades/megacaballero.png"));
 					
 		miVisitor = new VisitorAliado(this);
 				

@@ -1,6 +1,8 @@
 package Unidades;
 
 
+import javax.swing.ImageIcon;
+
 import Mapa.Celda;
 import Mapa.Mapa;
 import Visitor.VisitorAliado;
@@ -15,11 +17,10 @@ public class Arquera extends Aliado{
 		vida = 2 * vida;
 		vidaMax=vida;
 		damage = 2 * damage;
-		precio = 50;
+		precio = 40;
 		rango = 2 * rango;
 		miVisitor= new VisitorAliado(this);
-		
-		//agrego la gráfica a Arquera
+		imagen = new ImageIcon(this.getClass().getResource("/img/unidades/arquera.png"));
 
 	}
 	

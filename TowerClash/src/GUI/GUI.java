@@ -12,15 +12,24 @@ import javax.swing.border.EtchedBorder;
 
 import Mapa.*;
 
-public class GUI implements Runnable {
+public class GUI {
 	
 	protected static GUI game;
 	private static JFrame frame; 
-	private JPanel cartas;
+	
 	private JButton [] [] mapa;
 	private static final String source= "/img/";
 	private static final String cardSource= "/img/cards/";
 	private static final String commonExt= ".png";
+	
+	//PANELES
+	private JPanel cartas;
+	private JPanel objetos;
+	private JPanel informacion;
+	
+	//Labels Informacion
+	private JLabel puntaje;
+	private JLabel monedas;
 	
 	//Botones de cartas
 	private JButton btnCaballero;
@@ -36,8 +45,6 @@ public class GUI implements Runnable {
 	private CreadorElementosComprables creador;
 	private int creado=0;
 	
-	
-	private static Puntaje estado;
 	
 	public GUI(Jugador jugador){
 		frame= new JFrame();
@@ -69,7 +76,7 @@ public class GUI implements Runnable {
 					mapa[i][j].setOpaque(true);
 					
 				}
-				mapa[i][j].addMouseListener(new OyenteMouse());
+				mapa[i][j].addMouseListener(new OyenteMouse(i,j));
 				frame.getContentPane().add((Component) mapa[i][j]);
 			}
 			x=160;
@@ -132,44 +139,66 @@ public class GUI implements Runnable {
 		btnMegacaballero.setOpaque(true);
 		btnMegacaballero.setEnabled(true);
 		btnMegacaballero.addActionListener(new OyenteCrear(5));
-
-		//Boton Objetos
-		
-		
 		
 		//Panel Cartas
 		cartas.setBounds(0, 0, 160, 450);
-		frame.getContentPane().add(cartas);;
+		frame.getContentPane().add(cartas);
 		
-		//Panel Poderes
-		Poderes p= new Poderes();
-		p.setBounds(910, 0, 120, 450);
-		frame.getContentPane().add(p);
+		//Panel de objetos
+		objetos= new JPanel();
+		objetos.setBackground(Color.DARK_GRAY);
+		objetos.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		objetos.setBounds(0, 0, 300, 300);
+		objetos.setLayout(null);
+		objetos.setVisible(true);
+
+		//Boton Objetos
+		RoundButton globo= new RoundButton();
+		globo.setIcon(new ImageIcon(GUI.class.getResource("/img/objetos/globo.png")));
+		globo.setBounds(10, 230, 100, 100);
+		globo.addActionListener(new OyenteCrear(6));
+		objetos.add(globo);
+		
+		
+		RoundButton golem= new RoundButton();
+		golem.setIcon(new ImageIcon(GUI.class.getResource("/img/objetos/golem.png")));
+		golem.setBounds(10, 340, 100, 100);
+		golem.addActionListener(new OyenteCrear(7));
+		objetos.add(golem);
+		
+		RoundButton lago= new RoundButton();
+		lago.setIcon(new ImageIcon(GUI.class.getResource("/img/objetos/lago.png")));
+		lago.setBounds(10,10,100,100);
+		lago.addActionListener(new OyenteCrear(8));
+		objetos.add(lago);
+		
+		RoundButton lava= new RoundButton();
+		lava.setIcon(new ImageIcon(GUI.class.getResource("/img/objetos/volcan.png")));
+		lava.setBounds(10,120,100,100);
+		lava.addActionListener(new OyenteCrear(9));
+		objetos.add(lava);
+		
+		//Panel objetos
+		objetos.setBounds(910, 0, 120, 450);
+		frame.getContentPane().add(objetos);
 		
 		//Panel Puntaje
-		estado= new Puntaje();
-		estado.setBounds(0, 450, 1045,70);
-		frame.getContentPane().add(estado);
+		informacion= new JPanel();
+		informacion.setBounds(0, 450, 1045,70);
+		informacion.setBackground(Color.BLACK);
+		informacion.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		informacion.setBounds(0, 450, 1045,70);
+		informacion.setLayout(null);
+		informacion.setVisible(true);
+		//puntaje.setText("Puntaje: "+miJugador.getPuntaje());
+		//puntaje.setBounds(100, 36, 10, 20);
+		//informacion.add(puntaje);
+		//monedas.setText("Oro: "+ miJugador.getOro());
+		//monedas.setBounds(450, 60, 10, 20);
+		//informacion.add(monedas);
+		frame.getContentPane().add(informacion);
 	}
 	
-	
-
-	public void run() {
-		
-		Thread t = new Thread(new Runnable() { public void run() {   //TIMER CASERO
-			  //System.out.println("waiting");
-			  try {
-				
-				Thread.sleep(200);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			}});
-		
-		estado.run();
-		
-	}
 	
 	private class OyenteCrear implements ActionListener {
 		private int n;
@@ -183,58 +212,62 @@ public class GUI implements Runnable {
     }
 	
 	private class OyenteMouse implements MouseListener {
+		private int i,j;
+		public OyenteMouse(int i, int j){
+			this.i=i;
+			this.j=j;
+		}
         public void mousePressed(MouseEvent e)
         {
-        	int i = e.getY();
-        	int j = e.getX();
+        	Celda celdaActual= mapaLogica.obtenerCelda(i, j);
+        	if (celdaActual.estaVacia()){
         	
-        	if(creado>=1)
-        	{
-        		Celda celdaActual = mapaLogica.obtenerCelda(i, j);
-        		ElementosMapa nuevo=null;
-    			switch (creado) {
-                case 1:  if(40<=miJugador.getOro())
+        		if(creado>=1)
+        		{
+        			ElementosComprables nuevo=null;
+        			switch (creado) {
+        			case 1:  if(30<=miJugador.getOro())
                 			nuevo = creador.crearCaballero(mapaLogica,celdaActual);
-                         break;
+                         	break;
                          
-                case 2:  if(50<=miJugador.getOro()) 
+        			case 2:  if(30<=miJugador.getOro()) 
                 			nuevo = creador.crearArquera(mapaLogica, celdaActual);
-                         break;
+                         	break;
                          
-                case 3:  if(50<=miJugador.getOro()) 
+        			case 3:  if(40<=miJugador.getOro()) 
                 			nuevo = creador.crearValquiria(mapaLogica, celdaActual);
-                         break;
-                case 0:  if(100<=miJugador.getOro())
+                         	break;
+        			case 4:  if(50<=miJugador.getOro())
                 			nuevo = creador.crearMago(mapaLogica, celdaActual);
-                		 break;
-                case 4:  if(125<=miJugador.getOro()) 
+                		 	break;
+        			case 5:  if(70<=miJugador.getOro()) 
                 			nuevo = creador.crearMegacaballero(mapaLogica, celdaActual);
-       		 			 break;
-                case 5:  if(150<=miJugador.getOro())
+        					break;
+        			case 6:  if(30<=miJugador.getOro())
                 			nuevo = creador.crearGlobo(mapaLogica, celdaActual);
-		 			 	 break;
-                case 6:  if(40<=miJugador.getOro()) 
+		 			 	 	break;
+        			case 7:  if(60<=miJugador.getOro()) 
                 			nuevo = creador.crearGolem(mapaLogica, celdaActual);
-                		 break;
-                case 7:  if(80<=miJugador.getOro()) 
+                		 	break;
+        			case 8:  if(20<=miJugador.getOro()) 
                 			nuevo = creador.crearLago(mapaLogica, celdaActual);
-                		 break;
-                case 8:  if(160<=miJugador.getOro()) 
+                		 	break;
+        			case 9:  if(30<=miJugador.getOro()) 
                 			nuevo = creador.crearLava(mapaLogica, celdaActual);
-       		 			 break;
-                case 9:  
-            	}
+       		 			 	break;  
+        			}
     			
-    			if(nuevo!=null)
-    			{
-    				//Restar oro
+        			if(nuevo!=null){
+        				miJugador.restarOro(nuevo.getPrecio());
+        				mapaLogica.agregarElementoComprable(nuevo);
+        				celdaActual.setElemento(nuevo);
+        				mapa[i][j].setIcon(nuevo.getImagen());
+        				
     				
-    				//Si la celda ya tiene algo, entonces NO AGREGAR
-    				
-    			}
-        		
-        		creado=0;
+        			}
+        		}
         	}
+        	creado=0;
         }
 
 	public void mouseClicked(MouseEvent arg0) {
@@ -256,8 +289,6 @@ public class GUI implements Runnable {
 public static void main(String [] arg){
 		
 		game= new GUI(new Jugador());
-		game.run();
 		frame.setVisible(true);
-		estado.run();
 	}
 }
