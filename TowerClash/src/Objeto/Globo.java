@@ -1,5 +1,7 @@
 package Objeto;
 
+import javax.swing.ImageIcon;
+
 import Mapa.Celda;
 import Mapa.Mapa;
 import Visitor.Visitor;
@@ -10,6 +12,7 @@ public class Globo extends ConVida {
 		celdaActual=celda;
 		vida+=50;
 		precio= 30;
+		imagen = new ImageIcon(this.getClass().getResource("/img/unidades/globo.png"));
 	}
 
 	public void accept(Visitor v) {
