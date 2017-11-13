@@ -36,12 +36,11 @@ public class GUI implements Runnable {
 				mapa[i][j].setEnabled(true);
 				mapa[i][j].setBounds(x, y, 75, 75);
 				x+=75;
-
-				mapa[i][j].setIcon(new ImageIcon(Mercado.class.getResource(source+"0"+commonExt)));
+				mapa[i][j].setIcon(new ImageIcon(GUI_Mercado.class.getResource(source+"0"+commonExt)));
 				if(j==0 || j== 1)
-					mapa[i][j].setIcon(new ImageIcon(Mercado.class.getResource(source+"1"+commonExt)));
+					mapa[i][j].setIcon(new ImageIcon(GUI_Mercado.class.getResource(source+"1"+commonExt)));
 				if(j==9){
-					mapa[i][j].setIcon(new ImageIcon(Mercado.class.getResource(cardSource+"KingTower"+commonExt)));
+					mapa[i][j].setIcon(new ImageIcon(GUI_Mercado.class.getResource(cardSource+"KingTower"+commonExt)));
 					mapa[i][j].setContentAreaFilled(false);
 					mapa[i][j].setOpaque(true);
 					
@@ -52,13 +51,9 @@ public class GUI implements Runnable {
 			y+=75;
 		}
 
-		mapa[5][6].setIcon(new ImageIcon(Mercado.class.getResource(unitSource+"arquera"+commonExt)));
-		mapa[2][8].setIcon(new ImageIcon(Mercado.class.getResource(unitSource+"caballero"+commonExt)));
-		mapa[4][3].setIcon(new ImageIcon(Mercado.class.getResource(unitSource+"golem"+commonExt)));
-		mapa[4][7].setIcon(new ImageIcon(Mercado.class.getResource(unitSource+"valquiria"+commonExt)));
 		
 		//Panel Cartas
-		Mercado m= new Mercado();
+		GUI_Mercado m= new GUI_Mercado(mapa);
 		m.setBounds(0, 0, 160, 450);
 		frame.getContentPane().add(m);;
 		
@@ -98,5 +93,8 @@ public class GUI implements Runnable {
 		game.run();
 		frame.setVisible(true);
 		estado.run();
+	}
+	public JButton [] [] getMapa(){
+		return mapa;
 	}
 }

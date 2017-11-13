@@ -53,4 +53,16 @@ public class Mapa {
 		return miJugador;
 	}
 	
+	//Agregado por Tierno
+//--------------------------------------------------------------------------------------------------------------------
+	public void agregarAliado(Aliado a){
+		if (a != null)
+			misAliados.add(a);
+	}
+	
+	public void removerAliado(Aliado a){
+		if (a != null)
+			misAliados.remove(a);
+	}
+	
 }

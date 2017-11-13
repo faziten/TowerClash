@@ -1,5 +1,6 @@
 package Mapa;
 
+import Unidades.Aliado;
 
 public class Jugador {
 	
@@ -42,6 +43,12 @@ public class Jugador {
 	
 	public void agregarOro(int masOro){
 		oro+=masOro;
+	}
+	
+	//Agregado por Tierno
+//--------------------------------------------------------------------------------------------------------------------
+	public void restarOro(int menosOro){
+		oro-=menosOro;
 	}
 
 }
