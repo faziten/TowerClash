@@ -1,6 +1,5 @@
 package Mapa;
 
-import Unidades.Unidad;
 
 public class Celda {
 	

@@ -16,7 +16,7 @@ public class Mapa {
 	protected LinkedList<Enemigo> misEnemigos;
 	protected LinkedList<Objeto> misObjetos;
 
-	public Mapa(){
+	public Mapa(Jugador j){
 		ancho=6;
 		largo=10;
 		
@@ -28,11 +28,12 @@ public class Mapa {
 				mapa[x][y] = new Celda(this, x, y);
 			}
 		}
-		miJugador= new Jugador();
 		
 		misAliados = new LinkedList<Aliado>(); 
 		misEnemigos = new LinkedList<Enemigo>();
 		misObjetos = new LinkedList<Objeto>();
+		
+		miJugador=j;
 	}
 	
 	public int getAncho() {

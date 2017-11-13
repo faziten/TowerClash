@@ -1,8 +1,8 @@
 package Objeto;
 
-import Mapa.ElementosMapa;
+import Mapa.ElementosComprables;
 
-public abstract class Objeto extends ElementosMapa{
+public abstract class Objeto extends ElementosComprables{
 	protected int costo;
 	
 	public void morir(){

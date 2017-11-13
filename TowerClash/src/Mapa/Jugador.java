@@ -1,6 +1,5 @@
 package Mapa;
 
-import Unidades.Aliado;
 
 public class Jugador {
 	
@@ -12,7 +11,7 @@ public class Jugador {
 	public Jugador(int oro){
 		this.oro=oro;
 		puntaje=0;
-		map= new Mapa(); 
+		map= new Mapa(this); 
 	}
 	
 	public Jugador(){
@@ -43,6 +42,10 @@ public class Jugador {
 	
 	public void agregarOro(int masOro){
 		oro+=masOro;
+	}
+	
+	public Mapa getMapa(){
+		return map;
 	}
 	
 	//Agregado por Tierno

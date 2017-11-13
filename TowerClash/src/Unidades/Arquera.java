@@ -8,7 +8,7 @@ import Visitor.VisitorAliado;
 
 public class Arquera extends Aliado{
 
-	public Arquera(Celda c, Mapa m)
+	public Arquera(Mapa m, Celda c)
 	{
 		mapa=m;
 		celdaActual = c;

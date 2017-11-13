@@ -1,9 +1,15 @@
 package Unidades;
 
+import Mapa.ElementosComprables;
 import Visitor.Visitor;
 import Visitor.VisitorAliado;
 
-public abstract class Aliado extends Unidad{
+public abstract class Aliado extends ElementosComprables{
+	protected int vida = 100;
+
+	protected int damage = 10;
+	protected int rango = 1;
+	protected Visitor miVisitor;
 	protected int precio = 125;
 	protected int vidaMax=100;
 		
@@ -21,6 +27,35 @@ public abstract class Aliado extends Unidad{
 	
 	public int getVidaMax(){
 		return vidaMax;
+	}
+
+	
+	public int getVida(){
+		return vida;
+	}
+
+	public int getAlcance(){
+		return rango;
+	}
+		
+	public int getDamage(){
+		return damage;
+	}
+		
+	public boolean estaVivo(){
+		return estaVivo;
+	}
+		
+	public void setVida(int v){
+		vida = v;
+	}
+
+	public void morir(boolean b) {
+		estaVivo = b;
+	}
+	
+	public Visitor getVisitor(){
+		return miVisitor;
 	}
 			
 }
