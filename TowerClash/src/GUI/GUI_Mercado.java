@@ -21,11 +21,10 @@ public class GUI_Mercado extends JPanel{
 	private JLabel lbldinero;
 	
 	//Otros
-	int dinero;
+	private int dinero;
 	
 	public GUI_Mercado(JButton[][] mapa){
 		juego=mapa;
-		new JPanel();
 		this.setBackground(Color.LIGHT_GRAY);
 		this.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		this.setBounds(0, 0, 300, 300);
@@ -58,7 +57,8 @@ public class GUI_Mercado extends JPanel{
 		btnArquera.setContentAreaFilled(false);
 		btnArquera.setOpaque(true);
 		
-		
+
+
 		JButton btnValquiria = new JButton("");
 		
 		btnValquiria.setIcon(new ImageIcon(GUI_Mercado.class.getResource(cardSource+"valquiria"+commonExt)));
@@ -97,7 +97,5 @@ public class GUI_Mercado extends JPanel{
 	public void setDinero(int x){
 		lbldinero.setText("Dinero: "+(dinero-x));
 	}
-	
-	
 }
 

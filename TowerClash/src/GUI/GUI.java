@@ -17,9 +17,10 @@ public class GUI {
 	protected static GUI game;
 	private static JFrame frame; 
 	
-	private JButton [] [] mapa;
+	private JLabel [] [] mapa;
 	private static final String source= "/img/";
 	private static final String cardSource= "/img/cards/";
+	private static final String enemySource= "/img/enemigos/";
 	private static final String commonExt= ".png";
 	
 	//PANELES
@@ -46,24 +47,29 @@ public class GUI {
 	private int creado=0;
 	
 	
-	public GUI(Jugador jugador){
+	public GUI(){
 		frame= new JFrame();
 		frame.setBounds(75, 50, 1045, 550);
 		frame.getContentPane().setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
 		
 		//Mi jugador y mi mapa
-		miJugador= jugador;
-		mapaLogica=jugador.getMapa();
+		miJugador= new Jugador(this);
+		miJugador.crearHilos();
+		mapaLogica=miJugador.getMapa();
 		creador= new CreadorConcreto();
+		
+		
+		
 		
 		//Inicilializo el mapa
 		int x=160;
 		int y=0;
-		mapa= new JButton[6][10];
+		mapa= new JLabel[6][10];
 		for(int i= 0; i< 6; i++){
 			for(int j=0; j< 10; j++){
-				mapa[i][j]= new JButton("");
+				mapa[i][j]= new JLabel("");
 				mapa[i][j].setEnabled(true);
 				mapa[i][j].setBounds(x, y, 75, 75);
 				x+=75;
@@ -72,7 +78,6 @@ public class GUI {
 					mapa[i][j].setIcon(new ImageIcon(GUI.class.getResource(source+"1"+commonExt)));
 				if(j==9){
 					mapa[i][j].setIcon(new ImageIcon(GUI.class.getResource(cardSource+"KingTower"+commonExt)));
-					mapa[i][j].setContentAreaFilled(false);
 					mapa[i][j].setOpaque(true);
 					
 				}
@@ -82,6 +87,7 @@ public class GUI {
 			x=160;
 			y+=75;
 		}
+		
 		
 	//Inicio paneles del Mapa
 		cartas= new JPanel();
@@ -217,7 +223,7 @@ public class GUI {
 			this.i=i;
 			this.j=j;
 		}
-        public void mousePressed(MouseEvent e)
+    public void mousePressed(MouseEvent e)
         {
         	Celda celdaActual= mapaLogica.obtenerCelda(i, j);
         	if (celdaActual.estaVacia()){
@@ -286,9 +292,15 @@ public class GUI {
 	}
 	}
 	
+	public void crearGrafico(Icon img) {
+		JLabel background = new JLabel();
+		background.setIcon(img);
+		background.setBounds(200, 200, 75, 75);
+		frame.add(background);
+	}
+	
 public static void main(String [] arg){
-		
-		game= new GUI(new Jugador());
+		game= new GUI();
 		frame.setVisible(true);
 	}
 }

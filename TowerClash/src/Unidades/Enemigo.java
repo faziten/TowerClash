@@ -1,6 +1,7 @@
 package Unidades;
 
 import Mapa.ElementosMapa;
+import Mapa.Mapa;
 import PowerUp.PowerUp;
 import Visitor.Visitor;
 import Visitor.VisitorEnemigo;
@@ -68,6 +69,27 @@ public abstract class Enemigo extends ElementosMapa{
 	public Visitor getVisitor(){
 		return miVisitor;
 	}
-
-	
+/*
+	public void accion() {
+		if (x>=Mapa.PIXEL*Mapa.MAX_ANCHO) {
+			Tablero.getInstance().gameOver(false);
+		}
+		else {
+			Entidad e = Tablero.getInstance().getEntidad(x/Mapa.PIXEL+1, y/Mapa.PIXEL); //Entidad de la celda siguiente
+			if (e!=null) {
+				if (e.visit(this)) {
+					jl.setIcon(atacar);
+				}
+				else {
+					jl.setIcon(icon);
+				}
+			}
+			else {
+				x+=miPU.getVelocidad(velocidad);			
+				jl.setBounds(x, y, Mapa.PIXEL, Mapa.PIXEL);		
+				jl.setIcon(mover);
+			}
+		}		
+	}	
+	*/
 }

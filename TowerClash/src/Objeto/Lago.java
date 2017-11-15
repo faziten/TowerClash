@@ -13,7 +13,7 @@ public class Lago extends Temporales{
 		celdaActual=celda;
 		tiempo=2*tiempo;
 		precio=20;
-		imagen = new ImageIcon(this.getClass().getResource("/img/lava.png"));
+		imagen = new ImageIcon(this.getClass().getResource("/img/lago.png"));
 	}
 
 	public void accept(Visitor v) {

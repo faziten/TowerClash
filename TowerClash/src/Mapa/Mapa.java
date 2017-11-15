@@ -13,7 +13,7 @@ public class Mapa {
 	private int ancho;
 	private int largo;
 	protected LinkedList<ElementosComprables> misComprables;
-	protected LinkedList<Enemigo> misEnemigos;
+	protected LinkedList<Enemigo>  misEnemigos;
 
 	public Mapa(Jugador j){
 		ancho=6;
@@ -61,6 +61,16 @@ public class Mapa {
 	public void removerElementoComprable(ElementosComprables a){
 		if (a != null)
 			misComprables.remove(a);
+	}
+	
+	public void agregarEnemigo(Enemigo a){
+		if (a != null)
+			 misEnemigos.add(a);
+	}
+	
+	public void removerEnemigo(Enemigo a){
+		if (a != null)
+			 misEnemigos.remove(a);
 	}
 	
 	
