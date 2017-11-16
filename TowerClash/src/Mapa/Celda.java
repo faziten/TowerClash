@@ -20,6 +20,7 @@ public class Celda {
 	public int getCoordY() {
 		return coordY;
 	}
+	
 	public ElementosMapa getElemento(){
 		return misElementos;
 	}
@@ -32,7 +33,10 @@ public class Celda {
 		return mapa.obtenerCelda(coordX+destino, coordY);
 	}
 
-	
+	public Mapa getMapa(){
+		return mapa;
+	}
+		
 	public boolean estaVacia(){
 		return misElementos==null;
 	}

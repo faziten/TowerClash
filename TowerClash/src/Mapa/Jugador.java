@@ -76,14 +76,14 @@ public class Jugador {
 		int fila = rnd.nextInt(6);
 		int r = rnd.nextInt(100);		
 		Enemigo e=null;
-		 if (r>=45 && r<65) {
-			e = new Esqueleto(map, new Celda(map, 2,2));
-		} else if (r>=65 && r<85) {
-			e = new Pekka(map, new Celda(map, 2,3));
+		 if (r>=0 && r<50) {
+			e = new Esqueleto(map, new Celda(map, fila,0));
+		} else if (r>=50 && r<100) {
+			e = new Pekka(map, new Celda(map, fila,0));
 		} 	
 		if(e != null){
 			map.agregarEnemigo(e);
-			g.crearGrafico(e.getImagen());
+			g.crearGrafico(e.getImagen(), fila, 0);
 		}
 		return e;
 	}

@@ -17,7 +17,7 @@ public class GUI {
 	protected static GUI game;
 	private static JFrame frame; 
 	
-	private JLabel [] [] mapa;
+	
 	private static final String source= "/img/";
 	private static final String cardSource= "/img/cards/";
 	private static final String enemySource= "/img/enemigos/";
@@ -64,29 +64,27 @@ public class GUI {
 		
 		
 		//Inicilializo el mapa
+	
+		JPanel background= new JPanel();
+		background.setLayout(null);
+		background.setBounds(160, 0, 750, 450);
+		background.setBackground(Color.RED);
 		int x=160;
 		int y=0;
-		mapa= new JLabel[6][10];
-		for(int i= 0; i< 6; i++){
-			for(int j=0; j< 10; j++){
-				mapa[i][j]= new JLabel("");
-				mapa[i][j].setEnabled(true);
-				mapa[i][j].setBounds(x, y, 75, 75);
+		for(int i=0; i<6; i++){
+			for(int j=0; j<10; j++){
+				JLabel lb= new JLabel();
+				lb.setLayout(null);
+				lb.setBounds(x, y, 75, 75);
+				lb.setBackground(Color.BLUE);
 				x+=75;
-				mapa[i][j].setIcon(new ImageIcon(GUI.class.getResource(source+"0"+commonExt)));
-				if(j==0 || j== 1)
-					mapa[i][j].setIcon(new ImageIcon(GUI.class.getResource(source+"1"+commonExt)));
-				if(j==9){
-					mapa[i][j].setIcon(new ImageIcon(GUI.class.getResource(cardSource+"KingTower"+commonExt)));
-					mapa[i][j].setOpaque(true);
-					
-				}
-				mapa[i][j].addMouseListener(new OyenteMouse(i,j));
-				frame.getContentPane().add((Component) mapa[i][j]);
+				background.add(lb);
 			}
 			x=160;
 			y+=75;
 		}
+		frame.getContentPane().add(background);
+	
 		
 		
 	//Inicio paneles del Mapa
@@ -267,7 +265,7 @@ public class GUI {
         				miJugador.restarOro(nuevo.getPrecio());
         				mapaLogica.agregarElementoComprable(nuevo);
         				celdaActual.setElemento(nuevo);
-        				mapa[i][j].setIcon(nuevo.getImagen());
+        			//	mapa[i][j].setIcon(nuevo.getImagen());
         				
     				
         			}
@@ -292,11 +290,15 @@ public class GUI {
 	}
 	}
 	
-	public void crearGrafico(Icon img) {
+	public void crearGrafico(Icon img, int fila, int col) {
+		
+	//	mapa[fila][col].setIcon(img);
+		
+		/* NO SE SI LO NECESITO
 		JLabel background = new JLabel();
 		background.setIcon(img);
 		background.setBounds(200, 200, 75, 75);
-		frame.add(background);
+		*/
 	}
 	
 public static void main(String [] arg){

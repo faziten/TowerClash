@@ -1,6 +1,7 @@
 package Hilos;
 
-import Mapa.Jugador;
+import Mapa.*;
+import Unidades.*;
 
 public class HiloEnemigos extends Thread { 
 	
@@ -22,8 +23,9 @@ public class HiloEnemigos extends Thread {
 		while(!gameOver){
 			try {
 			
-				Thread.sleep(125);
-				jugador.crearEnemigo();
+				Thread.sleep(500);
+				Enemigo e= jugador.crearEnemigo();
+				e.mover(e.getCelda());
 				
 				
 			} catch (InterruptedException e) {

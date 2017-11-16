@@ -1,5 +1,6 @@
 package Unidades;
 
+import Mapa.Celda;
 import Mapa.ElementosMapa;
 import Mapa.Mapa;
 import PowerUp.PowerUp;
@@ -32,9 +33,16 @@ public abstract class Enemigo extends ElementosMapa{
 		v.visit(this);
 	}
 	
-	public void mover()
-	{		
+	public void mover(Celda celda){		
+		int fila= celda.getCoordX();
+		int col= celda.getCoordY();
+		
+		int i=160;
+		while(i < 400){
+			i=i+30;
+			//celda.getElemento().getCelda()[fila][col].setBounds(i, col, 75, 75);
 			
+		}
 	}
 	
 	public void setVelocidad(int v) {
@@ -69,27 +77,5 @@ public abstract class Enemigo extends ElementosMapa{
 	public Visitor getVisitor(){
 		return miVisitor;
 	}
-/*
-	public void accion() {
-		if (x>=Mapa.PIXEL*Mapa.MAX_ANCHO) {
-			Tablero.getInstance().gameOver(false);
-		}
-		else {
-			Entidad e = Tablero.getInstance().getEntidad(x/Mapa.PIXEL+1, y/Mapa.PIXEL); //Entidad de la celda siguiente
-			if (e!=null) {
-				if (e.visit(this)) {
-					jl.setIcon(atacar);
-				}
-				else {
-					jl.setIcon(icon);
-				}
-			}
-			else {
-				x+=miPU.getVelocidad(velocidad);			
-				jl.setBounds(x, y, Mapa.PIXEL, Mapa.PIXEL);		
-				jl.setIcon(mover);
-			}
-		}		
-	}	
-	*/
+
 }
