@@ -287,12 +287,13 @@ public class GUI {
         				miJugador.restarOro(nuevo.getPrecio());
         				miJugador.agregarElementoComprable(nuevo);
         				celdaActual.setElemento(nuevo);
-        				etiqueta.setBounds(10,10,100,133);
-        				etiqueta.setText("HOLA");
-        				panelJuego.add(etiqueta);
+        				panelJuego.add(nuevo.getImagen());
         				
         			}
-        		}
+        			
+    				
+    			}
+        		
         	}
         	creado=0;
         		
