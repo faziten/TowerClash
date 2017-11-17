@@ -44,6 +44,10 @@ public class Mapa {
 		return null;
 	}
 	
+	public Jugador getJugador(){
+		return miJugador;
+	}
+	
 
 	
 	

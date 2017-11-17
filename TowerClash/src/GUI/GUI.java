@@ -103,7 +103,8 @@ public class GUI {
 		for(int i=0;i<cantFilas;i++)
 		{
 			for(int j=0;j<cantColumnas;j++)
-			{
+			{		
+					etiqueta= new JLabel();
 					etiqueta.setBounds(x,y,75,75);
 					panelJuego.add(etiqueta);
 					x+=75;
@@ -199,26 +200,26 @@ public class GUI {
 				RoundButton globo= new RoundButton();
 				globo.setIcon(new ImageIcon(GUI.class.getResource("/img/objetos/globo.png")));
 				globo.setBounds(10, 230, 100, 100);
-				//globo.addActionListener(new OyenteCrear(6));
+				globo.addActionListener(new OyenteCrear(6));
 				objetos.add(globo);
 				
 				
 				RoundButton golem= new RoundButton();
 				golem.setIcon(new ImageIcon(GUI.class.getResource("/img/objetos/golem.png")));
 				golem.setBounds(10, 340, 100, 100);
-				//golem.addActionListener(new OyenteCrear(7));
+				golem.addActionListener(new OyenteCrear(7));
 				objetos.add(golem);
 				
 				RoundButton lago= new RoundButton();
 				lago.setIcon(new ImageIcon(GUI.class.getResource("/img/objetos/lago.png")));
 				lago.setBounds(10,10,100,100);
-				//lago.addActionListener(new OyenteCrear(8));
+				lago.addActionListener(new OyenteCrear(8));
 				objetos.add(lago);
 				
 				RoundButton lava= new RoundButton();
 				lava.setIcon(new ImageIcon(GUI.class.getResource("/img/objetos/volcan.png")));
 				lava.setBounds(10,120,100,100);
-				//lava.addActionListener(new OyenteCrear(9));
+				lava.addActionListener(new OyenteCrear(9));
 				objetos.add(lava);
 				
 				//Panel objetos
@@ -244,8 +245,11 @@ public class GUI {
         public void mousePressed(MouseEvent e)
         {
         	int i = e.getY()/75;
+        	System.out.println("num i: "+i);
         	int j = e.getX()/75;
+        	System.out.println("num j: "+j);
         	Celda celdaActual= mapaLogica.obtenerCelda(i, j);
+        	etiqueta.setBounds(j*75, i*75, 75, 75);
         	if (celdaActual.estaVacia()){
         	
         		if(creado>=1)
@@ -280,6 +284,7 @@ public class GUI {
                 		 	break;
         			case 9:  if(30<=miJugador.getOro()) 
                 			nuevo = creador.crearLava(mapaLogica, celdaActual);
+        					System.out.println("ENTRE");
        		 			 	break;  
         			}
     			
@@ -287,13 +292,13 @@ public class GUI {
         				miJugador.restarOro(nuevo.getPrecio());
         				miJugador.agregarElementoComprable(nuevo);
         				celdaActual.setElemento(nuevo);
+        				nuevo.getImagen().setBounds(j*75, i*75, 75, 75);
         				panelJuego.add(nuevo.getImagen());
         				
         			}
         			
     				
     			}
-        		
         	}
         	creado=0;
         		

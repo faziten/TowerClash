@@ -65,6 +65,8 @@ public class Jugador {
 		return map;
 	}
 	
+	
+	
 	//Agregado por Tierno
 //--------------------------------------------------------------------------------------------------------------------
 	public void restarOro(int menosOro){
