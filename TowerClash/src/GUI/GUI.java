@@ -104,7 +104,6 @@ public class GUI {
 		{
 			for(int j=0;j<cantColumnas;j++)
 			{
-					JLabel etiqueta= new JLabel();
 					etiqueta.setBounds(x,y,75,75);
 					panelJuego.add(etiqueta);
 					x+=75;
@@ -112,10 +111,16 @@ public class GUI {
 			x=0;
 			y+=75;
 		}
-		
-		
 		panelJuego.addMouseListener(new OyenteMouse());
 		
+	}
+	
+	public void agregar(JLabel j)
+	{
+		if(j!=null)
+		{
+			panelJuego.add(j);
+		}
 	}
 	
 	public void iniciarPanelAliados(){
