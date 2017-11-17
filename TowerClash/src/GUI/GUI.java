@@ -21,6 +21,7 @@ public class GUI {
 	
 	private static final String source= "/img/";
 	private static final String cardSource= "/img/cards/";
+	private static final String enemySource= "/img/enemigos/";
 	private static final String commonExt= ".png";
 	
 	//PANELES
@@ -56,16 +57,49 @@ public class GUI {
 	
 	public GUI(){
 		miJugador= new Jugador(this);
+
 		frame= new JFrame();
 		frame.setBounds(75, 50, 1045, 550);
 		frame.getContentPane().setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
 		
 		//Mi jugador y mi mapa
+
+		miJugador= new Jugador(this);
+		miJugador.crearHilos();
+
 		mapaLogica=miJugador.getMapa();
 		creador= new CreadorConcreto();
 		
+
 		iniciarMapa();
+
+		
+		
+		
+		//Inicilializo el mapa
+	
+		JPanel background= new JPanel();
+		background.setLayout(null);
+		background.setBounds(160, 0, 750, 450);
+		background.setBackground(Color.RED);
+		int x=160;
+		int y=0;
+		for(int i=0; i<6; i++){
+			for(int j=0; j<10; j++){
+				JLabel lb= new JLabel();
+				lb.setLayout(null);
+				lb.setBounds(x, y, 75, 75);
+				lb.setBackground(Color.BLUE);
+				x+=75;
+				background.add(lb);
+			}
+			x=160;
+			y+=75;
+		}
+		frame.getContentPane().add(background);
+	
 		
 		iniciarPanelAliados();
 		
@@ -241,8 +275,9 @@ public class GUI {
     }
 	
 	private class OyenteMouse implements MouseListener {
+
 		
-        public void mousePressed(MouseEvent e)
+    public void mousePressed(MouseEvent e)
         {
         	int i = e.getY()/75;
         	System.out.println("num i: "+i);
@@ -321,7 +356,7 @@ public class GUI {
 	}
 	}
 	
-	public void crearGrafico(Icon img, int fila, int col) {
+	public void crearGrafico(JLabel img, int fila, int col) {
 		
 	//	mapa[fila][col].setIcon(img);
 		

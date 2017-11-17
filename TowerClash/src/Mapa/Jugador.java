@@ -6,6 +6,12 @@ import java.util.Random;
 import GUI.GUI;
 import Unidades.*;
 import Hilos.HiloEnemigos;
+import java.util.Random;
+
+import GUI.GUI;
+import Unidades.*;
+import Hilos.HiloEnemigos;
+import Mapa.*;
 
 public class Jugador {
 	
@@ -17,6 +23,7 @@ public class Jugador {
 
 	protected LinkedList<ElementosComprables> misComprables;
 	protected LinkedList<Enemigo>  misEnemigos;
+
 	
 	//Hilos
 	private HiloEnemigos he;
@@ -27,8 +34,7 @@ public class Jugador {
 		puntaje=0;
 		map= new Mapa(this); 
 		g=gui;
-		misComprables= new LinkedList<ElementosComprables>(); 
-		misEnemigos = new LinkedList<Enemigo>();
+
 	}
 	
 	public Jugador(GUI GUI){
@@ -73,34 +79,31 @@ public class Jugador {
 		oro-=menosOro;
 	}
 	
-	public void agregarElementoComprable(ElementosComprables a){
-		if (a != null){
-				misComprables.add(a);
-				g.agregar(a.getImagen());
-		}
-	}
-		
-	public void removerElementoComprable(ElementosComprables a){
-		if (a != null)
-				misComprables.remove(a);
-	}
-		
-	public void agregarEnemigo(Enemigo a){
-		if (a != null)
-				 misEnemigos.add(a);
-	}
-		
-	public void removerEnemigo(Enemigo a){
-		if (a != null)
-			 misEnemigos.remove(a);
-		if(misEnemigos.isEmpty()){
-			//GANO
-		}
-	}
 
 	public void crearHilos() {
 		he = new HiloEnemigos(this);
 		he.start();
+	}
+	
+	public void agregarElementoComprable(ElementosComprables e){
+		if (e!=null)
+			misComprables.add(e);
+	}
+	
+	public void eliminarElementoComprable(ElementosComprables e){
+		if (e!=null)
+			misComprables.add(e);
+	}
+
+	
+	public void agregarEnemigo(Enemigo a){
+		if (a != null)
+			 misEnemigos.add(a);
+	}
+	
+	public void removerEnemigo(Enemigo a){
+		if (a != null)
+			 misEnemigos.remove(a);
 	}
 	
 	public Enemigo crearEnemigo() {
@@ -116,7 +119,14 @@ public class Jugador {
 		if(e != null){
 			agregarEnemigo(e);
 			//g.crearGrafico(e.getImagen(), fila, 0);
+
+			agregarEnemigo(e);
+			g.crearGrafico(e.getImagen(), fila, 0);
 		}
 		return e;
-	}
+	
+	
+	
 }
+}
+

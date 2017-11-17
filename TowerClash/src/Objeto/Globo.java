@@ -13,6 +13,8 @@ public class Globo extends ConVida {
 		vida+=50;
 		precio= 30;
 		imagen.setIcon(new ImageIcon(this.getClass().getResource("/img/unidades/globo.png")));
+
+
 	}
 
 	public void accept(Visitor v) {

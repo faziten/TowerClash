@@ -1,11 +1,14 @@
 package Mapa;
 
 import java.util.LinkedList;
+import java.util.Random;
 
 import Mapa.Celda;
 import Objeto.Objeto;
 import Unidades.Aliado;
 import Unidades.Enemigo;
+import Unidades.Esqueleto;
+import Unidades.Pekka;
 
 public class Mapa {
 	private Celda mapa[][];
@@ -47,8 +50,5 @@ public class Mapa {
 	public Jugador getJugador(){
 		return miJugador;
 	}
-	
-
-	
 	
 }

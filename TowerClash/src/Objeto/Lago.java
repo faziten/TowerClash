@@ -14,6 +14,7 @@ public class Lago extends Temporales{
 		tiempo=2*tiempo;
 		precio=20;
 		imagen.setIcon(new ImageIcon(this.getClass().getResource("/img/lago.png")));
+
 	}
 
 	public void accept(Visitor v) {
