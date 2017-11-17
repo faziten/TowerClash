@@ -1,13 +1,10 @@
 package GUI;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Iterator;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -19,9 +16,7 @@ public class GUI {
 	protected static GUI game;
 	private static JFrame frame; 
 	
-	private static final String source= "/img/";
 	private static final String cardSource= "/img/cards/";
-	private static final String enemySource= "/img/enemigos/";
 	private static final String commonExt= ".png";
 	
 	//PANELES
@@ -30,7 +25,7 @@ public class GUI {
 	private JPanel informacion;
 	private JPanel panelJuego;
 	
-	private int cantFilas,cantColumnas, alto, ancho;
+	private int cantFilas,cantColumnas;
 	
 	private JLabel etiqueta;
 	
@@ -67,40 +62,14 @@ public class GUI {
 		//Mi jugador y mi mapa
 
 		miJugador= new Jugador(this);
-		miJugador.crearHilos();
+		//miJugador.crearHilos();
 
 		mapaLogica=miJugador.getMapa();
 		creador= new CreadorConcreto();
 		
 
 		iniciarMapa();
-
-		
-		
-		
-		//Inicilializo el mapa
 	
-		JPanel background= new JPanel();
-		background.setLayout(null);
-		background.setBounds(160, 0, 750, 450);
-		background.setBackground(Color.RED);
-		int x=160;
-		int y=0;
-		for(int i=0; i<6; i++){
-			for(int j=0; j<10; j++){
-				JLabel lb= new JLabel();
-				lb.setLayout(null);
-				lb.setBounds(x, y, 75, 75);
-				lb.setBackground(Color.BLUE);
-				x+=75;
-				background.add(lb);
-			}
-			x=160;
-			y+=75;
-		}
-		frame.getContentPane().add(background);
-	
-		
 		iniciarPanelAliados();
 		
 		iniciarPanelObjetos();
@@ -280,11 +249,8 @@ public class GUI {
     public void mousePressed(MouseEvent e)
         {
         	int i = e.getY()/75;
-        	System.out.println("num i: "+i);
         	int j = e.getX()/75;
-        	System.out.println("num j: "+j);
         	Celda celdaActual= mapaLogica.obtenerCelda(i, j);
-        	etiqueta.setBounds(j*75, i*75, 75, 75);
         	if (celdaActual.estaVacia()){
         	
         		if(creado>=1)
@@ -294,6 +260,7 @@ public class GUI {
         			case 1:  if(30<=miJugador.getOro())
                 			nuevo = creador.crearCaballero(mapaLogica,celdaActual);
                          	break;
+                         	
                          
         			case 2:  if(30<=miJugador.getOro()) 
                 			nuevo = creador.crearArquera(mapaLogica, celdaActual);
@@ -319,7 +286,6 @@ public class GUI {
                 		 	break;
         			case 9:  if(30<=miJugador.getOro()) 
                 			nuevo = creador.crearLava(mapaLogica, celdaActual);
-        					System.out.println("ENTRE");
        		 			 	break;  
         			}
     			
@@ -327,7 +293,7 @@ public class GUI {
         				miJugador.restarOro(nuevo.getPrecio());
         				miJugador.agregarElementoComprable(nuevo);
         				celdaActual.setElemento(nuevo);
-        				nuevo.getImagen().setBounds(j*75, i*75, 75, 75);
+        	        	nuevo.getImagen().setBounds(j*75, i*75, 75, 75);
         				panelJuego.add(nuevo.getImagen());
         				
         			}

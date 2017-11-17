@@ -34,6 +34,8 @@ public class Jugador {
 		puntaje=0;
 		map= new Mapa(this); 
 		g=gui;
+		misComprables= new LinkedList<ElementosComprables>();
+		misEnemigos= new LinkedList<Enemigo>();
 
 	}
 	
@@ -80,10 +82,10 @@ public class Jugador {
 	}
 	
 
-	public void crearHilos() {
+	/*public void crearHilos() {
 		he = new HiloEnemigos(this);
 		he.start();
-	}
+	}*/
 	
 	public void agregarElementoComprable(ElementosComprables e){
 		if (e!=null)
@@ -125,8 +127,6 @@ public class Jugador {
 		}
 		return e;
 	
-	
-	
-}
+	}
 }
 
