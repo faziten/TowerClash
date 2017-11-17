@@ -69,6 +69,8 @@ public class GUI {
 		
 		iniciarPanelAliados();
 		
+		iniciarPanelObjetos();
+		
 		
 		//Panel Puntaje
 		informacion= new JPanel();
