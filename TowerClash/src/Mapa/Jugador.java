@@ -82,10 +82,10 @@ public class Jugador {
 	}
 	
 
-	/*public void crearHilos() {
+	public void crearHilos() {
 		he = new HiloEnemigos(this);
 		he.start();
-	}*/
+	}
 	
 	public void agregarElementoComprable(ElementosComprables e){
 		if (e!=null)
@@ -120,10 +120,8 @@ public class Jugador {
 		} 	
 		if(e != null){
 			agregarEnemigo(e);
-			//g.crearGrafico(e.getImagen(), fila, 0);
+			g.crearGrafico(e, fila, 0);
 
-			agregarEnemigo(e);
-			g.crearGrafico(e.getImagen(), fila, 0);
 		}
 		return e;
 	

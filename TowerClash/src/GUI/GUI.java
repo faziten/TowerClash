@@ -10,6 +10,7 @@ import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 
 import Mapa.*;
+import Unidades.Enemigo;
 
 public class GUI {
 	
@@ -62,7 +63,7 @@ public class GUI {
 		//Mi jugador y mi mapa
 
 		miJugador= new Jugador(this);
-		//miJugador.crearHilos();
+		miJugador.crearHilos();
 
 		mapaLogica=miJugador.getMapa();
 		creador= new CreadorConcreto();
@@ -259,8 +260,7 @@ public class GUI {
         			switch (creado) {
         			case 1:  if(30<=miJugador.getOro())
                 			nuevo = creador.crearCaballero(mapaLogica,celdaActual);
-                         	break;
-                         	
+                         	break;    	
                          
         			case 2:  if(30<=miJugador.getOro()) 
                 			nuevo = creador.crearArquera(mapaLogica, celdaActual);
@@ -295,7 +295,7 @@ public class GUI {
         				celdaActual.setElemento(nuevo);
         	        	nuevo.getImagen().setBounds(j*75, i*75, 75, 75);
         				panelJuego.add(nuevo.getImagen());
-        				
+        				frame.repaint();
         			}
         			
     				
@@ -322,15 +322,11 @@ public class GUI {
 	}
 	}
 	
-	public void crearGrafico(JLabel img, int fila, int col) {
-		
-	//	mapa[fila][col].setIcon(img);
-		
-		/* NO SE SI LO NECESITO
-		JLabel background = new JLabel();
-		background.setIcon(img);
-		background.setBounds(200, 200, 75, 75);
-		*/
+	public void crearGrafico(Enemigo e, int fila, int col) {
+		e.getImagen().setBounds(0,0, 75, 75);
+		panelJuego.add(e.getImagen());
+		frame.repaint();
+	
 	}
 	
 public static void main(String [] arg){
