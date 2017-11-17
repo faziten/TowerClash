@@ -14,7 +14,7 @@ public class Valquiria extends Aliado{
 		damage = 3 * damage;
 		precio=40;
 		vidaMax=vida;
-		imagen = new ImageIcon(this.getClass().getResource("/img/unidades/valquiria.png"));
+		imagen.setIcon(new ImageIcon(this.getClass().getResource("/img/unidades/valquiria.png")));
 		miVisitor = new VisitorAliado(this);
 		
 	}

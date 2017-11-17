@@ -20,7 +20,7 @@ public class Arquera extends Aliado{
 		precio = 40;
 		rango = 2 * rango;
 		miVisitor= new VisitorAliado(this);
-		imagen = new ImageIcon(this.getClass().getResource("/img/unidades/arquera.png"));
+		imagen.setIcon( new ImageIcon(this.getClass().getResource("/img/unidades/arquera.png")));
 
 	}
 	

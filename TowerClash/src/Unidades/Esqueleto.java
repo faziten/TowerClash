@@ -13,7 +13,7 @@ public class Esqueleto extends Enemigo{
 		celdaActual = celda;
 		damage = 2 * damage;
 		miVisitor = new VisitorEnemigo(this);
-		imagen = new ImageIcon(this.getClass().getResource("/img/enemigos/esqueleto.png"));
+		imagen.setIcon(new ImageIcon(this.getClass().getResource("/img/enemigos/esqueleto.png")));
 	}
 	
 

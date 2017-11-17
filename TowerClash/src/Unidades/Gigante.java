@@ -16,7 +16,7 @@ public class Gigante extends Enemigo{
 		puntaje = 250;
 		recompensa = 200;
 		miVisitor = new VisitorEnemigo(this);
-		imagen = new ImageIcon(this.getClass().getResource("/img/enemigos/gigante.png"));
+		imagen.setIcon(new ImageIcon(this.getClass().getResource("/img/enemigos/gigante.png")));
 		
 	}
 	

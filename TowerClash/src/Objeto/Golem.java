@@ -12,7 +12,7 @@ public class Golem extends ConVida{
 		celdaActual=celda;
 		vida+=100;
 		precio=60;
-		imagen = new ImageIcon(this.getClass().getResource("/img/unidades/golem.png"));
+		imagen.setIcon(new ImageIcon(this.getClass().getResource("/img/unidades/golem.png")));
 	}
 
 	public void accept(Visitor v) {

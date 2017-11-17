@@ -12,8 +12,6 @@ public class Mapa {
 	private Jugador miJugador;
 	private int ancho;
 	private int largo;
-	protected LinkedList<ElementosComprables> misComprables;
-	protected LinkedList<Enemigo> misEnemigos;
 
 	public Mapa(Jugador j){
 		ancho=6;
@@ -27,8 +25,7 @@ public class Mapa {
 				mapa[x][y] = new Celda(this, x, y);
 			}
 		}
-		misComprables= new LinkedList<ElementosComprables>(); 
-		misEnemigos = new LinkedList<Enemigo>();
+		
 		
 		miJugador=j;
 	}
@@ -47,21 +44,7 @@ public class Mapa {
 		return null;
 	}
 	
-	public Jugador getJugador(){
-		return miJugador;
-	}
-	
-	//Agregado por Tierno
-//--------------------------------------------------------------------------------------------------------------------
-	public void agregarElementoComprable(ElementosComprables a){
-		if (a != null)
-			misComprables.add(a);
-	}
-	
-	public void removerElementoComprable(ElementosComprables a){
-		if (a != null)
-			misComprables.remove(a);
-	}
+
 	
 	
 }

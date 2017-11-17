@@ -13,7 +13,7 @@ public class Lava extends Temporales{
 		celdaActual=celda;
 		tiempo=3*tiempo;
 		precio=30;
-		imagen = new ImageIcon(this.getClass().getResource("/img/lava.png"));
+		imagen.setIcon(new ImageIcon(this.getClass().getResource("/img/lava.png")));
 	}
 
 	public void accept(Visitor v) {

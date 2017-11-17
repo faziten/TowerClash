@@ -2,10 +2,12 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Iterator;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -17,7 +19,6 @@ public class GUI {
 	protected static GUI game;
 	private static JFrame frame; 
 	
-	private JButton [] [] mapa;
 	private static final String source= "/img/";
 	private static final String cardSource= "/img/cards/";
 	private static final String commonExt= ".png";
@@ -26,6 +27,13 @@ public class GUI {
 	private JPanel cartas;
 	private JPanel objetos;
 	private JPanel informacion;
+	private JPanel panelJuego;
+	
+	private int cantFilas,cantColumnas, alto, ancho;
+	
+	private JLabel etiqueta;
+	
+	private ElementosComprables nuevo;
 	
 	//Labels Informacion
 	private JLabel puntaje;
@@ -46,141 +54,21 @@ public class GUI {
 	private int creado=0;
 	
 	
-	public GUI(Jugador jugador){
+	public GUI(){
+		miJugador= new Jugador(this);
 		frame= new JFrame();
 		frame.setBounds(75, 50, 1045, 550);
 		frame.getContentPane().setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//Mi jugador y mi mapa
-		miJugador= jugador;
-		mapaLogica=jugador.getMapa();
+		mapaLogica=miJugador.getMapa();
 		creador= new CreadorConcreto();
 		
-		//Inicilializo el mapa
-		int x=160;
-		int y=0;
-		mapa= new JButton[6][10];
-		for(int i= 0; i< 6; i++){
-			for(int j=0; j< 10; j++){
-				mapa[i][j]= new JButton("");
-				mapa[i][j].setEnabled(true);
-				mapa[i][j].setBounds(x, y, 75, 75);
-				x+=75;
-				mapa[i][j].setIcon(new ImageIcon(GUI.class.getResource(source+"0"+commonExt)));
-				if(j==0 || j== 1)
-					mapa[i][j].setIcon(new ImageIcon(GUI.class.getResource(source+"1"+commonExt)));
-				if(j==9){
-					mapa[i][j].setIcon(new ImageIcon(GUI.class.getResource(cardSource+"KingTower"+commonExt)));
-					mapa[i][j].setContentAreaFilled(false);
-					mapa[i][j].setOpaque(true);
-					
-				}
-				mapa[i][j].addMouseListener(new OyenteMouse(i,j));
-				frame.getContentPane().add((Component) mapa[i][j]);
-			}
-			x=160;
-			y+=75;
-		}
+		iniciarMapa();
 		
-	//Inicio paneles del Mapa
-		cartas= new JPanel();
-		cartas.setBackground(Color.LIGHT_GRAY);
-		cartas.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		cartas.setBounds(0, 0, 300, 300);
-		cartas.setLayout(null);
-		cartas.setVisible(true);
+		iniciarPanelAliados();
 		
-		//Boton Caballero
-		btnCaballero = new JButton("");
-		btnCaballero.setIcon(new ImageIcon(GUI.class.getResource(cardSource+"caballero"+commonExt)));
-		btnCaballero.setBounds(5, 5, 71, 88);
-		cartas.add(btnCaballero);
-		btnCaballero.setContentAreaFilled(false);
-		btnCaballero.setOpaque(true);
-		btnCaballero.setEnabled(true);
-		btnCaballero.addActionListener(new OyenteCrear(1));
-		
-		//Boton Arquera
-		btnArquera = new JButton("");
-		btnArquera.setIcon(new ImageIcon(GUI.class.getResource(cardSource+"arquera"+commonExt)));
-		btnArquera.setBounds(5, 95, 71, 88);
-		cartas.add(btnArquera);
-		btnArquera.setContentAreaFilled(false);
-		btnArquera.setOpaque(true);
-		btnArquera.addActionListener(new OyenteCrear(2));
-		
-		//Boton Valquiria
-		btnValquiria = new JButton("");
-		btnValquiria.setIcon(new ImageIcon(GUI.class.getResource(cardSource+"valquiria"+commonExt)));
-		btnValquiria.setBounds(5, 185, 71, 88);
-		cartas.add(btnValquiria);
-		btnValquiria.setContentAreaFilled(false);
-		btnValquiria.setOpaque(true);
-		btnValquiria.setEnabled(true);
-		btnValquiria.addActionListener(new OyenteCrear(3));
-		
-		//Boton Mago
-		btnMago = new JButton("");
-		btnMago.setIcon(new ImageIcon(GUI.class.getResource(cardSource+"mago"+commonExt)));
-		btnMago.setBounds(5, 275, 71, 88);
-		cartas.add(btnMago);
-		btnMago.setContentAreaFilled(false);
-		btnMago.setOpaque(true);
-		btnMago.setEnabled(true);
-		btnMago.addActionListener(new OyenteCrear(4));
-		
-		//BotonMegacaballero
-		btnMegacaballero = new JButton("");
-		btnMegacaballero.setIcon(new ImageIcon(GUI.class.getResource(cardSource+"megacaballero"+commonExt)));
-		btnMegacaballero.setBounds(5, 365, 71, 88);
-		cartas.add(btnMegacaballero);
-		btnMegacaballero.setContentAreaFilled(false);
-		btnMegacaballero.setOpaque(true);
-		btnMegacaballero.setEnabled(true);
-		btnMegacaballero.addActionListener(new OyenteCrear(5));
-		
-		//Panel Cartas
-		cartas.setBounds(0, 0, 160, 450);
-		frame.getContentPane().add(cartas);
-		
-		//Panel de objetos
-		objetos= new JPanel();
-		objetos.setBackground(Color.DARK_GRAY);
-		objetos.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		objetos.setBounds(0, 0, 300, 300);
-		objetos.setLayout(null);
-		objetos.setVisible(true);
-
-		//Boton Objetos
-		RoundButton globo= new RoundButton();
-		globo.setIcon(new ImageIcon(GUI.class.getResource("/img/objetos/globo.png")));
-		globo.setBounds(10, 230, 100, 100);
-		globo.addActionListener(new OyenteCrear(6));
-		objetos.add(globo);
-		
-		
-		RoundButton golem= new RoundButton();
-		golem.setIcon(new ImageIcon(GUI.class.getResource("/img/objetos/golem.png")));
-		golem.setBounds(10, 340, 100, 100);
-		golem.addActionListener(new OyenteCrear(7));
-		objetos.add(golem);
-		
-		RoundButton lago= new RoundButton();
-		lago.setIcon(new ImageIcon(GUI.class.getResource("/img/objetos/lago.png")));
-		lago.setBounds(10,10,100,100);
-		lago.addActionListener(new OyenteCrear(8));
-		objetos.add(lago);
-		
-		RoundButton lava= new RoundButton();
-		lava.setIcon(new ImageIcon(GUI.class.getResource("/img/objetos/volcan.png")));
-		lava.setBounds(10,120,100,100);
-		lava.addActionListener(new OyenteCrear(9));
-		objetos.add(lava);
-		
-		//Panel objetos
-		objetos.setBounds(910, 0, 120, 450);
-		frame.getContentPane().add(objetos);
 		
 		//Panel Puntaje
 		informacion= new JPanel();
@@ -199,26 +87,157 @@ public class GUI {
 		frame.getContentPane().add(informacion);
 	}
 	
+	public void iniciarMapa(){
+		cantColumnas= mapaLogica.getLargo();
+		cantFilas= mapaLogica.getAncho();
+		panelJuego= new JPanel();
+		frame.getContentPane().add(panelJuego);
+		etiqueta= new JLabel();
+		panelJuego.setLayout(null);
+		panelJuego.setBackground(Color.BLUE);
+		panelJuego.setBounds(160,0, 750, 450);
+		int x=0;
+		int y=0;
+		for(int i=0;i<cantFilas;i++)
+		{
+			for(int j=0;j<cantColumnas;j++)
+			{
+					JLabel etiqueta= new JLabel();
+					etiqueta.setBounds(x,y,75,75);
+					panelJuego.add(etiqueta);
+					x+=75;
+			}
+			x=0;
+			y+=75;
+		}
+		
+		
+		panelJuego.addMouseListener(new OyenteMouse());
+		
+	}
+	
+	public void iniciarPanelAliados(){
+		//Inicio paneles de aliados
+				cartas= new JPanel();
+				cartas.setBackground(Color.LIGHT_GRAY);
+				cartas.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+				cartas.setBounds(0, 0, 300, 300);
+				cartas.setLayout(null);
+				cartas.setVisible(true);
+				
+				//Boton Caballero
+				btnCaballero = new JButton("");
+				btnCaballero.setIcon(new ImageIcon(GUI.class.getResource(cardSource+"caballero"+commonExt)));
+				btnCaballero.setBounds(5, 5, 71, 88);
+				cartas.add(btnCaballero);
+				btnCaballero.setContentAreaFilled(false);
+				btnCaballero.setOpaque(true);
+				btnCaballero.setEnabled(true);
+				btnCaballero.addActionListener(new OyenteCrear(1));
+				
+				//Boton Arquera
+				btnArquera = new JButton("");
+				btnArquera.setIcon(new ImageIcon(GUI.class.getResource(cardSource+"arquera"+commonExt)));
+				btnArquera.setBounds(5, 95, 71, 88);
+				cartas.add(btnArquera);
+				btnArquera.setContentAreaFilled(false);
+				btnArquera.setOpaque(true);
+				btnArquera.addActionListener(new OyenteCrear(2));
+				
+				//Boton Valquiria
+				btnValquiria = new JButton("");
+				btnValquiria.setIcon(new ImageIcon(GUI.class.getResource(cardSource+"valquiria"+commonExt)));
+				btnValquiria.setBounds(5, 185, 71, 88);
+				cartas.add(btnValquiria);
+				btnValquiria.setContentAreaFilled(false);
+				btnValquiria.setOpaque(true);
+				btnValquiria.setEnabled(true);
+				btnValquiria.addActionListener(new OyenteCrear(3));
+				
+				//Boton Mago
+				btnMago = new JButton("");
+				btnMago.setIcon(new ImageIcon(GUI.class.getResource(cardSource+"mago"+commonExt)));
+				btnMago.setBounds(5, 275, 71, 88);
+				cartas.add(btnMago);
+				btnMago.setContentAreaFilled(false);
+				btnMago.setOpaque(true);
+				btnMago.setEnabled(true);
+				btnMago.addActionListener(new OyenteCrear(4));
+				
+				//BotonMegacaballero
+				btnMegacaballero = new JButton("");
+				btnMegacaballero.setIcon(new ImageIcon(GUI.class.getResource(cardSource+"megacaballero"+commonExt)));
+				btnMegacaballero.setBounds(5, 365, 71, 88);
+				cartas.add(btnMegacaballero);
+				btnMegacaballero.setContentAreaFilled(false);
+				btnMegacaballero.setOpaque(true);
+				btnMegacaballero.setEnabled(true);
+				btnMegacaballero.addActionListener(new OyenteCrear(5));
+				
+				//Panel aliados
+				cartas.setBounds(0, 0, 160, 450);
+				frame.getContentPane().add(cartas);
+	}
+	
+	public void iniciarPanelObjetos(){
+		//Panel de objetos
+				objetos= new JPanel();
+				objetos.setBackground(Color.DARK_GRAY);
+				objetos.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+				objetos.setBounds(0, 0, 300, 300);
+				objetos.setLayout(null);
+				objetos.setVisible(true);
+
+				//Boton Objetos
+				RoundButton globo= new RoundButton();
+				globo.setIcon(new ImageIcon(GUI.class.getResource("/img/objetos/globo.png")));
+				globo.setBounds(10, 230, 100, 100);
+				//globo.addActionListener(new OyenteCrear(6));
+				objetos.add(globo);
+				
+				
+				RoundButton golem= new RoundButton();
+				golem.setIcon(new ImageIcon(GUI.class.getResource("/img/objetos/golem.png")));
+				golem.setBounds(10, 340, 100, 100);
+				//golem.addActionListener(new OyenteCrear(7));
+				objetos.add(golem);
+				
+				RoundButton lago= new RoundButton();
+				lago.setIcon(new ImageIcon(GUI.class.getResource("/img/objetos/lago.png")));
+				lago.setBounds(10,10,100,100);
+				//lago.addActionListener(new OyenteCrear(8));
+				objetos.add(lago);
+				
+				RoundButton lava= new RoundButton();
+				lava.setIcon(new ImageIcon(GUI.class.getResource("/img/objetos/volcan.png")));
+				lava.setBounds(10,120,100,100);
+				//lava.addActionListener(new OyenteCrear(9));
+				objetos.add(lava);
+				
+				//Panel objetos
+				objetos.setBounds(910, 0, 120, 450);
+				frame.getContentPane().add(objetos);
+	}
+	
 	
 	private class OyenteCrear implements ActionListener {
 		private int n;
 		public OyenteCrear(int num){
 			n=num;
 		}
+		
         public void actionPerformed(ActionEvent e)
         {
-        	creado = n;
+        	creado =n;
         }
     }
 	
 	private class OyenteMouse implements MouseListener {
-		private int i,j;
-		public OyenteMouse(int i, int j){
-			this.i=i;
-			this.j=j;
-		}
+		
         public void mousePressed(MouseEvent e)
         {
+        	int i = e.getY()/75;
+        	int j = e.getX()/75;
         	Celda celdaActual= mapaLogica.obtenerCelda(i, j);
         	if (celdaActual.estaVacia()){
         	
@@ -259,15 +278,18 @@ public class GUI {
     			
         			if(nuevo!=null){
         				miJugador.restarOro(nuevo.getPrecio());
-        				mapaLogica.agregarElementoComprable(nuevo);
+        				miJugador.agregarElementoComprable(nuevo);
         				celdaActual.setElemento(nuevo);
-        				mapa[i][j].setIcon(nuevo.getImagen());
+        				etiqueta.setBounds(10,10,100,133);
+        				etiqueta.setText("HOLA");
+        				panelJuego.add(etiqueta);
         				
-    				
         			}
         		}
         	}
         	creado=0;
+        		
+        	
         }
 
 	public void mouseClicked(MouseEvent arg0) {
@@ -286,9 +308,19 @@ public class GUI {
 	}
 	}
 	
-public static void main(String [] arg){
+	public void crearGrafico(Icon img, int fila, int col) {
 		
-		game= new GUI(new Jugador());
+	//	mapa[fila][col].setIcon(img);
+		
+		/* NO SE SI LO NECESITO
+		JLabel background = new JLabel();
+		background.setIcon(img);
+		background.setBounds(200, 200, 75, 75);
+		*/
+	}
+	
+public static void main(String [] arg){
+		game= new GUI();
 		frame.setVisible(true);
 	}
 }

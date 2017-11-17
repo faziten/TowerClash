@@ -17,7 +17,7 @@ public class Duende extends Enemigo {
 		damage = 2 * damage;
 		puntaje = 150;
 		recompensa = 100;
-		imagen = new ImageIcon(this.getClass().getResource("/img/enemigos/duende.png"));
+		imagen.setIcon(new ImageIcon(this.getClass().getResource("/img/enemigos/duende.png")));
 		miVisitor = new VisitorEnemigo(this);
 	
 	}

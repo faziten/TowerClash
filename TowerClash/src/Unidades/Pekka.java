@@ -19,6 +19,6 @@ public class Pekka extends Enemigo{
 		puntaje = 500;
 		recompensa = 800;
 		miVisitor = new VisitorEnemigo(this);
-		imagen = new ImageIcon(this.getClass().getResource("/img/enemigos/pekka.png"));			
+		imagen.setIcon(new ImageIcon(this.getClass().getResource("/img/enemigos/pekka.png")));			
 	}
 }

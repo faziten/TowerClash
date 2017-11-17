@@ -17,7 +17,7 @@ public class Barbaro extends Enemigo{
 		recompensa = 225;
 		velocidad=3;
 	
-		imagen = new ImageIcon(this.getClass().getResource("/img/enemigos/barbaro.png"));
+		imagen.setIcon(new ImageIcon(this.getClass().getResource("/img/enemigos/barbaro.png")));
 		miVisitor= new VisitorEnemigo(this);
 	}
 

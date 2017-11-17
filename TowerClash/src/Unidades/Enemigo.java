@@ -1,6 +1,8 @@
 package Unidades;
 
+import Mapa.Celda;
 import Mapa.ElementosMapa;
+import Mapa.Mapa;
 import PowerUp.PowerUp;
 import Visitor.Visitor;
 import Visitor.VisitorEnemigo;
@@ -31,9 +33,16 @@ public abstract class Enemigo extends ElementosMapa{
 		v.visit(this);
 	}
 	
-	public void mover()
-	{		
+	public void mover(Celda celda){		
+		int fila= celda.getCoordX();
+		int col= celda.getCoordY();
+		
+		int i=160;
+		while(i < 400){
+			i=i+30;
+			//celda.getElemento().getCelda()[fila][col].setBounds(i, col, 75, 75);
 			
+		}
 	}
 	
 	public void setVelocidad(int v) {
@@ -69,5 +78,4 @@ public abstract class Enemigo extends ElementosMapa{
 		return miVisitor;
 	}
 
-	
 }

@@ -20,6 +20,7 @@ public class Celda {
 	public int getCoordY() {
 		return coordY;
 	}
+	
 	public ElementosMapa getElemento(){
 		return misElementos;
 	}
@@ -28,11 +29,18 @@ public class Celda {
 		misElementos=e;
 	}
 	
+	public void removeElemento(){
+		misElementos=null;
+	}
+	
 	public Celda getSiguiente(int destino){
 		return mapa.obtenerCelda(coordX+destino, coordY);
 	}
 
-	
+	public Mapa getMapa(){
+		return mapa;
+	}
+		
 	public boolean estaVacia(){
 		return misElementos==null;
 	}

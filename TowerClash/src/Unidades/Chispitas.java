@@ -22,7 +22,7 @@ public class Chispitas extends Enemigo{
 		
 		miVisitor = new VisitorEnemigo(this);
 		
-		imagen = new ImageIcon(this.getClass().getResource("/img/enemigos/chispitas.png"));
+		imagen.setIcon(new ImageIcon(this.getClass().getResource("/img/enemigos/chispitas.png")));
 	}
 
 

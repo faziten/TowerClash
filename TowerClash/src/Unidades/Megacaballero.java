@@ -16,7 +16,7 @@ public class Megacaballero extends Aliado{
 		damage = 7 * damage;
 		precio = 70;
 		rango=4*rango;
-		imagen = new ImageIcon(this.getClass().getResource("/img/unidades/megacaballero.png"));
+		imagen.setIcon(new ImageIcon(this.getClass().getResource("/img/unidades/megacaballero.png")));
 					
 		miVisitor = new VisitorAliado(this);
 				

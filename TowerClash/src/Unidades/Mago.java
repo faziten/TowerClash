@@ -14,7 +14,7 @@ public class Mago extends Aliado{
 		vidaMax=vida;
 		damage = 3 * damage;
 		precio = 50;
-		imagen = new ImageIcon(this.getClass().getResource("/img/unidades/mago.png"));
+		imagen.setIcon(new ImageIcon(this.getClass().getResource("/img/unidades/mago.png")));
 		miVisitor= new VisitorAliado(this);	
 	}
 }
