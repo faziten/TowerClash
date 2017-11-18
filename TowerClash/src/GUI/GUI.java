@@ -322,11 +322,16 @@ public class GUI {
 	}
 	}
 	
-	public void crearGrafico(Enemigo e, int fila, int col) {
+public void crearGrafico(Enemigo e, int fila, int col) {
+		
 		e.getImagen().setBounds(0,0, 75, 75);
 		panelJuego.add(e.getImagen());
 		frame.repaint();
+		
+	}
 	
+	public static void Move(Enemigo e, int i) {
+		e.getImagen().setBounds(i, 0, 75, 75);		
 	}
 	
 public static void main(String [] arg){

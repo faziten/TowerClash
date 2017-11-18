@@ -1,12 +1,14 @@
 package Hilos;
 
+import GUI.GUI;
 import Mapa.*;
 import Unidades.*;
+
 
 public class HiloEnemigos extends Thread { 
 	
 	private boolean gameOver;
-	private int frozen;
+	
 	private Jugador jugador;
 
 	public HiloEnemigos(Jugador j) {
@@ -20,12 +22,19 @@ public class HiloEnemigos extends Thread {
 	
 	public void run() {
 		gameOver = false;
+		int i=0;
 		while(!gameOver){
 			try {
 			
 				Thread.sleep(500);
-				Enemigo e= jugador.crearEnemigo();
-				e.mover(e.getCelda());
+				jugador.crearEnemigo();
+				jugador.crearEnemigo();
+				for(Enemigo ene: jugador.getEnemigos())
+					GUI.Move(ene, i);
+				/*Cada enemigo deberia tener su posicion especifica independiente
+				 * para asi moverlo. Se hara en la re-entrega.
+				 */
+				i+=75;
 				
 				
 			} catch (InterruptedException e) {

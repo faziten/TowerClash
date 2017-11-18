@@ -107,22 +107,30 @@ public class Jugador {
 		if (a != null)
 			 misEnemigos.remove(a);
 	}
+	public LinkedList<Enemigo> getEnemigos(){
+		 return misEnemigos;
+	}
 	
 	public Enemigo crearEnemigo() {
 		Random rnd = new Random();
 		int fila = rnd.nextInt(6);
 		int r = rnd.nextInt(100);		
-		Enemigo e=null;
-		 if (r>=0 && r<50) {
+		Enemigo e;
+		if (r>=0 && r<25) {
+			e = new Duende(map, new Celda(map, fila,0));
+		} else if (r>=25 && r<45) {
+			e = new Barbaro(map, new Celda(map, fila,0));
+		} else if (r>=45 && r<65) {
 			e = new Esqueleto(map, new Celda(map, fila,0));
-		} else if (r>=50 && r<100) {
+		} else if (r>=65 && r<85) {
 			e = new Pekka(map, new Celda(map, fila,0));
-		} 	
-		if(e != null){
+		} else if (r>=85 && r<95) {
+			e = new Gigante(map, new Celda(map, fila,0));
+		} else {
+			e = new Chispitas(map, new Celda(map, fila,0));
+		}
 			agregarEnemigo(e);
 			g.crearGrafico(e, fila, 0);
-
-		}
 		return e;
 	
 	}
