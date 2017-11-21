@@ -2,6 +2,7 @@ package PowerUp;
 
 import Mapa.Celda;
 import Mapa.Mapa;
+import Visitor.Visitor;
 
 public class Moneda extends PowerUp{
 	protected int masOro;
@@ -14,6 +15,6 @@ public class Moneda extends PowerUp{
 	
 	public void accion(){
 		mapa.getJugador().agregarOro(masOro);	
-	}
-
+	}	
 }
+

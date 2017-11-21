@@ -15,9 +15,4 @@ public class Golem extends ConVida{
 		imagen.setIcon(new ImageIcon(this.getClass().getResource("/img/unidades/golem.png")));
 	}
 
-	public void accept(Visitor v) {
-		v.visit(this);
-		
-	}
-
 }

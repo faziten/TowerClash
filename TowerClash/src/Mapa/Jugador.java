@@ -17,14 +17,12 @@ public class Jugador {
 	
 	protected int oro;
 	protected int puntaje;
-	protected int tiempo; //esto debe ser un timer para a medida que pase el tiempo se vayan creando enemigos
 	protected Mapa map; 
 	protected GUI g;
 
 	protected LinkedList<ElementosComprables> misComprables;
 	protected LinkedList<Enemigo>  misEnemigos;
 
-	
 	//Hilos
 	private HiloEnemigos he;
 	
@@ -52,15 +50,6 @@ public class Jugador {
 		return puntaje;
 	}
 	
-	public void setMonedas(int oro) {
-		this.oro = oro;
-	}
-	
-	public void setPuntos(int puntaje) {
-		this.puntaje = puntaje;
-	}
-
-	
 	public void agregarPuntaje(int masPuntaje){
 		puntaje+=masPuntaje;
 	}
@@ -69,22 +58,13 @@ public class Jugador {
 		oro+=masOro;
 	}
 	
-	public Mapa getMapa(){
-		return map;
-	}
 	
-	
-	
-	//Agregado por Tierno
-//--------------------------------------------------------------------------------------------------------------------
 	public void restarOro(int menosOro){
 		oro-=menosOro;
 	}
 	
-
-	public void crearHilos() {
-		he = new HiloEnemigos(this);
-		he.start();
+	public Mapa getMapa(){
+		return map;
 	}
 	
 	public void agregarElementoComprable(ElementosComprables e){
@@ -109,6 +89,12 @@ public class Jugador {
 	}
 	public LinkedList<Enemigo> getEnemigos(){
 		 return misEnemigos;
+	}
+	
+
+	public void crearHilos() {
+		he = new HiloEnemigos(this);
+		he.start();
 	}
 	
 	public Enemigo crearEnemigo() {

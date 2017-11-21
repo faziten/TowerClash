@@ -2,7 +2,6 @@ package Unidades;
 
 import Mapa.ElementosComprables;
 import Visitor.Visitor;
-import Visitor.VisitorAliado;
 
 public abstract class Aliado extends ElementosComprables{
 	protected int vida = 100;
@@ -15,15 +14,10 @@ public abstract class Aliado extends ElementosComprables{
 	public void accept(Visitor v){
 			v.visit(this);
 	}
-		
-	public void setVisitor(VisitorAliado v){
-		miVisitor = v;
-	}
 	
 	public int getVidaMax(){
 		return vidaMax;
 	}
-
 	
 	public int getVida(){
 		return vida;

@@ -4,11 +4,10 @@ import Mapa.Celda;
 import Mapa.Mapa;
 import Visitor.Visitor;
 
-public abstract class PowerUp {
+public abstract class PowerUp{
+	protected Visitor miVisitor;
 	protected Mapa mapa;
 	protected Celda celdaActual;
-	protected Visitor miVisitor;
-	
 	public Visitor getVisitor(){
 		return miVisitor;
 	}

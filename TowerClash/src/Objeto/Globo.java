@@ -17,9 +17,5 @@ public class Globo extends ConVida {
 
 	}
 
-	public void accept(Visitor v) {
-		v.visit(this);
-		
-	}
 
 }

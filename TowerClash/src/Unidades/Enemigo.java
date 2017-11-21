@@ -2,10 +2,8 @@ package Unidades;
 
 import Mapa.Celda;
 import Mapa.ElementosMapa;
-import Mapa.Mapa;
 import PowerUp.PowerUp;
 import Visitor.Visitor;
-import Visitor.VisitorEnemigo;
 
 public abstract class Enemigo extends ElementosMapa{
 	protected int velocidad = 2;
@@ -25,17 +23,11 @@ public abstract class Enemigo extends ElementosMapa{
 		mapa.getJugador().agregarOro(recompensa);
 	}
 	
-	public void setVisitor(VisitorEnemigo v){
-		miVisitor = v;
-	}
-	
 	public void accept(Visitor v){
 		v.visit(this);
 	}
 	
-	public void mover(Celda celda){		
-		int fila= celda.getCoordX();
-		int col= celda.getCoordY();
+	public void mover(Celda celda){	
 		
 		int i=160;
 		while(i < 400){
@@ -44,11 +36,6 @@ public abstract class Enemigo extends ElementosMapa{
 			
 		}
 	}
-	
-	public void setVelocidad(int v) {
-		velocidad = v;
-	}
-
 	
 	public int getVida(){
 		return vida;
@@ -78,4 +65,7 @@ public abstract class Enemigo extends ElementosMapa{
 		return miVisitor;
 	}
 
+	public PowerUp generarPowerUp(){
+		return null; 
+	}
 }

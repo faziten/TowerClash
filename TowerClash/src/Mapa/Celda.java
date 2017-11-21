@@ -33,13 +33,10 @@ public class Celda {
 		misElementos=null;
 	}
 	
-	public Celda getSiguiente(int destino){
-		return mapa.obtenerCelda(coordX+destino, coordY);
+	public Celda getSiguiente(){
+		return mapa.obtenerCelda(coordX+1, coordY);
 	}
 
-	public Mapa getMapa(){
-		return mapa;
-	}
 		
 	public boolean estaVacia(){
 		return misElementos==null;
