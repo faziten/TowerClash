@@ -37,5 +37,9 @@ public abstract class ElementosMapa {
 		if(celdaActual!=null)
 			celdaActual.removeElemento();
 	}	
+	
+	public Mapa getMapa(){
+		return mapa;
+	}
 
 }

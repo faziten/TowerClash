@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 
@@ -274,14 +273,15 @@ public class GUI {
 		
     public void mousePressed(MouseEvent e)
         {
+
+    		//textInfo.setText("");
         	int i = e.getY()/75;
         	int j = e.getX()/75;
         	Celda celdaActual= mapaLogica.obtenerCelda(i, j);
         	if (celdaActual.estaVacia()){
         	
-        		if(creado>=1)
-        		{
-        			ElementosComprables nuevo=null;
+        		if(creado>=1){
+        			nuevo=null;
         			switch (creado) {
         			case 1:  if(30<=miJugador.getOro())
                 			nuevo = creador.crearCaballero(mapaLogica,celdaActual);
@@ -329,7 +329,8 @@ public class GUI {
         			
     			}
         	}
-        	creado=0;	
+        	else textInfo.setText("Ya esta ocupado ese espacio.");
+        	creado=0;
         }
 
 	public void mouseClicked(MouseEvent arg0) {
