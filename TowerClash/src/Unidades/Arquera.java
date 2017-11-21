@@ -17,7 +17,7 @@ public class Arquera extends Aliado{
 		vida = 2 * vida;
 		vidaMax=vida;
 		damage = 2 * damage;
-		precio = 40;
+		precio = 30;
 		rango = 2 * rango;
 		miVisitor= new VisitorAliado(this);
 		imagen.setIcon( new ImageIcon(this.getClass().getResource("/img/unidades/arquera.png")));

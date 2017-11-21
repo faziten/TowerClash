@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -35,6 +36,8 @@ public class GUI {
 	//Labels Informacion
 	private JLabel puntaje;
 	private JLabel monedas;
+	private JLabel labelInfo;
+	private JTextField textInfo;
 	
 	//Botones de cartas
 	private JButton btnCaballero;
@@ -76,7 +79,7 @@ public class GUI {
 		iniciarPanelObjetos();
 		
 		
-		//Panel Puntaje
+		//Panel Informacion
 		informacion= new JPanel();
 		informacion.setBounds(0, 450, 1045,70);
 		informacion.setBackground(Color.BLACK);
@@ -84,12 +87,34 @@ public class GUI {
 		informacion.setBounds(0, 450, 1045,70);
 		informacion.setLayout(null);
 		informacion.setVisible(true);
-		//puntaje.setText("Puntaje: "+miJugador.getPuntaje());
-		//puntaje.setBounds(100, 36, 10, 20);
-		//informacion.add(puntaje);
-		//monedas.setText("Oro: "+ miJugador.getOro());
-		//monedas.setBounds(450, 60, 10, 20);
-		//informacion.add(monedas);
+		
+		puntaje= new JLabel();
+		puntaje.setText("Puntaje: "+miJugador.getPuntaje());
+		puntaje.setFont(new Font("Arial", Font.PLAIN, 18));
+		puntaje.setForeground(Color.WHITE);
+		puntaje.setBounds(40, 10, 126, 30);
+		informacion.add(puntaje);
+		
+		monedas=new JLabel();
+		monedas.setForeground(Color.WHITE);
+		monedas.setText("Monedas: "+miJugador.getOro());
+		monedas.setFont(new Font("Arial", Font.PLAIN, 18));
+		monedas.setBounds(236, 10, 126, 30);
+		monedas.setVisible(true);
+		informacion.add(monedas);
+		
+		textInfo = new JTextField();
+		textInfo.setBounds(703, 5, 314, 45);
+		informacion.add(textInfo);
+		textInfo.setColumns(10);
+		
+		labelInfo = new JLabel("Informaci\u00F3n");
+		labelInfo.setForeground(Color.WHITE);
+		labelInfo.setFont(new Font("Arial", Font.PLAIN, 18));
+		labelInfo.setBounds(589, 10, 104, 30);
+		informacion.add(labelInfo);
+		
+		
 		frame.getContentPane().add(informacion);
 	}
 	
@@ -291,19 +316,20 @@ public class GUI {
     			
         			if(nuevo!=null){
         				miJugador.restarOro(nuevo.getPrecio());
+        				monedas.setText("Monedas: "+miJugador.getOro());
         				miJugador.agregarElementoComprable(nuevo);
         				celdaActual.setElemento(nuevo);
         	        	nuevo.getImagen().setBounds(j*75, i*75, 75, 75);
         				panelJuego.add(nuevo.getImagen());
         				frame.repaint();
         			}
+        			else{
+        				textInfo.setText("NO HAY DINERO SUFICIENTE");
+        			}
         			
-    				
     			}
         	}
-        	creado=0;
-        		
-        	
+        	creado=0;	
         }
 
 	public void mouseClicked(MouseEvent arg0) {
