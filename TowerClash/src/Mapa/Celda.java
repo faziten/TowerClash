@@ -1,24 +1,17 @@
 package Mapa;
 
-
 public class Celda {
 	
 	private ElementosMapa misElementos;
 	private Mapa mapa;
-	private int coordX;
-	private int coordY;
 	
-	public Celda(Mapa map, int x, int y){
+	public Celda(Mapa map){
 		mapa = map;
-		coordX = x;
-		coordY = y;
 	}
-	public int getCoordX() {
-		return coordX;
-	}
-
-	public int getCoordY() {
-		return coordY;
+	
+	public Celda(Mapa m, ElementosMapa en) {
+		this(m);
+		misElementos = en;
 	}
 	
 	public ElementosMapa getElemento(){
@@ -29,16 +22,4 @@ public class Celda {
 		misElementos=e;
 	}
 	
-	public void removeElemento(){
-		misElementos=null;
-	}
-	
-	public Celda getSiguiente(){
-		return mapa.obtenerCelda(coordX+1, coordY);
-	}
-
-		
-	public boolean estaVacia(){
-		return misElementos==null;
-	}
 }

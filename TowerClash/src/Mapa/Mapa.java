@@ -1,54 +1,62 @@
 package Mapa;
 
-import java.util.LinkedList;
-import java.util.Random;
+import javax.swing.Icon;
+
+import Objeto.*;
+import Unidades.*;
 
 import Mapa.Celda;
-import Objeto.Objeto;
-import Unidades.Aliado;
-import Unidades.Enemigo;
-import Unidades.Esqueleto;
-import Unidades.Pekka;
 
-public class Mapa {
+public abstract class Mapa {
 	private Celda mapa[][];
-	private Jugador miJugador;
-	private int ancho;
-	private int largo;
+	public static int ANCHO = 9;
+	public static int ALTO = 5;
+	public static int EJE = 64;
+	protected Icon icono;
 
-	public Mapa(Jugador j){
-		ancho=6;
-		largo=10;
-		
-		mapa = new Celda[ancho][largo];
-		
-		//Genero mi matriz de celdas.
-		for(int x = 0; x <mapa.length ; x++){
-			for(int y = 0; y < mapa[0].length; y++){
-				mapa[x][y] = new Celda(this, x, y);
+	protected Mapa(){
+		mapa = new Celda[10][6];
+		for (int i = 0; i < mapa.length; i++) {
+			for (int j = 0; j < mapa[0].length; j++) {
+				mapa[i][j] = new Celda(this);
 			}
 		}
-		
-		
-		miJugador=j;
 	}
 	
-	public int getAncho() {
-		return ancho;
+	public void eliminarElementoMapa(ElementosMapa e) {
+		if (mapa[e.getX()/EJE][e.getY()/EJE].getElemento()==e) {
+			mapa[e.getX()/EJE][e.getY()/EJE].setElemento(null); 
+		}
+		if ((e.getX()/EJE-1>=0) && mapa[e.getX()/EJE-1][e.getY()/EJE].getElemento()==e) {
+			mapa[e.getX()/EJE-1][e.getY()/EJE].setElemento(null); 
+		}		
 	}
 
-	public int getLargo() {
-		return largo;
+	public void setElementoMapa(Aliado n) {
+		mapa[n.getX()/EJE][n.getY()/EJE].setElemento(n);
+	}
+
+	public void setEntidad(Enemigo e) {
+		if (e.getX()/EJE<mapa.length && e.getX()>=0) {
+			mapa[e.getX()/EJE][e.getY()/EJE].setElemento(e);
+			if (e.getX()>EJE && mapa[e.getX()/EJE-1][e.getY()/EJE].getElemento()==e) {
+				mapa[e.getX()/EJE-1][e.getY()/EJE].setEntidad(null);
+			}			
+		}	
 	}
 	
-	public Celda obtenerCelda(int x, int y){
-		if((x < ancho) && (x >= 0) && (y < largo) && (y >= 0))
-			return mapa[x][y];
-		return null;
+	public void setEntidad(Objeto o) {
+		mapa[o.getX()/EJE][o.getY()/EJE].setElemento(o);
 	}
-	
-	public Jugador getJugador(){
-		return miJugador;
+
+	public ElementosMapa getEntidad(int x, int y) {
+		return mapa[x][y].getElemento();
+	}
+
+	public abstract Mapa reiniciarLevel(boolean completado);
+
+	public Icon getIcono() {
+		return icono;
 	}
 	
 }

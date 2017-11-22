@@ -1,40 +1,22 @@
 package Disparos;
 
-import javax.swing.JLabel;
-import Mapa.Celda;
-import Mapa.Mapa;
-import Visitor.Visitor;
+import GUI.Grafico;
 
-public class Disparo {
-	protected Celda celdaActual;
-	protected Mapa mapa;
-	protected JLabel imagen= new JLabel();
-	protected int damage, velocidad;
-	protected Visitor miVisitor;
-	
-	public Celda getCelda(){
-		return celdaActual;
-	}
-	
-	public JLabel getImagen(){
-		return imagen;
-	}
-	
-	public void setCelda(Celda c){
-		celdaActual = c;
-	}
-	
-	public void quitar(){
-		if(imagen!=null)
-		{
-			imagen.setIcon(null);
-			imagen=null;
+	public abstract class Disparo extends Grafico {
+
+		public Disparo(int x, int y, float daño, int velocidad) {
+			super(x, y);
+			this.daño = daño;
+			this.velocidad = velocidad;
 		}
 		
-	}
-	
-	public int getDamage(){
-		return damage;
-	}
+		protected float daño;
+		protected int velocidad;
+
+		public float getDaño() {
+			return daño;
+		}
+
+		public abstract void mover();
 
 }

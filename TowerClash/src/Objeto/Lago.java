@@ -14,9 +14,11 @@ public class Lago extends Temporales{
 	
 	public Lago(Mapa m, Celda celda){
 		mapa= m;
+		estaVivo=false;
 		celdaActual=celda;
-		tiempo=6;
+		tiempo=3;
 		precio=20;
+		imagen.setIcon(new ImageIcon(this.getClass().getResource("/img/lago.png")));
 		temporizador=new Timer(tiempo * 1000 ,  new ActionListener () 
 		{ 
 		    public void actionPerformed(ActionEvent e) 
@@ -25,8 +27,6 @@ public class Lago extends Temporales{
 		    } 
 		}); 
 		temporizador.setRepeats(false);
-		imagen.setIcon(new ImageIcon(this.getClass().getResource("/img/lago.png")));
-
 	}
 
 	public void accept(Visitor v) {

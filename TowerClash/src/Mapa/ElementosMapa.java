@@ -2,44 +2,27 @@ package Mapa;
 
 import javax.swing.JLabel;
 
-import Visitor.Visitor;
+import GUI.Grafico;
 
-public abstract class ElementosMapa {
-	protected Celda celdaActual;	
-	protected Mapa mapa;
-	protected boolean estaVivo = true;
-	protected JLabel imagen= new JLabel();
-	
-	public abstract void accept(Visitor v);
 
-	public void setImagen(JLabel img){
-		imagen=img;
-	}
-	
-	public JLabel getImagen(){
-		return imagen;
-	}
-	
-	public Celda getCelda() {
-		return celdaActual;
-	}
-	
-	public void setCelda(Celda c) {
-		celdaActual = c;
-	}
-	
-	public void quitar(){
-		if(imagen!=null){
-			imagen.setIcon(null);
-			imagen=null;
+	public abstract class ElementosMapa extends Grafico{
+		
+		public ElementosMapa(int x, int y) {
+			super(x, y);
 		}
 		
-		if(celdaActual!=null)
-			celdaActual.removeElemento();
-	}	
-	
-	public Mapa getMapa(){
-		return mapa;
-	}
+		public abstract boolean visit(DisparoAli d);
+
+		public abstract boolean visit(DisparoEne d);
+
+		public abstract boolean visit(EnemigoContacto e);
+
+		public abstract boolean visit(EnemigoDistancia e);
+
+		public abstract void visit();
+
+		public abstract boolean visit(Personaje j);
+
+		public abstract void die();
 
 }
