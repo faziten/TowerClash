@@ -1,15 +1,11 @@
 package PowerUp;
 
-import Mapa.Celda;
-import Mapa.Mapa;
-import Visitor.Visitor;
+import GUI.Grafico;
 
-public abstract class PowerUp{
-	protected Visitor miVisitor;
-	protected Mapa mapa;
-	protected Celda celdaActual;
-	public Visitor getVisitor(){
-		return miVisitor;
-	}
+	public abstract class PowerUp extends Grafico {
+
+		public PowerUp(int x, int y) {
+			super(x, y);
+		}
 
 }

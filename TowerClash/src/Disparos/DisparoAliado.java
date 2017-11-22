@@ -13,7 +13,7 @@ public class DisparoAliado extends Disparo{
 	public void mover() {
 		ElementosMapa e;
 		if (x/Mapa.EJE>=0)
-			e = Jugador.getInstance().getEntidad(x/Mapa.EJE, y/Mapa.EJE); 
+			e = Jugador.getInstance().getElemento(x/Mapa.EJE, y/Mapa.EJE); 
 		else {
 			if (x<-Mapa.EJE)
 				Jugador.getInstance().eliminar(this);		
@@ -24,7 +24,7 @@ public class DisparoAliado extends Disparo{
 				Jugador.getInstance().eliminar(this);
 			else {
 				if (x/Mapa.EJE+1<Mapa.ANCHO)
-					e = Jugador.getInstance().getEntidad(x/Mapa.EJE, y/Mapa.EJE); 
+					e = Jugador.getInstance().getElemento(x/Mapa.EJE, y/Mapa.EJE); 
 				else
 					e = null;
 				if (e!=null && e.visit(this)) 

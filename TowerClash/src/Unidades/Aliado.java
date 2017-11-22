@@ -1,50 +1,68 @@
 package Unidades;
 
-import Mapa.ElementosComprables;
-import Visitor.Visitor;
+import Disparos.DisparoAliado;
+import Disparos.DisparoEnemigo;
+import Mapa.ElementosMapa;
+import Mapa.Jugador;
+import Mapa.Mapa;
 
-public abstract class Aliado extends ElementosComprables{
-	protected int vida = 100;
+public abstract class Aliado extends Unidad{
+	protected int rango;
 
-	protected int damage = 10;
-	protected int rango = 1;
-	protected Visitor miVisitor;
-	protected int vidaMax=100;
-		
-	public void accept(Visitor v){
-			v.visit(this);
+	public Aliado(int x, int y, float maxVida, float daño, int velocidad, int valor) {
+		super(x, y, maxVida, daño, velocidad, valor);
+		rango = Mapa.ANCHO;
 	}
 	
-	public int getVidaMax(){
-		return vidaMax;
+	public void accion() {
+		ElementosMapa e = null;
+		boolean encontre = false;
+		int i = 1;
+		while (!encontre && i<=rango && (x/Mapa.EJE-i>=0)) {
+			e = Jugador.getInstance().getElemento(x/Mapa.EJE-i, y/Mapa.EJE);
+			if (e!=null) {
+				encontre = e.visit(this);
+			}	
+			i++;
+		}
+		if (encontre) {
+			crearDisparo();
+		}
+	}	
+	
+	public void die() {
+		Jugador.getInstance().eliminar(this);
 	}
 	
-	public int getVida(){
-		return vida;
-	}
-
-	public int getAlcance(){
-		return rango;
-	}
+	protected abstract void crearDisparo();
 		
-	public int getDamage(){
-		return damage;
-	}
-		
-	public boolean estaVivo(){
-		return estaVivo;
-	}
-		
-	public void setVida(int v){
-		vida = v;
-	}
-
-	public void morir(boolean b) {
-		estaVivo = b;
+	public boolean visit(EnemigoContacto e) {
+		recibirDaño(e.getDaño()/8);
+		return true;
 	}
 	
-	public Visitor getVisitor(){
-		return miVisitor;
+	public boolean visit(EnemigoDistancia e) {
+		return true;
 	}
-			
+	
+	public boolean visit(DisparoAliado d) {
+		return false;
+	}
+	
+	public boolean visit(DisparoEnemigo d) {
+		recibirDaño(d.getDaño());
+		if (vida<=0) {
+			die();
+		}
+		return true;
+	}
+	
+	public void visit() {
+		Jugador.getInstance().venderUnidad(this);
+	}
+	
+	public boolean visit(Unidad u) {
+		return false;
+	}
+
 }
