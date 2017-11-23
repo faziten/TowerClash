@@ -1,71 +1,52 @@
 package Unidades;
 
-import Mapa.Celda;
-import Mapa.ElementosMapa;
-import PowerUp.PowerUp;
-import Visitor.Visitor;
+import java.util.Random;
 
-public abstract class Enemigo extends ElementosMapa{
-	protected int velocidad = 2;
-	protected int puntaje = 50;
-	protected int recompensa = 100;
-	protected PowerUp miPw;
-	protected boolean llegoFinal = false;
-	protected int vida = 100;
+import Disparos.DisparoAliado;
+import Disparos.DisparoEnemigo;
+import Mapa.Jugador;
 
-	protected int damage = 10;
-	protected int rango = 1;
-	protected Visitor miVisitor;
-	
-	
-	public void actualizarOroPuntaje() {
-		mapa.getJugador().agregarPuntaje(puntaje);
-		mapa.getJugador().agregarOro(recompensa);
+public abstract class Enemigo extends Unidad{
+	public Enemigo(int x, int y, float maxVida, float daño, int velocidad, int valor) {
+		super(x, y, maxVida, daño, velocidad, valor);
 	}
-	
-	public void accept(Visitor v){
-		v.visit(this);
-	}
-	
-	public void mover(Celda celda){	
 		
-		int i=160;
-		while(i < 400){
-			i=i+30;
-			//celda.getElemento().getCelda()[fila][col].setBounds(i, col, 75, 75);
-			
+	public void die() {
+		Jugador.getInstance().eliminar(this);
+		Random rnd = new Random();
+		int r = rnd.nextInt(100);
+		if (!Jugador.getInstance().hayPowerUpActivo() && r<50) {
+			Jugador.getInstance().dropPowerUp(x, y);
+		}	
+		x = -1; 
+		y = -1;
+	}
+
+	public boolean visit(EnemigoCerca e) {
+		return false;
+	}
+	
+	public boolean visit(EnemigoLejos e) {
+		return false;
+	}
+	
+	public boolean visit(DisparoEnemigo e) {
+		return false;
+	}
+	
+	public boolean visit(DisparoAliado d) {
+		recibirDaño(d.getDaño());
+		if (vida<=0) {
+			die();
 		}
+		return true;
 	}
 	
-	public int getVida(){
-		return vida;
-	}
-
-	public int getAlcance(){
-		return rango;
-	}
-		
-	public int getDamage(){
-		return damage;
-	}
-		
-	public boolean estaVivo(){
-		return estaVivo;
-	}
-		
-	public void setVida(int v){
-		vida = v;
-	}
-
-	public void morir(boolean b) {
-		estaVivo = b;
+	public void visit() {
 	}
 	
-	public Visitor getVisitor(){
-		return miVisitor;
+	public boolean visit(Unidad u) {
+		return true;
 	}
-
-	public PowerUp generarPowerUp(){
-		return null; 
-	}
+	
 }

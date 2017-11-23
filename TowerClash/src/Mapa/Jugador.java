@@ -76,9 +76,9 @@ public class Jugador {
 	}
 
 	public void crearNivel(boolean completado) {
-		puntos = 0;
+		puntaje = 0;
 		dinero = dinero_inicial;
-		gui.refresh();
+		gui.refrescar();
 		mapa = mapa.reiniciarLevel(completado);
 		gui.setFondo(mapa);
 		if (mapa!=null) {
@@ -160,7 +160,7 @@ public class Jugador {
 	}
 
 	public void crearObjeto(Bonus oc) {
-		mapa.setEntidad(oc);
+		mapa.setElemento(oc);
 		gui.crearGrafico(oc, 2);
 		dinero -= oc.getValor();
 	}

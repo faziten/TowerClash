@@ -49,7 +49,7 @@ public abstract class Mapa {
 		mapa[o.getX()/EJE][o.getY()/EJE].setElemento(o);
 	}
 
-	public ElementosMapa getEntidad(int x, int y) {
+	public ElementosMapa getElemento(int x, int y) {
 		return mapa[x][y].getElemento();
 	}
 

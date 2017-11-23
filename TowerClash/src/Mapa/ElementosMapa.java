@@ -1,10 +1,10 @@
 package Mapa;
 
-import javax.swing.JLabel;
-
 import Disparos.DisparoAliado;
 import Disparos.DisparoEnemigo;
 import GUI.Grafico;
+import Unidades.EnemigoCerca;
+import Unidades.EnemigoLejos;
 import Unidades.Unidad;
 
 
@@ -18,9 +18,9 @@ import Unidades.Unidad;
 
 		public abstract boolean visit(DisparoEnemigo d);
 
-		public abstract boolean visit(EnemigoContacto e);
+		public abstract boolean visit(EnemigoCerca e);
 
-		public abstract boolean visit(EnemigoDistancia e);
+		public abstract boolean visit(EnemigoLejos e);
 
 		public abstract void visit();
 
