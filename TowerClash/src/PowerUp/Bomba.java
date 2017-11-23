@@ -2,20 +2,13 @@ package PowerUp;
 
 import Mapa.Celda;
 import Mapa.Mapa;
-import Visitor.VisitorBomba;
 
 public class Bomba extends PowerUp{
-	private int damage;
-	
-	public Bomba(Mapa m, Celda celda){
-		damage=40;
-		miVisitor= new VisitorBomba(this);
-		
+
+	public Bomba(int x, int y) {
+		super(x, y);
 	}
 	
-	public int getDamage(){
-		return damage;
-	}
 		
 
 }

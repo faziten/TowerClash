@@ -3,6 +3,8 @@ package PowerUp;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import GUI.PwTiempo;
+import Hilos.HiloPowerUp;
 import Mapa.Jugador;
 
 
@@ -20,12 +22,12 @@ public abstract class Tiempo extends PowerUp {
 
 	protected class UsarPWTiempo extends MouseAdapter {
 		public void mouseClicked(MouseEvent e) {
-			pwTiempo btn = (pwTiempo) e.getSource();
+			PwTiempo btn = (PwTiempo) e.getSource();
 			Jugador.getInstance().setPowerup(btn.getPW());
 			Jugador.getInstance().eliminarPW(btn.getPW());
 			new HiloPowerUp(5).start();
 		}
 	}
-	{
-
 }
+
+

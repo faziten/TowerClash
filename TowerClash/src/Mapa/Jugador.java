@@ -9,6 +9,8 @@ import Disparos.Disparo;
 import GUI.GUI;
 import Hilos.HiloAliados;
 import Hilos.HiloEnemigos;
+import Objeto.Objeto;
+import PowerUp.PowerUp;
 import PowerUp.Tiempo;
 import Unidades.*;
 
@@ -105,7 +107,7 @@ public class Jugador {
 	public void moverEnemigos() {	
 		for (Enemigo e : misEnemigos) {
 			e.accion();
-			mapa.setEntidad(e);
+			mapa.setElemento(e);
 		}		
 	}	
 
@@ -222,8 +224,8 @@ public class Jugador {
 
 	public void setPowerup(Tiempo pu) {
 		pwTiempo = pu;
-		for (Personaje j : misAliados) {
-			j.setPW(pwTiempo);
+		for (Unidad u : misAliados) {
+			u.setPW(pwTiempo);
 		}
 	}
 
@@ -277,7 +279,7 @@ public class Jugador {
 		else {
 			dinero += j.getPrecio()/2;
 		}
-		gui.refresh();
+		gui.refrescar();
 		j.die();
 	}
 }
