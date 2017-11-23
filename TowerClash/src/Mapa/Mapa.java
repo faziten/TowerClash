@@ -40,7 +40,7 @@ public abstract class Mapa {
 		if (e.getX()/EJE<mapa.length && e.getX()>=0) {
 			mapa[e.getX()/EJE][e.getY()/EJE].setElemento(e);
 			if (e.getX()>EJE && mapa[e.getX()/EJE-1][e.getY()/EJE].getElemento()==e) {
-				mapa[e.getX()/EJE-1][e.getY()/EJE].setElemento(null);
+				mapa[e.getX()/EJE-1][e.getY()/EJE].setEntidad(null);
 			}			
 		}	
 	}

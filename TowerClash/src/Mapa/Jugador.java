@@ -7,15 +7,10 @@ import java.util.concurrent.ConcurrentLinkedDeque;
 
 import Disparos.Disparo;
 import GUI.GUI;
-import Hilos.HiloAliados;
-import Hilos.HiloEnemigos;
-import Objeto.Objeto;
-import PowerUp.Bomba;
-import PowerUp.Congelar;
-import PowerUp.Curacion;
-import PowerUp.PowerUp;
 import PowerUp.Tiempo;
 import Unidades.*;
+
+
 
 
 public class Jugador {
@@ -100,8 +95,8 @@ public class Jugador {
 	}
 
 	public void moverJugadores() {
-		for (Unidad u : misAliados) {
-			u.accion();		
+		for (Personaje j : misAliados) {
+			j.accion();		
 		}
 	}
 
@@ -225,8 +220,8 @@ public class Jugador {
 
 	public void setPowerup(Tiempo pu) {
 		pwTiempo = pu;
-		for (Unidad u : misAliados) {
-			u.setPW(pwTiempo);
+		for (Personaje j : misAliados) {
+			j.setPW(pwTiempo);
 		}
 	}
 
@@ -280,7 +275,7 @@ public class Jugador {
 		else {
 			dinero += j.getPrecio()/2;
 		}
-		gui.refrescar();
+		gui.refresh();
 		j.die();
 	}
 }

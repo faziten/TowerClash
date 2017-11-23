@@ -1,33 +1,42 @@
 package Hilos;
 
+import GUI.GUI;
 import Mapa.*;
+import Unidades.*;
 
 
 public class HiloEnemigos extends Thread { 
 	
 	private boolean gameOver;
-	private int congelar;
-
-	public void GameOver() {
-		gameOver = true;
-	}
 	
-	public void congelar(int seg) {
-		congelar = seg;
+	private Jugador jugador;
+
+	public HiloEnemigos(Jugador j) {
+		setName("HiloEnemigos");
+		jugador=j;
+	}
+
+	public void gameOver() {
+		gameOver = true;
 	}
 	
 	public void run() {
 		gameOver = false;
+		int i=0;
 		while(!gameOver){
 			try {
-				if (congelar>0) {
-					Thread.sleep(1000);
-					congelar--;
-				}
-				else {
-					Thread.sleep(125);
-					Jugador.getInstance().moverEnemigos();
-				}				
+			
+				Thread.sleep(500);
+				jugador.crearEnemigo();
+				jugador.crearEnemigo();
+				for(Enemigo ene: jugador.getEnemigos())
+					GUI.Move(ene, i);
+				/*Cada enemigo deberia tener su posicion especifica independiente
+				 * para asi moverlo. Se hara en la re-entrega.
+				 */
+				i+=75;
+				
+				
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
