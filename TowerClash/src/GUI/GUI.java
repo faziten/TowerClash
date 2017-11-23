@@ -23,14 +23,6 @@ public class GUI {
 	//PANELES
 	private JPanel cartas;
 	private JPanel objetos;
-	private JPanel informacion;
-	private JPanel panelJuego;
-	
-	private int cantFilas,cantColumnas;
-	
-	private JLabel etiqueta;
-	
-	private ElementosComprables nuevo;
 	
 	//Labels Informacion
 	private JLabel puntaje;
@@ -54,7 +46,6 @@ public class GUI {
 	
 	
 	public GUI(){
-		miJugador= new Jugador(this);
 
 		frame= new JFrame();
 		frame.setBounds(75, 50, 1045, 550);
@@ -64,12 +55,7 @@ public class GUI {
 		
 		//Mi jugador y mi mapa
 
-		miJugador= new Jugador(this);
 		miJugador.crearHilos();
-
-		mapaLogica=miJugador.getMapa();
-		creador= new CreadorConcreto();
-		
 
 		iniciarMapa();
 	
@@ -77,44 +63,6 @@ public class GUI {
 		
 		iniciarPanelObjetos();
 		
-		
-		//Panel Informacion
-		informacion= new JPanel();
-		informacion.setBounds(0, 450, 1045,70);
-		informacion.setBackground(Color.BLACK);
-		informacion.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		informacion.setBounds(0, 450, 1045,70);
-		informacion.setLayout(null);
-		informacion.setVisible(true);
-		
-		puntaje= new JLabel();
-		puntaje.setText("Puntaje: "+miJugador.getPuntaje());
-		puntaje.setFont(new Font("Arial", Font.PLAIN, 18));
-		puntaje.setForeground(Color.WHITE);
-		puntaje.setBounds(40, 10, 126, 30);
-		informacion.add(puntaje);
-		
-		monedas=new JLabel();
-		monedas.setForeground(Color.WHITE);
-		monedas.setText("Monedas: "+miJugador.getOro());
-		monedas.setFont(new Font("Arial", Font.PLAIN, 18));
-		monedas.setBounds(236, 10, 126, 30);
-		monedas.setVisible(true);
-		informacion.add(monedas);
-		
-		textInfo = new JTextField();
-		textInfo.setBounds(703, 5, 314, 45);
-		informacion.add(textInfo);
-		textInfo.setColumns(10);
-		
-		labelInfo = new JLabel("Informaci\u00F3n");
-		labelInfo.setForeground(Color.WHITE);
-		labelInfo.setFont(new Font("Arial", Font.PLAIN, 18));
-		labelInfo.setBounds(589, 10, 104, 30);
-		informacion.add(labelInfo);
-		
-		
-		frame.getContentPane().add(informacion);
 	}
 	
 	public void iniciarMapa(){
@@ -224,31 +172,6 @@ public class GUI {
 				objetos.setLayout(null);
 				objetos.setVisible(true);
 
-				//Boton Objetos
-				RoundButton globo= new RoundButton();
-				globo.setIcon(new ImageIcon(GUI.class.getResource("/img/objetos/globo.png")));
-				globo.setBounds(10, 230, 100, 100);
-				globo.addActionListener(new OyenteCrear(6));
-				objetos.add(globo);
-				
-				
-				RoundButton golem= new RoundButton();
-				golem.setIcon(new ImageIcon(GUI.class.getResource("/img/objetos/golem.png")));
-				golem.setBounds(10, 340, 100, 100);
-				golem.addActionListener(new OyenteCrear(7));
-				objetos.add(golem);
-				
-				RoundButton lago= new RoundButton();
-				lago.setIcon(new ImageIcon(GUI.class.getResource("/img/objetos/lago.png")));
-				lago.setBounds(10,10,100,100);
-				lago.addActionListener(new OyenteCrear(8));
-				objetos.add(lago);
-				
-				RoundButton lava= new RoundButton();
-				lava.setIcon(new ImageIcon(GUI.class.getResource("/img/objetos/volcan.png")));
-				lava.setBounds(10,120,100,100);
-				lava.addActionListener(new OyenteCrear(9));
-				objetos.add(lava);
 				
 				//Panel objetos
 				objetos.setBounds(910, 0, 120, 450);
@@ -256,110 +179,11 @@ public class GUI {
 	}
 	
 	
-	private class OyenteCrear implements ActionListener {
-		private int n;
-		public OyenteCrear(int num){
-			n=num;
-		}
-		
-        public void actionPerformed(ActionEvent e)
-        {
-        	creado =n;
-        }
-    }
+
 	
-	private class OyenteMouse implements MouseListener {
-
-		
-    public void mousePressed(MouseEvent e)
-        {
-
-    		//textInfo.setText("");
-        	int i = e.getY()/75;
-        	int j = e.getX()/75;
-        	Celda celdaActual= mapaLogica.obtenerCelda(i, j);
-        	if (celdaActual.estaVacia()){
-        	
-        		if(creado>=1){
-        			nuevo=null;
-        			switch (creado) {
-        			case 1:  if(30<=miJugador.getOro())
-                			nuevo = creador.crearCaballero(mapaLogica,celdaActual);
-                         	break;    	
-                         
-        			case 2:  if(30<=miJugador.getOro()) 
-                			nuevo = creador.crearArquera(mapaLogica, celdaActual);
-                         	break;
-                         
-        			case 3:  if(40<=miJugador.getOro()) 
-                			nuevo = creador.crearValquiria(mapaLogica, celdaActual);
-                         	break;
-        			case 4:  if(50<=miJugador.getOro())
-                			nuevo = creador.crearMago(mapaLogica, celdaActual);
-                		 	break;
-        			case 5:  if(70<=miJugador.getOro()) 
-                			nuevo = creador.crearMegacaballero(mapaLogica, celdaActual);
-        					break;
-        			case 6:  if(30<=miJugador.getOro())
-                			nuevo = creador.crearGlobo(mapaLogica, celdaActual);
-		 			 	 	break;
-        			case 7:  if(60<=miJugador.getOro()) 
-                			nuevo = creador.crearGolem(mapaLogica, celdaActual);
-                		 	break;
-        			case 8:  if(20<=miJugador.getOro()) 
-                			nuevo = creador.crearLago(mapaLogica, celdaActual);
-                		 	break;
-        			case 9:  if(30<=miJugador.getOro()) 
-                			nuevo = creador.crearLava(mapaLogica, celdaActual);
-       		 			 	break;  
-        			}
-    			
-        			if(nuevo!=null){
-        				miJugador.restarOro(nuevo.getPrecio());
-        				monedas.setText("Monedas: "+miJugador.getOro());
-        				miJugador.agregarElementoComprable(nuevo);
-        				celdaActual.setElemento(nuevo);
-        	        	nuevo.getImagen().setBounds(j*75, i*75, 75, 75);
-        				panelJuego.add(nuevo.getImagen());
-        				frame.repaint();
-        			}
-        			else{
-        				textInfo.setText("NO HAY DINERO SUFICIENTE");
-        			}
-        			
-    			}
-        	}
-        	else textInfo.setText("Ya esta ocupado ese espacio.");
-        	creado=0;
-        }
-
-	public void mouseClicked(MouseEvent arg0) {
-		
-	}
-
-	public void mouseEntered(MouseEvent arg0) {
-	}
-
-	public void mouseExited(MouseEvent arg0) {
-		
-	}
-
-	public void mouseReleased(MouseEvent arg0) {
-		
-	}
-	}
 	
-public void crearGrafico(Enemigo e, int fila, int col) {
-		
-		e.getImagen().setBounds(0,0, 75, 75);
-		panelJuego.add(e.getImagen());
-		frame.repaint();
-		
-	}
 	
-	public static void Move(Enemigo e, int i) {
-		e.getImagen().setBounds(i, 0, 75, 75);		
-	}
+
 	
 public static void main(String [] arg){
 		game= new GUI();
