@@ -1,12 +1,29 @@
 package Objeto;
 
-import Mapa.ElementosComprables;
+import Disparos.DisparoAliado;
+import Mapa.ElementosMapa;
+import Mapa.Jugador;
+import Unidades.Unidad;
 
-public abstract class Objeto extends ElementosComprables{
-	
-	public void morir(){
-		estaVivo=false;
+public abstract class Objeto extends ElementosMapa{
+
+	public Objeto(int x, int y) {
+		super(x, y);
 	}
+	
+	public boolean visit(Unidad u) {
+		return false;
+	}
+	
+	public boolean visit(DisparoAliado d) {
+		return false;
+	}	
+	
+	public void die() {
+		Jugador.getInstance().eliminarObjeto(this);
+	}
+	
+	public void visit() {}
 	
 
 }
