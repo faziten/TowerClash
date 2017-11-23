@@ -7,6 +7,8 @@ import java.util.concurrent.ConcurrentLinkedDeque;
 
 import Disparos.Disparo;
 import GUI.GUI;
+import Hilos.HiloAliados;
+import Hilos.HiloEnemigos;
 import PowerUp.Tiempo;
 import Unidades.*;
 
@@ -86,7 +88,7 @@ public class Jugador {
 		misAliados = new ConcurrentLinkedDeque<Aliado>();
 		misEnemigos = new ConcurrentLinkedDeque<Enemigo>();
 		misDisparos = new ConcurrentLinkedDeque<Disparo>();
-		he.GameOver();
+		he.gameOver();
 		ha.GameOver();
 		hd.GameOver();	
 		hh.GameOver();
@@ -95,8 +97,8 @@ public class Jugador {
 	}
 
 	public void moverJugadores() {
-		for (Personaje j : misAliados) {
-			j.accion();		
+		for (Unidad u : misAliados) {
+			u.accion();		
 		}
 	}
 
@@ -109,7 +111,7 @@ public class Jugador {
 
 	public void moverDisparos() {
 		gui.repaint();
-		for (Disparos d : misDisparos) {
+		for (Disparo d : misDisparos) {
 			d.mover();			
 		}
 	}		
@@ -117,7 +119,7 @@ public class Jugador {
 	public void crearJugador(Aliado j) {
 		j.setPW(pwTiempo);
 		misAliados.add(j);
-		mapa.setEntidad(j);
+		mapa.setElemento(j);
 		gui.crearGrafico(j, 1);
 		dinero -= j.getPrecio();
 	}
@@ -171,7 +173,7 @@ public class Jugador {
 		puntaje += e.getPrecio();
 		dinero += e.getPrecio();
 		gui.eliminarGrafico(e);
-		gui.refresh();
+		gui.refrescar();
 		mapa.eliminarElementoMapa(e);
 		misEnemigos.remove(e);
 	}
