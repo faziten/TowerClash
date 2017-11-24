@@ -8,8 +8,14 @@ import java.util.concurrent.ConcurrentLinkedDeque;
 import Disparos.Disparo;
 import GUI.GUI;
 import Hilos.HiloAliados;
+import Hilos.HiloDisparos;
 import Hilos.HiloEnemigos;
+import Hilos.HiloHordas;
+import Hilos.HiloPowerUp;
 import Objeto.Objeto;
+import PowerUp.Bomba;
+import PowerUp.Congelar;
+import PowerUp.Curacion;
 import PowerUp.PowerUp;
 import PowerUp.Tiempo;
 import Unidades.*;
@@ -146,7 +152,7 @@ public class Jugador {
 		}
 		if (rnd.nextInt(9)==0) {
 			e.setPW(new Curacion(-Mapa.EJE, fila*Mapa.EJE));
-			HiloPowerup hpu = new HiloPowerup(10, e);
+			HiloPowerUp hpu = new HiloPowerUp(10, e);
 			hpu.start();
 		}
 		misEnemigos.add(e);
@@ -159,7 +165,7 @@ public class Jugador {
 		gui.crearGrafico(d, 2);
 	}
 
-	public void crearObjeto(Bonus oc) {
+	public void crearObjeto(Objeto oc) {
 		mapa.setElemento(oc);
 		gui.crearGrafico(oc, 2);
 		dinero -= oc.getValor();
@@ -205,10 +211,6 @@ public class Jugador {
 		gui.crearGrafico(o, 1);
 	}
 
-	public void eliminarObjeto(Objeto o) {
-		mapa.eliminarEntidad(o);
-		gui.eliminarGrafico(o);
-	}
 
 	public int getPuntos() {
 		return puntaje;		
@@ -219,7 +221,7 @@ public class Jugador {
 	}
 	
 	public ElementosMapa getElemento(int x, int y) {
-		return mapa.getEntidad(x, y);
+		return mapa.getElemento(x, y);
 	}
 
 	public void setPowerup(Tiempo pu) {
@@ -281,6 +283,11 @@ public class Jugador {
 		}
 		gui.refrescar();
 		j.die();
+	}
+	
+	public void eliminarObjeto(Objeto o) {
+		mapa.eliminarElementoMapa(o);
+		gui.eliminarGrafico(o);
 	}
 }
 

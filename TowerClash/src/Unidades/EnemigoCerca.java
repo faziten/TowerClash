@@ -31,7 +31,8 @@ public abstract class EnemigoCerca extends Enemigo {
 				}		
 				lbl.setBounds(x, y, Mapa.EJE, Mapa.EJE);	
 			}
-		}
-	}
+		}		
+	}	
 }
+
 		

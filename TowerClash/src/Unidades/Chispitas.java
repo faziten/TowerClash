@@ -1,17 +1,18 @@
 package Unidades;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
-public class Chispitas extends Enemigo{
+import Mapa.Mapa;
 
-	public Chispitas(int x, int y, float maxVida, float daño, int velocidad, int valor) {
-		super(x, y, maxVida, daño, velocidad, valor);
+public class Chispitas extends EnemigoCerca {
+
+	public Chispitas(int x, int y) {
+		super(x, y, 40, 10, 12, 15);
+		icono = new ImageIcon(this.getClass().getResource("/images/enemigos/chispitas.png"));
+		lbl = new JLabel(icono);
+		lbl.setBounds(x, y, Mapa.EJE, Mapa.EJE);
+		agregarPW();
 	}
-
-	public void accion() {
-		
-	}
-	
-	
-
 
 }

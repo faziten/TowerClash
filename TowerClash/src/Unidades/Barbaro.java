@@ -1,15 +1,18 @@
 package Unidades;
 
-public class Barbaro extends Enemigo{
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
-	public Barbaro(int x, int y, float maxVida, float daño, int velocidad, int valor) {
-		super(x, y, maxVida, daño, velocidad, valor);
-	}
+import Mapa.Mapa;
 
-	public void accion() {
-		
+public class Barbaro extends EnemigoCerca {
+
+	public Barbaro(int x, int y) {
+		super(x, y, 20, 5, 8, 10);
+		icono = new ImageIcon(this.getClass().getResource("/images/enemigos/barbaro.png"));
+		lbl = new JLabel(icono);
+		lbl.setBounds(x, y, Mapa.EJE, Mapa.EJE);
+		agregarPW();
 	}
-	
-	
 
 }
