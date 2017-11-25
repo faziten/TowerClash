@@ -1,7 +1,6 @@
 package Mapa;
 
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
@@ -16,6 +15,7 @@ import Objeto.Objeto;
 import PowerUp.Bomba;
 import PowerUp.Congelar;
 import PowerUp.Curacion;
+import PowerUp.Furia;
 import PowerUp.PowerUp;
 import PowerUp.Tiempo;
 import Unidades.*;
