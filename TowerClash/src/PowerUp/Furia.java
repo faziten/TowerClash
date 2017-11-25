@@ -19,7 +19,7 @@ public class Furia extends Tiempo{
 	}
 
 	public int getVelocidad(int vel) {
-		return 0;
+		return 10;
 	}
 
 	public float recibirDaño(float daño) {
