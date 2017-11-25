@@ -47,6 +47,8 @@ public class GUI extends JFrame{
 		
 		iniciarPanelObjetos();
 		
+		cargarLogica();
+		
 	}
 	
 	public void iniciarPanelJuego(){
@@ -123,6 +125,26 @@ public class GUI extends JFrame{
 
 	public void eliminarGrafico(Grafico g) {
 		fondo.remove(g.getLbl());
+	}
+	private void cargarLogica() {
+		Jugador.getInstance().setGUI(this);
+		Jugador.getInstance().crearMapa();
+		Jugador.getInstance().crearHilos();
+	}
+	
+
+	public void GameOver(boolean ganaste) {
+		repaint();
+		JLabel label;	
+		fondo.removeAll();
+		if (ganaste) {
+			label = new JLabel("Has ganado!");
+		} else {			
+			label = new JLabel("Has perdido!");	
+		}		
+		label.setFont(new Font("Tahoma", Font.PLAIN, 80));
+		fondo.add(label);
+		label.setBounds(100, 0, 640, 384);
 	}
 	
 	

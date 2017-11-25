@@ -21,8 +21,6 @@ import PowerUp.Tiempo;
 import Unidades.*;
 
 
-
-
 public class Jugador {
 	private static Jugador instance;
 	private static int dinero_inicial = 300;
