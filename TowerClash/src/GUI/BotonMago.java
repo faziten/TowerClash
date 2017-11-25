@@ -4,6 +4,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 
+import Mapa.Jugador;
+import Unidades.Mago;
+
 
 public class BotonMago extends BotonAbstracto { 
 
@@ -13,10 +16,10 @@ public class BotonMago extends BotonAbstracto {
 	}
 	
 	public void crearUnidadObjeto(int x, int y) {
-		/*Mago r = new Mago(x, y);
+		Mago r = new Mago(x, y);
 		if (r.getPrecio()<=Jugador.getInstance().getDinero()) {
 			Jugador.getInstance().crearJugador(r);
-		}*/
+		}
 		
 	}
 }

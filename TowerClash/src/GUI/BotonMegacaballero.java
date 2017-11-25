@@ -4,7 +4,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 
+import Mapa.Jugador;
+import Mapa.Mapa;
 import Unidades.Megacaballero;
+import Unidades.Megacaballero1;
+import Unidades.Megacaballero2;
 
 public class BotonMegacaballero extends BotonAbstracto {
 
@@ -16,7 +20,7 @@ public class BotonMegacaballero extends BotonAbstracto {
 		public void crearUnidadObjeto(int x, int y) {
 			Megacaballero d1;
 			Megacaballero d2;
-			/*if (Jugador.getInstance().getElemento(x/64, y/64+1)==null) {
+			if (Jugador.getInstance().getElemento(x/64, y/64+1)==null) {
 				d1 = new Megacaballero1(x, y);
 				d2 = new Megacaballero2(x, y+Mapa.EJE);
 				d1.setMitad(d2);
@@ -25,7 +29,7 @@ public class BotonMegacaballero extends BotonAbstracto {
 					Jugador.getInstance().crearJugador(d1);
 					Jugador.getInstance().crearJugador(d2);
 				}
-			}*/
+			}
 
 		}
 }

@@ -4,6 +4,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 
+import Mapa.Jugador;
+import Unidades.Caballero;
+
 
 public class BotonCaballero extends BotonAbstracto {
 	
@@ -13,10 +16,10 @@ public class BotonCaballero extends BotonAbstracto {
 	}
 	
 	public void crearUnidadObjeto(int x, int y) {
-		/*Caballero b = new Caballero(x, y);
+		Caballero b = new Caballero(x, y);
 		if (b.getPrecio()<=Jugador.getInstance().getDinero()) {
 			Jugador.getInstance().crearJugador(b);
 		}
-		*/		
+				
 	}
 }

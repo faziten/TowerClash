@@ -4,6 +4,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 
+import Mapa.Jugador;
+import Unidades.Arquera;
+
 
 public class BotonArquera extends BotonAbstracto {
 
@@ -13,10 +16,9 @@ public class BotonArquera extends BotonAbstracto {
 	}
 	
 	public void crearUnidadObjeto(int x, int y) {
-		//VER BOTON ARQUERA
-		/*Arquera p = new Arquera(y, y, alignmentX, alignmentX, y, y);
+		Arquera p = new Arquera(x,y);
 		if (p.getPrecio()<=Jugador.getInstance().getDinero()) {
 			Jugador.getInstance().crearJugador(p);
-		}	*/	
+		}		
 	}
 }

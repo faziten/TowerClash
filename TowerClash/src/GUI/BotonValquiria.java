@@ -3,6 +3,9 @@ package GUI;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 
+import Mapa.Jugador;
+import Unidades.Valquiria;
+
 
 public class BotonValquiria extends BotonAbstracto {
 
@@ -12,10 +15,10 @@ public class BotonValquiria extends BotonAbstracto {
 	}
 
 	public void crearUnidadObjeto(int x, int y) {
-		/*Valquiria v = new Valquiria(x, y);
+		Valquiria v = new Valquiria(x, y);
 		if (v.getPrecio()<=Jugador.getInstance().getDinero()) {
 			Jugador.getInstance().crearJugador(new Valquiria(x, y));
-		}	*/	
+		}		
 	}
 }
 

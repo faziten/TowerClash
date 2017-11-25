@@ -3,6 +3,9 @@ package GUI;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 
+import Mapa.Jugador;
+import Objeto.Globo;
+
 
 public class BotonGlobo extends BotonAbstracto {
 
@@ -12,9 +15,9 @@ public class BotonGlobo extends BotonAbstracto {
 	}	
 	
 	public void crearUnidadObjeto(int x, int y) {
-		/*Globo t = new Globo(x, y);
+		Globo t = new Globo(x, y);
 		if (t.getValor()<=Jugador.getInstance().getDinero()) {
 			Jugador.getInstance().crearObjeto(new Globo(x, y));	
-		}	*/		
+		}			
 	}
 }

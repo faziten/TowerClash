@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 
 import Mapa.Jugador;
+import Objeto.Golem;
 
 
 public class BotonGolem extends BotonAbstracto {
@@ -14,9 +15,9 @@ public class BotonGolem extends BotonAbstracto {
 	}	
 	
 	public void crearUnidadObjeto(int x, int y) {
-		/*Golem b = new Golem(x, y);
+		Golem b = new Golem(x, y);
 		if (b.getValor()<=Jugador.getInstance().getDinero()) {
 			Jugador.getInstance().crearObjeto(b);
-		}	*/
+		}	
 	}	
 }
