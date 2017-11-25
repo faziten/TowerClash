@@ -40,17 +40,6 @@ public class GUI extends JFrame{
 	
 	
 	public GUI(){
-		iniciarPanelJuego();
-	
-		iniciarPanelAliados();
-		
-		iniciarPanelObjetos();
-		
-		cargarLogica();
-		
-	}
-	
-	public void iniciarPanelJuego(){
 		getContentPane().setLayout(null);
 		panelJuego=new JPanel();
 		panelJuego.setLayout(new FlowLayout());
@@ -60,43 +49,35 @@ public class GUI extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		panelJuego.setSize(640, 384);
 		
+		cartas= new JPanel(new GridLayout(5, 1));
+		panelJuego.add(cartas);
+		cartas.add(new BotonCaballero(new OyenteCrear()));
+		cartas.add(new BotonArquera(new OyenteCrear()));
+		cartas.add(new BotonValquiria(new OyenteCrear()));
+		cartas.add(new BotonMago(new OyenteCrear()));
+		cartas.add(new BotonMegacaballero(new OyenteCrear()));
+		
 		fondo = new JLabel();		
 		fondo.setBorder(new LineBorder(new Color(0, 0, 0)));
 		fondo.addMouseListener(new OyenteCrearEliminar());
 		panelJuego.add(fondo);
+	
+		objetos= new JPanel(new GridLayout(4, 1));
+		objetos.add(new BotonGolem(new OyenteCrear()));
+		objetos.add(new BotonGlobo(new OyenteCrear()));
+		objetos.add(new BotonLago(new OyenteCrear()));		
+		objetos.add(new BotonLava(new OyenteCrear()));
+		panelJuego.add(objetos);
 		
-	}
-	
-	public void iniciarPanelAliados(){
-		//Inicio paneles de aliados
-				cartas= new JPanel(new GridLayout(5, 1));
-				cartas.add(new BotonCaballero(new OyenteCrear()));
-				cartas.add(new BotonArquera(new OyenteCrear()));
-				cartas.add(new BotonValquiria(new OyenteCrear()));
-				cartas.add(new BotonMago(new OyenteCrear()));
-				cartas.add(new BotonMegacaballero(new OyenteCrear()));
-				panelJuego.add(cartas);
-				
-				
-	}
-	
-	public void iniciarPanelObjetos(){
-		//Panel de objetos
-				objetos= new JPanel(new GridLayout(4, 1));
-				objetos.add(new BotonGolem(new OyenteCrear()));
-				objetos.add(new BotonGlobo(new OyenteCrear()));
-				objetos.add(new BotonLago(new OyenteCrear()));		
-				objetos.add(new BotonLava(new OyenteCrear()));
-				panelJuego.add(objetos);
-				
-				puntaje = new JLabel("Puntos: " + Jugador.getInstance().getPuntos());
-				puntaje.setFont(new Font("Tahoma", Font.PLAIN, 30));
-				monedas = new JLabel("Dinero: " + Jugador.getInstance().getDinero());
-				monedas.setFont(new Font("Tahoma", Font.PLAIN, 30));
-				objetos.add(monedas);
-				objetos.add(puntaje);
-
-				
+		puntaje = new JLabel("Puntos: " + Jugador.getInstance().getPuntos());
+		puntaje.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		monedas = new JLabel("Dinero: " + Jugador.getInstance().getDinero());
+		monedas.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		objetos.add(monedas);
+		objetos.add(puntaje);
+		
+		cargarLogica();
+		
 	}
 	
 	public void refrescar() {
