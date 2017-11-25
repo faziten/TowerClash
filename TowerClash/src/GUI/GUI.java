@@ -20,7 +20,6 @@ import Mapa.Mapa;
 public class GUI extends JFrame{
 	
 	protected static GUI game;
-	private static JFrame frame; 
 	
 	
 	//PANELES
@@ -76,6 +75,7 @@ public class GUI extends JFrame{
 				cartas.add(new BotonValquiria(new OyenteCrear()));
 				cartas.add(new BotonMago(new OyenteCrear()));
 				cartas.add(new BotonMegacaballero(new OyenteCrear()));
+				panelJuego.add(cartas);
 				
 				
 	}
@@ -183,7 +183,7 @@ public class GUI extends JFrame{
 	
 
 public static void main(String [] arg){
-		game= new GUI();
-		frame.setVisible(true);
+		GUI window= new GUI();
+		window.setVisible(true);
 	}
 }
