@@ -4,7 +4,7 @@ import Disparos.DisparoCaballero;
 import Disparos.DisparoEnemigo;
 import Mapa.Jugador;
 
-public class Megacaballero extends Aliado {
+public abstract class Megacaballero extends Aliado {
 	
 	private Megacaballero mitad;
 
