@@ -20,8 +20,6 @@ import Mapa.Mapa;
 public class GUI extends JFrame{
 	
 	protected static GUI game;
-	
-	
 	//PANELES
 	private JPanel cartas;
 	private JPanel objetos;
@@ -32,11 +30,15 @@ public class GUI extends JFrame{
 	private JLabel monedas;
 	private JLabel fondo;
 	
-
+	
 	
 	private BotonAbstracto unidadActual;
 	
-	
+
+	public static void main(String [] arg){
+		GUI window= new GUI();
+		window.setVisible(true);
+	}
 	
 	
 	public GUI(){
@@ -80,40 +82,12 @@ public class GUI extends JFrame{
 		
 	}
 	
-	public void refrescar() {
-		puntaje.setText("Puntos : " + Jugador.getInstance().getPuntos());
-		monedas.setText("Dinero : " + Jugador.getInstance().getDinero());
-	}
-	
-	public void setFondo(Mapa m) {
-		if (m!=null) {
-			fondo.setIcon(m.getIcono());
-		}
-		else {
-			panelJuego.removeAll();			
-		}
-		repaint();
-	}
-
-	public void crearGrafico(Grafico g, int capa) {
-		fondo.add(g.getLbl());
-		g.getLbl().setBounds(g.getX(), g.getY(), Mapa.EJE, Mapa.EJE);
-		if (capa>=0 && capa<fondo.getComponentCount()) {
-			fondo.setComponentZOrder(g.getLbl(), capa);
-		}		
-	}
-	
-
-	public void eliminarGrafico(Grafico g) {
-		fondo.remove(g.getLbl());
-	}
 	private void cargarLogica() {
 		Jugador.getInstance().setGUI(this);
 		Jugador.getInstance().crearMapa();
 		Jugador.getInstance().crearHilos();
 	}
 	
-
 	public void GameOver(boolean ganaste) {
 		repaint();
 		JLabel label;	
@@ -128,6 +102,32 @@ public class GUI extends JFrame{
 		label.setBounds(100, 0, 640, 384);
 	}
 	
+	public void setFondo(Mapa m) {
+		if (m!=null) {
+			fondo.setIcon(m.getIcono());
+		}
+		else {
+			panelJuego.removeAll();			
+		}
+		repaint();
+	}
+	
+	public void crearGrafico(Grafico g, int capa) {
+		fondo.add(g.getLbl());
+		g.getLbl().setBounds(g.getX(), g.getY(), Mapa.EJE, Mapa.EJE);
+		if (capa>=0 && capa<fondo.getComponentCount()) {
+			fondo.setComponentZOrder(g.getLbl(), capa);
+		}		
+	}
+	
+	public void eliminarGrafico(Grafico g) {
+		fondo.remove(g.getLbl());
+	}
+	
+	public void refrescar() {
+		puntaje.setText("Puntos : " + Jugador.getInstance().getPuntos());
+		monedas.setText("Dinero : " + Jugador.getInstance().getDinero());
+	}
 	
 	private class OyenteCrear implements ActionListener {
 		
@@ -163,8 +163,5 @@ public class GUI extends JFrame{
 	}
 	
 
-public static void main(String [] arg){
-		GUI window= new GUI();
-		window.setVisible(true);
-	}
+
 }
