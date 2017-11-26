@@ -1,0 +1,28 @@
+Tower Clash
+
+Un Tower Defense sencillo y facil de jugar para toda la familia y ayudantes de 
+la catedra de TDP. Durante el juego apareceran enemigos que el jugador tendra que 
+defender con los Aliados y Objetos que se les provee. Si un enemigo llega al final 
+del mapa, entonces el jugador habra perdido. Mucha suerte!
+
+Controles:
+
+-Aliados: Para crear un aliado se debe hacer click en el aliado deseado
+	y luego un click sobre la zona del mapa. Para vender un aliado,
+	se debe presionar el click derecho del ratón, este le recuperara
+	todo el dinero gastado en la unidad si esta no ha sido dañada, caso
+	contrario, este solamente recupera la mitad del dinero gastado.
+
+-Objetos: Se cuentan con una serie de objetos extras para ayudar al jugador,
+	tales son:
+	>Golem: Objeto defensivo con abundante vida. No ataca enemigos.
+	>Globo:	Objeto explosivo que cuando un enemigo entra en contacto, mueren ambas unidades.
+	>Lago:	Objeto con efecto retardado, hace daño gradual cuando un enemigo entra en contacto.
+	>Lava: 	Objeto que cuando un enemigo entra en contacto este le hace daño.
+
+-Powerup: Tambien se cuentan con diferentes tipos de powerup tales como:
+	>Bomba: Elimina a todo enemigo que se encuentra en la fila donde es accionado.
+	>Congelar: Detiene a todos los enemigos durante un tiempo.
+	>Curacion: Agrega un campo de proteccion a los Aliados.
+	>Furia: Agrega fuerza a los aliados para hacer mas daño a los enemigos, ademas
+		de tambien otorgarles un campo de proteccion.
